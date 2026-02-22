@@ -1,1 +1,1 @@
-web: gunicorn app:app
+web: gunicorn diet_app.app:app
