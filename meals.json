@@ -59,10 +59,7 @@
         "description": "Kvarg waniliowy fruvita oraz jajko mieszamy.\nDodajemy: gorzką czekoladę, mąkę pszenną pełnoziarnistą, proszek do pieczenia oraz odżywkę białkową.\n Mieszamy.\n Jeżeli ciasto jest zbyt gęste, dodajemy wodę, ciasto na placuszki powinno być gęstsze niż ciasto naleśnikowe.\nPlacuszki smażymy na dobrze rozgrzanej patelni, posmarowanej olejem.\n Ciasto nakładamy małymi porcjami, pozostawiając odstępy między placuszkami.\n Zmniejszamy moc palnika, smażymy do ścięcia smażonej strony, nie poruszając patelnią.\n Placuszki przewracamy na drugą stronę przy pomocy płaskiej łopatki i smażymy drugą stronę do zarumienienia.\nPodajemy z owocami.\n",
         "person": "osoba1",
         "dish": [
-            1,
-            2,
-            4,
-            5
+            1
         ],
         "ingredients": [
             {
@@ -74,11 +71,6 @@
                 "id": 38,
                 "name": "Jajko kurze całe",
                 "grams": 56
-            },
-            {
-                "id": 43,
-                "name": "Kvarg waniliowy Fruvita",
-                "grams": 120
             },
             {
                 "id": 136,
@@ -104,6 +96,11 @@
                 "id": 284,
                 "name": "Borówki mrożone",
                 "grams": 75
+            },
+            {
+                "id": 42,
+                "name": "Jogurt skyr waniliowy piątnica",
+                "grams": 150
             }
         ]
     },
