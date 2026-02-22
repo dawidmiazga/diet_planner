@@ -1,0 +1,27 @@
+/* .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.tab {
+    padding: 10px 22px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.25s ease;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.tab:hover {
+    transform: translateY(-2px);
+}
+
+.tab.active {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
+} */

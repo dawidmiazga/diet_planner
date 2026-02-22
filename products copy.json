@@ -1,0 +1,2424 @@
+[
+    {
+        "nazwa_produktu": "Morele suszone",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Bakalie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Orzechy brazylijskie",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Bakalie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Rodzynki suszone",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Bakalie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Śliwki suszone",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Bakalie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Żurawina suszona",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Bakalie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Tofu naturalne",
+        "nazwa_jednostki": "opakowanie",
+        "jednostka_per_gram": 160,
+        "dzial_w_sklepie": "Chłodnia / produkty sojowe",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Hummus buraczany",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Chłodnia / produkty wegańskie",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Plastry wegańskie z pistacjami Go Vege",
+        "nazwa_jednostki": "plaster",
+        "jednostka_per_gram": 15,
+        "dzial_w_sklepie": "Chłodnia / produkty wegańskie",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Tofu wędzone",
+        "nazwa_jednostki": "opakowanie",
+        "jednostka_per_gram": 160,
+        "dzial_w_sklepie": "Chłodnia / produkty wegańskie",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Fasola biała gotowana",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Konserwy / strączki",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Sos rybny",
+        "nazwa_jednostki": "lyzka",
+        "jednostka_per_gram": 10,
+        "dzial_w_sklepie": "Kuchnia azjatycka",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Sos sojowy",
+        "nazwa_jednostki": "lyzka",
+        "jednostka_per_gram": 10,
+        "dzial_w_sklepie": "Kuchnia azjatycka",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Pasta z tamaryndowca",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Kuchnia azjatycka / orientalna",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Makaron Chow Mein",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Kuchnia azjatycka / produkty suche",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Nori",
+        "nazwa_jednostki": "listek",
+        "jednostka_per_gram": 2.5,
+        "dzial_w_sklepie": "Kuchnia azjatycka / produkty suche",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Mleczko kokosowe 12%",
+        "nazwa_jednostki": "lyzka",
+        "jednostka_per_gram": 20,
+        "dzial_w_sklepie": "Kuchnia azjatycka / produkty sypkie",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Ocet ryżowy",
+        "nazwa_jednostki": "lyzka",
+        "jednostka_per_gram": 10,
+        "dzial_w_sklepie": "Kuchnia azjatycka / przetwory",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Żółta pasta curry",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Kuchnia azjatycka / przyprawy",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Papier ryżowy",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 9,
+        "dzial_w_sklepie": "Kuchnia azjatycka / sekcja orientalna",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Sos Sriracha",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Kuchnia azjatycka / sosy",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Pasta miso",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 10,
+        "dzial_w_sklepie": "Kuchnia azjatycka / strefa bio",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Mięso mielone z kurczaka",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Mięso / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Mięso z piersi indyka",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Mięso / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Mięso z piersi kurczaka",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Mięso / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Schab wieprzowy",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Mięso / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Mieszanka owocowa mrożona",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Mrożonki",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Mieszanka warzywna mrożona",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Mrożonki",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Mrożonka warzyw po włosku",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Mrożonki",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Mieszanka chińska",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Mrożonki",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Big milk",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Mrożonki (lody)",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Fasolka szparagowa, mrożona",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Mrożonki / warzywa mrożone",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Burrata",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Ciasto do naleśników",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 106,
+        "dzial_w_sklepie": "Nabiał / chłodnia",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Ciasto do naleśników wegańskie",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 106,
+        "dzial_w_sklepie": "Nabiał / chłodnia",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Ciasto francuskie Biedronka/Lidl",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Drożdże świeże",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Hummus",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 10,
+        "dzial_w_sklepie": "Nabiał / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Jajko kurze całe",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 56,
+        "dzial_w_sklepie": "Nabiał / chłodnia",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Jogurt grecki",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Jogurt naturalny 2%",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Jogurt skyr",
+        "nazwa_jednostki": "opakowanie",
+        "jednostka_per_gram": 150,
+        "dzial_w_sklepie": "Nabiał / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Jogurt skyr waniliowy piątnica",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Kvarg waniliowy Fruvita",
+        "nazwa_jednostki": "opakowanie",
+        "jednostka_per_gram": 200,
+        "dzial_w_sklepie": "Nabiał / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Margaryna",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 5,
+        "dzial_w_sklepie": "Nabiał / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Masło extra",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Mleko 1,5%",
+        "nazwa_jednostki": "szklanka",
+        "jednostka_per_gram": 250,
+        "dzial_w_sklepie": "Nabiał / chłodnia",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Ricotta",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Ser mozzarella kulka",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 120,
+        "dzial_w_sklepie": "Nabiał / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Ser mozzarella kulka light",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 120,
+        "dzial_w_sklepie": "Nabiał / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Ser mozzarella żółta",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 120,
+        "dzial_w_sklepie": "Nabiał / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Ser typu Feta",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Serek śmietankowy",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Serek wiejski light",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 200,
+        "dzial_w_sklepie": "Nabiał / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Serek wiejski naturalny",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 200,
+        "dzial_w_sklepie": "Nabiał / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Napój owsiany",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia (lub roślinne napoje)",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Napój sojowy",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia (lub roślinne napoje)",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Jogurt roślinny",
+        "nazwa_jednostki": "lyzka",
+        "jednostka_per_gram": 17.5,
+        "dzial_w_sklepie": "Nabiał / chłodnia (lub strefa bio)",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Jogurt skyr sojowy",
+        "nazwa_jednostki": "opakowanie",
+        "jednostka_per_gram": 150,
+        "dzial_w_sklepie": "Nabiał / chłodnia (lub strefa bio)",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Mleko roślinne niesłodzone",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia (lub strefa bio)",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Śmietana wegańska",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia (strefa wegańska)",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Ser twarogowy półtłusty bez laktozy",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia / bez laktozy",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Pudding proteinowy smak słony karmel Go Active",
+        "nazwa_jednostki": "opakowanie",
+        "jednostka_per_gram": 200,
+        "dzial_w_sklepie": "Nabiał / chłodnia / desery proteinowe",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Pudding proteinowy smak waniliowy Go Active",
+        "nazwa_jednostki": "opakowanie",
+        "jednostka_per_gram": 200,
+        "dzial_w_sklepie": "Nabiał / chłodnia / desery proteinowe",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Mleko migdałowe",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia / napoje roślinne",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Pudding sojowy wysokobiałkowy czekoladowy Alpro",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia / sekcja napojów/ desery roślinne",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Alpro sojowe wysokobiałkowe",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia / sekcja roślinna",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Ser brie",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia / sery pleśniowe",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Ser camembert",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia / sery pleśniowe",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Ser z niebieską pleśnią, Lazur",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia / sery pleśniowe",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Ser Grana Padano starty",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia / sery twarde",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Ser kozi twardy",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia / sery twarde",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Ser cheddar",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia / sery żółte",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Ser gouda",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia / sery żółte",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Hummus proteinowy klasyczny Go Active",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / chłodnia / zdrowa żywność",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Parmezan starty",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Nabiał / sery twarde",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Sok pomarańczowy świeży",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Napoje / chłodnia / świeże soki",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Napar z kawy (bez cukru)",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Napoje / kawa / napoje bez cukru",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Deli & fruits chia mango kokos Tymbark",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Napoje / smoothie / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Owolowo tropikalnie",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Napoje / smoothie / chłodnia",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Smoothie Fruity Dream (jabłko,banan, mango) Solevita",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 250,
+        "dzial_w_sklepie": "Napoje / smoothie / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Sok jabłkowy",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Napoje / soki",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Woda",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Napoje / woda mineralna",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "łyżeczka oleju rzepakowego",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Oleje i tłuszcze",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Olej rzepakowy",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Oleje i tłuszcze",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Olej sezamowy",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Oleje i tłuszcze",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Oliwa z oliwek",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Oleje i tłuszcze",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Mieszanka orzechów",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Orzechy i bakalie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Migdały",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Orzechy i bakalie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Orzechy arachidowe",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Orzechy i bakalie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Orzechy laskowe",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Orzechy i bakalie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Orzechy nerkowca",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Orzechy i bakalie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Orzechy pekan",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Orzechy i bakalie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Orzechy pistacjowe niesolone",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Orzechy i bakalie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Orzechy włoskie",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Orzechy i bakalie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Płatki migdałów",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Orzechy i bakalie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Bułka grahamka",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 100,
+        "dzial_w_sklepie": "Piekarnia / pieczywo",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Bułka owsiana",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 100,
+        "dzial_w_sklepie": "Piekarnia / pieczywo",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Bułka wysokobiałkowa Biedronka/Lidl",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 80,
+        "dzial_w_sklepie": "Piekarnia / pieczywo",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Bułki pszenne zwykłe",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 50,
+        "dzial_w_sklepie": "Piekarnia / pieczywo",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Chałka",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Piekarnia / pieczywo",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Chleb bezglutenowy",
+        "nazwa_jednostki": "kromka",
+        "jednostka_per_gram": 23.3333333333333,
+        "dzial_w_sklepie": "Piekarnia / pieczywo",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Chleb pszenny",
+        "nazwa_jednostki": "kromka",
+        "jednostka_per_gram": 30,
+        "dzial_w_sklepie": "Piekarnia / pieczywo",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Chleb tostowy 3 ziarna",
+        "nazwa_jednostki": "kromka",
+        "jednostka_per_gram": 30,
+        "dzial_w_sklepie": "Piekarnia / pieczywo",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Chleb żytni razowy",
+        "nazwa_jednostki": "kromka",
+        "jednostka_per_gram": 30,
+        "dzial_w_sklepie": "Piekarnia / pieczywo",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Focaccia z oliwkami, rozmarynem i skórką z cytryny",
+        "nazwa_jednostki": "?",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Piekarnia / pieczywo",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Półbagietka",
+        "nazwa_jednostki": "?",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Piekarnia / pieczywo",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Rogal croissant z masłem",
+        "nazwa_jednostki": "?",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Piekarnia / pieczywo",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Tortilla pszenna",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 60,
+        "dzial_w_sklepie": "Piekarnia / pieczywo",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Tortilla pełnoziarnista",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 60,
+        "dzial_w_sklepie": "Piekarnia / pieczywo (lub dział pieczywa miękkiego)",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Placek pszenny Piadina",
+        "nazwa_jednostki": "?",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Piekarnia / pieczywo chłodzone",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Pinsa",
+        "nazwa_jednostki": "?",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Piekarnia / pieczywo chłodzone lub mrożonki",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Gnocchi",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty chłodzone lub mrożone (włoska kuchnia)",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Bulion warzywny (po rozrobieniu ze słoiczka)",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty spożywcze / dział dań gotowych",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Budyń w proszku (bez cukru)",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Bulion warzywny",
+        "nazwa_jednostki": "szklanka",
+        "jednostka_per_gram": 250,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Ciecierzyca konserwowa",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Cukier",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Cukier waniliowy",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Curry",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 4,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Erytrol",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 5,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Kakao",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Kasza gryczana",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Kasza jaglana",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Kasza jęczmienna pęczak",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Kasza kuskus",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Kasza kuskus drobna",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Kasza manna",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Komosa ryżowa",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Kostka rosołowa warzywna",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 10,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Ksylitol",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 7,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Makaron pełnoziarnisty",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Makaron spaghetti pełnoziarnisty",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Mąka kukurydziana",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Mąka orkiszowa pełnoziarnista",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Mąka owsiana pełnoziarnista",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Mąka pszenna pełnoziarnista",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Mąka pszenna typ 500",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Mąka ziemniaczana",
+        "nazwa_jednostki": "lyzka",
+        "jednostka_per_gram": 10,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Płatki owsiane górskie",
+        "nazwa_jednostki": "lyzka",
+        "jednostka_per_gram": 10,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Ryż basmati",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Ryż biały",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Skrobia ziemniaczana",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Mąka ryżowa",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie (lub bezglutenowe)",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Makaron ryżowy",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / artykuły sypkie (lub kuchnia azjatycka)",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Daktyle, suszone",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / bakalie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Wiórki kokosowe",
+        "nazwa_jednostki": "lyzka",
+        "jednostka_per_gram": 6,
+        "dzial_w_sklepie": "Produkty suche / bakalie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Żelatyna",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / cukiernicze / dodatki",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Proszek do pieczenia",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 4,
+        "dzial_w_sklepie": "Produkty suche / do pieczenia",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Soda oczyszczona",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / do pieczenia",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Bułka tarta",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / dodatki",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Fasola czerwona konserwowa",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / konserwy",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Kukurydza konserwowa",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / konserwy",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Tahini",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 6,
+        "dzial_w_sklepie": "Produkty suche / kuchnia orientalna",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Płatki kukurydziane",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / płatki śniadaniowe",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Płatki Lion",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / płatki śniadaniowe",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Sól",
+        "nazwa_jednostki": "szczypta",
+        "jednostka_per_gram": 0.25,
+        "dzial_w_sklepie": "Produkty suche / przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "szczypta soli",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Wanilia ekstrakt",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / przyprawy / cukiernicze",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Ciecierzyca sucha",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / strączki",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Soczewica czerwona, nasiona suche",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / strączki",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Soczewica zielona, nasiona suche",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / strączki",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Elios Tahini klasyczne",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / zdrowa żywność",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Mąka kokosowa",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / zdrowa żywność",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Nasiona słonecznika",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / zdrowa żywność",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Pestki dyni",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / zdrowa żywność",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Płatki jaglane",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / zdrowa żywność",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Płatki ryżowe",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / zdrowa żywność",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Sezam nasiona",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 5,
+        "dzial_w_sklepie": "Produkty suche / zdrowa żywność",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Siemię lniane",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / zdrowa żywność",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Syrop klonowy",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 10,
+        "dzial_w_sklepie": "Produkty suche / zdrowa żywność",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Syrop z agawy",
+        "nazwa_jednostki": "lyzka",
+        "jednostka_per_gram": 15,
+        "dzial_w_sklepie": "Produkty suche / zdrowa żywność",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Wafle ryżowe",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty suche / zdrowa żywność",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Vermezan z nerkowców",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Produkty wegańskie / chłodnia",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Mieszanka bakaliowa z żurawiną Alesto",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przekąski / bakalie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Nachosy naturalne",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przekąski / chipsy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Anty baton Łowicz Daktyle Orzechy laskowe Ananas",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przekąski / zdrowa żywność / batony",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Baton Raw Alesto kakao, ziarna kakaowca",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przekąski / zdrowa żywność / batony",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Mini batonik z nerkowców ala sernik waniliowy Dobra Kaloria",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przekąski / zdrowa żywność / batony",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Chrzan (tarty)",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przetwory / dodatki",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Marynata",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przetwory / dodatki smakowe",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Dżem jagodowy",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przetwory / dżemy",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Dżem truskawkowy",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przetwory / dżemy",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Dżem z czarnych porzeczek",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przetwory / dżemy",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Kimchi Runoland",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przetwory / kiszonki",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Ogórek kiszony",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 50,
+        "dzial_w_sklepie": "Przetwory / kiszonki",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Ogórek małosolny",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 50,
+        "dzial_w_sklepie": "Przetwory / kiszonki",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Sok z ogórków kiszonych",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przetwory / kiszonki",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Groszek zielony konserwowy",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przetwory / konserwy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Pomidory z puszki",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przetwory / konserwy",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Kapary",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przetwory / kuchnia śródziemnomorska",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Oliwki czarne",
+        "nazwa_jednostki": "?",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przetwory / kuchnia śródziemnomorska",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Oliwki zielone",
+        "nazwa_jednostki": "?",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przetwory / kuchnia śródziemnomorska",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Pomidor suszony (bez oleju)",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 20,
+        "dzial_w_sklepie": "Przetwory / kuchnia śródziemnomorska",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Pomidory suszone w oleju (odsączone)",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 20,
+        "dzial_w_sklepie": "Przetwory / kuchnia śródziemnomorska",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Kajmak bez dodatku cukru Polder",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przetwory / słodycze",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Sok z cytryny",
+        "nazwa_jednostki": "lyzka",
+        "jednostka_per_gram": 6,
+        "dzial_w_sklepie": "Przetwory / soki / dodatki",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Sok z limonki",
+        "nazwa_jednostki": "lyzka",
+        "jednostka_per_gram": 6,
+        "dzial_w_sklepie": "Przetwory / soki / dodatki",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Ketchup",
+        "nazwa_jednostki": "lyzka",
+        "jednostka_per_gram": 20,
+        "dzial_w_sklepie": "Przetwory / sosy",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Koncentrat pomidorowy 30%",
+        "nazwa_jednostki": "lyzka",
+        "jednostka_per_gram": 25,
+        "dzial_w_sklepie": "Przetwory / sosy",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Majonez",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 10,
+        "dzial_w_sklepie": "Przetwory / sosy",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Musztarda",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przetwory / sosy",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Ocet balsamiczny",
+        "nazwa_jednostki": "lyzka",
+        "jednostka_per_gram": 10,
+        "dzial_w_sklepie": "Przetwory / sosy",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Passata pomidorowa",
+        "nazwa_jednostki": "szklanka",
+        "jednostka_per_gram": 250,
+        "dzial_w_sklepie": "Przetwory / sosy",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Majonez wegański",
+        "nazwa_jednostki": "lyzka",
+        "jednostka_per_gram": 10,
+        "dzial_w_sklepie": "Przetwory / sosy (lub strefa bio)",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Pesto czerwone",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przetwory / sosy / kuchnia włoska",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Pesto z rukoli",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przetwory / sosy / kuchnia włoska",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Pesto zielone",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przetwory / sosy / kuchnia włoska",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Ocet",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przetwory / sosy / przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Ocet winny",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przetwory / sosy / przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Miód",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 12,
+        "dzial_w_sklepie": "Przetwory / zdrowa żywność",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Pasta pistacjowa 100%",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Przetwory / zdrowa żywność",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Masło orzechowe",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 10,
+        "dzial_w_sklepie": "Przetwory / zdrowe tłuszcze",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Dorsz",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Ryby / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Dorsz świeży",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Ryby / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Łosoś świeży",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Ryby / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Łosoś wędzony",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Ryby / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Łosoś wędzony na zimno",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Ryby / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Pstrąg strumieniowy",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Ryby / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Nutella",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Słodycze / kremy do smarowania",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Baton orzechowy (gorzka czekolada, banany) Dobra Kaloria",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 70,
+        "dzial_w_sklepie": "Słodycze / zdrowe przekąski",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Baton orzechowy (orzech laskowy, migdał, nerkowiec) Dobra Kaloria",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 70,
+        "dzial_w_sklepie": "Słodycze / zdrowe przekąski",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Czekolada gorzka 70%",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Słodycze / zdrowe przekąski",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Czekolada mleczna",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Słodycze / zdrowe przekąski",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Buraki, gotowane w wodzie",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa / chłodzone przetwory",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Arbuz",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Awokado",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 140,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Banan",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 120,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Batat",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 200,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Biała rzodkiew",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 220,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Burak surowy",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Cebula",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 80,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Cebula czerwona",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Cebula dymka",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 20,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Cukinia",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 200,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Cytryna",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Czosnek",
+        "nazwa_jednostki": "zabek",
+        "jednostka_per_gram": 6,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Czosnek świeży",
+        "nazwa_jednostki": "zabek",
+        "jednostka_per_gram": 6,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Daktyle świeże",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Fenkuł",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Figi świeże",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Granat",
+        "nazwa_jednostki": "lyzka",
+        "jednostka_per_gram": 15,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Gruszka",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 130,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Imbir",
+        "nazwa_jednostki": "plaster",
+        "jednostka_per_gram": 5,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Jabłko",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 150,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Jeżyny",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Kaki",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 250,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "kalafior",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Kapusta biała",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Kapusta pekińska",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Kapusta włoska",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Kiwi",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 75,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Kukurydza, kolba",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 180,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Limonka",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Mandarynki",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Marakuja",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Marchew",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 80,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Melon",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Ogórek świeży",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 150,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Papryczka chilli",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 20,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Papryka czerwona",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 170,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Pomarańcza",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Pomidor",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 160,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Pomidorki koktajlowe",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 20,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Por",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 0,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Rzodkiewka",
+        "nazwa_jednostki": "sztuka",
+        "jednostka_per_gram": 15,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Szparagi zielone",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Winogrona",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Ziemniaki",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Miks sałat",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże (chłodnia)",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Roszponka",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże (chłodnia)",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Rukola",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże (chłodnia)",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Sałata",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże (chłodnia)",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Jarmuż",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże (lub mrożonki jarmuż)",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Koper posiekany",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże (lub mrożonki)",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Natka pietruszki posiekana",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 5,
+        "dzial_w_sklepie": "Warzywa i owoce świeże (lub mrożonki)",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Szpinak",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże (lub mrożonki)",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Kolendra świeża",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże (lub zioła świeże)",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Mięta",
+        "nazwa_jednostki": "garsc",
+        "jednostka_per_gram": 2,
+        "dzial_w_sklepie": "Warzywa i owoce świeże (lub zioła świeże)",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Szczypiorek siekany",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 5,
+        "dzial_w_sklepie": "Warzywa i owoce świeże (lub zioła świeże)",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Kiełki słonecznika",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże / chłodnia",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Kiełki rzodkiewki",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa i owoce świeże / dział sałat",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Ananas świeży lub mrożony",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa/Owoce świeże lub mrożone",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Borówki amerykańskie, świeże lub mrożone",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa/Owoce świeże lub mrożone",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Borówki mrożone",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa/Owoce świeże lub mrożone",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Brokuł, świeży lub mrożony",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa/Owoce świeże lub mrożone",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Brzoskwinia świeża lub mrożona",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa/Owoce świeże lub mrożone",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Dynia świeża lub mrożona",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa/Owoce świeże lub mrożone",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Fasola Edamame, świeża lub mrożona",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa/Owoce świeże lub mrożone",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Fasola szparagowa, świeża lub mrożona",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa/Owoce świeże lub mrożone",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Jagody mrożone",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa/Owoce świeże lub mrożone",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Jagody świeże lub mrożone",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa/Owoce świeże lub mrożone",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Maliny mrożone",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa/Owoce świeże lub mrożone",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Maliny świeże lub mrożone",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa/Owoce świeże lub mrożone",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Mango świeże lub mrożone",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa/Owoce świeże lub mrożone",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Morele świeże lub mrożone",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa/Owoce świeże lub mrożone",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Porzeczki czerwone, świeże lub mrożone",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa/Owoce świeże lub mrożone",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Śliwki, świeże lub mrożone",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa/Owoce świeże lub mrożone",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Truskawki mrożone",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa/Owoce świeże lub mrożone",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Truskawki, świeże lub mrożone",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa/Owoce świeże lub mrożone",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Wiśnie mrożone",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa/Owoce świeże lub mrożone",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Wiśnie, świeże lub mrożone",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Warzywa/Owoce świeże lub mrożone",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Salami",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Wędliny / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Szynka z indyka",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Wędliny / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Szynka z kurczaka",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Wędliny / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Chorizo",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Wędliny / mięso / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Kabanosy wieprzowe Tarczyński",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Wędliny / mięso / chłodnia",
+        "czy_w_lodowce": "Tak"
+    },
+    {
+        "nazwa_produktu": "Płatki drożdżowe",
+        "nazwa_jednostki": "lyzka",
+        "jednostka_per_gram": 5,
+        "dzial_w_sklepie": "Zdrowa żywność / produkty roślinne",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Ryż preparowany",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zdrowa żywność / produkty suche",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Nasiona chia",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 5,
+        "dzial_w_sklepie": "Zdrowa żywność / produkty sypkie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Odżywka białkowa",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zdrowa żywność / suplementy / sport",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Bazylia suszona",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Bazylia świeża",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Curry przyprawa",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Cynamon",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 4,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Cynamon mielony",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 4,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Czarnuszka",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Czosnek granulowany",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 3,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Gałka muszkatałowa",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Gałka muszkatołowa",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Imbir mielony",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Kardamon",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Kolendra suszona",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Kumin",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 4,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Kurkuma",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 2,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Liść laurowy",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Majeranek",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Oregano suszone",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 3,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Papryka ostra suszona",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Papryka słodka",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Papryka wędzona",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Pieprz biały",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Pieprz cayenne",
+        "nazwa_jednostki": "szczypta",
+        "jednostka_per_gram": 0.25,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Pieprz cytrynowy",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Pieprz czarny",
+        "nazwa_jednostki": "szczypta",
+        "jednostka_per_gram": 0.25,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Płatki chilli",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 5,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Przyprawa gyros",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Przyprawa suszone pomidory z czosnkiem i bazylią",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Tak/Nie"
+    },
+    {
+        "nazwa_produktu": "Rozmaryn suszony",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Tymianek suszony",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 3,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Ziele angielskie",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Zioła prowansalskie",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Skórka z cytryny",
+        "nazwa_jednostki": "lyzeczka",
+        "jednostka_per_gram": 3,
+        "dzial_w_sklepie": "Zioła i przyprawy / dodatki cukiernicze",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Skórka z pomarańczy",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy / dodatki cukiernicze",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Garam masala",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy / przyprawy indyjskie",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Czarna sól kala namak",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy / sekcja egzotyczna",
+        "czy_w_lodowce": "Nie"
+    },
+    {
+        "nazwa_produktu": "Przyprawa do pierników",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "dzial_w_sklepie": "Zioła i przyprawy / sezonowe",
+        "czy_w_lodowce": "Nie"
+    }
+]

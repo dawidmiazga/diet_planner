@@ -1,0 +1,238 @@
+{% extends "base.html" %}
+{% block title %}Lista zakupów{% endblock %}
+
+{% block content %}
+
+<div class="toolbar">
+    <div class="toolbar-left">
+
+        <div class="date-range-wrapper">
+
+            <div class="date-picker-wrapper">
+                <label for="shoppingStartDate">📅 Od</label>
+                <input type="text" id="shoppingStartDate" class="modern-date-input">
+            </div>
+
+            <div class="date-picker-wrapper">
+                <label for="shoppingEndDate">📅 Do</label>
+                <input type="text" id="shoppingEndDate" class="modern-date-input">
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="toolbar-center">
+
+        <div class="shopping-toolbar">
+            <button onclick="resetList()" class="refresh-btn">
+                <span class="refresh-icon">↻</span>
+                Odśwież listę
+            </button>
+        </div>
+    </div>
+    <div class="toolbar-spacer">
+        
+    </div>
+</div>
+
+
+<table class="shopping-table">
+    <thead>
+        <tr>
+            <th></th>
+            <th onclick="sortTable('name')">Nazwa ⬍</th>
+            <th onclick="sortTable('ilosc')">Ilość ⬍</th>
+            <th onclick="sortTable('dzial_w_sklepie')">Dział ⬍</th>
+            <th onclick="sortTable('czy_w_lodowce')">Lodówka ⬍</th>
+        </tr>
+    </thead>
+
+
+    <tbody id="shoppingBody"></tbody>
+</table>
+
+
+
+<script>
+    let shoppingStartDate = null;
+    let shoppingEndDate = null;
+    let plannerData = {};
+    let shoppingData = [];
+    let currentSort = { key: null, asc: true };
+
+    function loadShopping() {
+
+        if (!shoppingStartDate || !shoppingEndDate) return;
+
+        fetch(`/api/shopping_list?start=${shoppingStartDate}&end=${shoppingEndDate}`)
+            .then(res => res.json())
+            .then(data => {
+
+                shoppingData = data.filter(item => !item.checked);
+                renderTable();
+            });
+    }
+
+    function renderTable() {
+
+        const body = document.getElementById("shoppingBody");
+        body.innerHTML = "";
+
+        shoppingData.forEach(item => {
+
+            let iloscText = item.grams + " g";
+            if (item.sztuki && item.jednostka) {
+                iloscText += " (" + item.sztuki + " " + item.jednostka + ")";
+            }
+
+            let lodowkaText = "—";
+            if (item.czy_w_lodowce === "Tak") lodowkaText = "Tak";
+            if (item.czy_w_lodowce === "Nie") lodowkaText = "Nie";
+            if (item.czy_w_lodowce === "Tak/Nie") lodowkaText = "Tak/Nie";
+
+            const row = document.createElement("tr");
+            row.innerHTML = `
+            <td>
+                <button class="remove-btn" onclick="markBought(${item.id})">✕</button>
+            </td>
+            <td>${item.name}</td>
+            <td>${iloscText}</td>
+            <td>${item.dzial_w_sklepie}</td>
+            <td>${lodowkaText}</td>
+        `;
+
+            body.appendChild(row);
+        });
+    }
+
+    function sortTable(key) {
+
+        if (currentSort.key === key) {
+            currentSort.asc = !currentSort.asc;
+        } else {
+            currentSort.key = key;
+            currentSort.asc = true;
+        }
+
+        shoppingData.sort((a, b) => {
+
+            let valA, valB;
+
+            if (key === "ilosc") {
+                valA = Number(a.grams);
+                valB = Number(b.grams);
+            } else {
+                valA = (a[key] || "").toString().toLowerCase();
+                valB = (b[key] || "").toString().toLowerCase();
+            }
+
+            if (valA < valB) return currentSort.asc ? -1 : 1;
+            if (valA > valB) return currentSort.asc ? 1 : -1;
+            return 0;
+        });
+
+        renderTable();
+    }
+
+    function markBought(id) {
+        fetch("/api/shopping_check/" + id, {
+            method: "POST"
+        }).then(() => loadShopping());
+    }
+
+    function resetList() {
+        fetch("/api/shopping_reset", {
+            method: "POST"
+        }).then(() => loadShopping());
+    }
+
+    // document.addEventListener("DOMContentLoaded", loadShopping);
+    document.addEventListener("DOMContentLoaded", () => {
+
+        fetch("/api/get_shopping_dates")
+            .then(res => res.json())
+            .then(data => {
+
+                const today = new Date().toISOString().split("T")[0];
+
+                shoppingStartDate = data.start_date || today;
+                shoppingEndDate = data.end_date || today;
+
+                flatpickr("#shoppingStartDate", {
+                    locale: "pl",
+                    dateFormat: "Y-m-d",
+                    defaultDate: shoppingStartDate,
+                    onChange: function (selectedDates, dateStr) {
+                        shoppingStartDate = dateStr;
+                        saveShoppingDates();
+                        loadShopping();
+                    }
+                });
+
+                flatpickr("#shoppingEndDate", {
+                    locale: "pl",
+                    dateFormat: "Y-m-d",
+                    defaultDate: shoppingEndDate,
+                    onChange: function (selectedDates, dateStr) {
+                        shoppingEndDate = dateStr;
+                        saveShoppingDates();
+                        loadShopping();
+                    }
+                });
+
+                loadShopping();
+            });
+    });
+    function saveShoppingDates() {
+        fetch("/api/save_shopping_dates", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                start_date: shoppingStartDate,
+                end_date: shoppingEndDate
+            })
+        });
+    }
+    function generateShoppingList() {
+
+        if (!shoppingStartDate || !shoppingEndDate) return;
+
+        const start = new Date(shoppingStartDate);
+        const end = new Date(shoppingEndDate);
+
+        let mealIds = [];
+
+        // 🔥 przechodzimy po plannerData
+        for (const person in plannerData) {
+
+            for (const dateStr in plannerData[person]) {
+
+                const currentDate = new Date(dateStr);
+
+                if (currentDate >= start && currentDate <= end) {
+
+                    const mealsForDay = plannerData[person][dateStr];
+
+                    for (const dish in mealsForDay) {
+                        mealIds.push(mealsForDay[dish]);
+                    }
+
+                }
+            }
+        }
+
+        console.log("Dania w zakresie:", mealIds);
+
+        // tutaj dalej masz swoją logikę:
+        // - pobranie meals
+        // - zsumowanie składników
+        // - render tabeli
+    }
+</script>
+
+
+
+{% endblock %}

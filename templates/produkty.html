@@ -1,0 +1,410 @@
+{% extends "base.html" %}
+
+{% block title %}Lista produktów{% endblock %}
+
+{% block content %}
+
+<div class="toolbar">
+    <div class="toolbar-left">
+        <div class="filter-group">
+            <input type="text" id="filterNazwa" class="modern-input" placeholder="🔍 Szukaj produktu...">
+        </div>
+    </div>
+
+    <div class="toolbar-center">
+        <button class="main-btn" onclick="Controller.openAddPopup()">
+            + Dodaj produkt
+        </button>
+    </div>
+
+    <div class="toolbar-spacer"></div>
+</div>
+
+<div class="card no-hover">
+    <table class="modern-table" id="productsTable">
+        <thead>
+            <tr>
+                <th onclick="Controller.sortTable(0, false)">Nazwa <span class="sort-icon">▲▼</span></th>
+                <th onclick="Controller.sortTable(1, false)">Dział <span class="sort-icon">▲▼</span></th>
+                <th onclick="Controller.sortTable(2, false)">Jednostka <span class="sort-icon">▲▼</span></th>
+                <th onclick="Controller.sortTable(3, false)">Lodówka <span class="sort-icon">▲▼</span></th>
+                <th onclick="Controller.sortTable(4, true)">Kcal <span class="sort-icon">▲▼</span></th>
+                <th onclick="Controller.sortTable(5, true)">B <span class="sort-icon">▲▼</span></th>
+                <th onclick="Controller.sortTable(6, true)">T <span class="sort-icon">▲▼</span></th>
+                <th onclick="Controller.sortTable(7, true)">W <span class="sort-icon">▲▼</span></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<script>
+    /************** MODEL **************/
+    const Model = {
+        products: [],
+        productToDeleteId: null,
+        productToDeleteName: "",
+        sortDirection: {},
+        savedSort: null,
+
+        async fetchProducts() {
+            const res = await fetch("/api/products");
+            this.products = await res.json();
+            return this.products;
+        },
+
+        async addProduct(product) {
+            await fetch("/api/products", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(product)
+            });
+        },
+
+        async updateProduct(id, product) {
+            await fetch(`/api/products/${id}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(product)
+            });
+        },
+
+        async deleteProduct(id) {
+            await fetch(`/api/products/${id}`, { method: "DELETE" });
+        }
+    };
+
+    /************** VIEW **************/
+    const View = {
+        popupContainer: null,
+        cancelButton: null,
+        successPopup: null,
+        addAnotherYes: null,
+        addAnotherNo: null,
+        deletePopup: null,
+        deleteMessage: null,
+        deleteYes: null,
+        deleteNo: null,
+
+        init() {
+            this.popupContainer = document.getElementById('popupContainer');
+            this.cancelButton = document.getElementById('cancelButton');
+            this.successPopup = document.getElementById("successPopup");
+            this.addAnotherYes = document.getElementById("addAnotherYes");
+            this.addAnotherNo = document.getElementById("addAnotherNo");
+            this.deletePopup = document.getElementById("deletePopup");
+            this.deleteMessage = document.getElementById("deleteMessage");
+            this.deleteYes = document.getElementById("deleteYes");
+            this.deleteNo = document.getElementById("deleteNo");
+        },
+
+        renderProducts(products) {
+            const tbody = document.querySelector("#productsTable tbody");
+            tbody.innerHTML = "";
+
+            if (!products.length) {
+                tbody.innerHTML = `
+                <tr>
+                    <td colspan="9" style="text-align:center;">Brak produktów</td>
+                </tr>
+            `;
+                return;
+            }
+
+            products.forEach(p => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                <td>${p.nazwa_produktu}</td>
+                <td>${p.dzial_w_sklepie}</td>
+                <td>${p.nazwa_jednostki} (${p.jednostka_per_gram}g)</td>
+                <td>${p.czy_w_lodowce}</td>
+                <td>${p.makro?.kcal || 0}</td>
+                <td>${p.makro?.b || 0}</td>
+                <td>${p.makro?.t || 0}</td>
+                <td>${p.makro?.w || 0}</td>
+                <td>
+                    <button class="edit-btn" onclick="Controller.openEditPopup(${p.id})">Edytuj</button>
+                    <button class="delete-btn" onclick="Controller.confirmDelete(${p.id}, '${p.nazwa_produktu}')">Usuń</button>
+                </td>
+            `;
+                tbody.appendChild(row);
+            });
+        },
+
+        getFilters() {
+            return {
+                nazwa: document.getElementById("filterNazwa").value.toLowerCase()
+            };
+        },
+    };
+
+    /************** CONTROLLER **************/
+    const Controller = {
+        mode: "add", // add | edit
+
+        async init() {
+            View.init();
+            this.bindEvents();
+            await this.loadAndRender();
+
+            // domyślne sortowanie na starcie: kolumna Nazwa, ascending
+            if (!Model.sortDirection[0]) Model.sortDirection[0] = true; // ascending
+            this.sortTable(0, false, true);
+        },
+
+        bindEvents() {
+            const editForm = document.getElementById("editForm");
+            if (editForm) {
+                editForm.addEventListener("submit", async (e) => {
+                    e.preventDefault();
+                    await this.handleEditForm(e);
+                });
+            }
+
+            View.addAnotherYes.addEventListener("click", () => {
+                Controller.closeSuccessPopup();
+                Controller.openAddPopup(); // od razu otwórz formularz dodawania
+            });
+
+            View.addAnotherNo.addEventListener("click", () => {
+                Controller.closeSuccessPopup();
+            });
+
+            View.deleteNo.addEventListener("click", () => {
+                Model.productToDeleteId = null;
+                Controller.closeDeletePopup();
+            });
+
+            View.deleteYes.addEventListener("click", () => this.handleDelete());
+
+            this.closeDeletePopup();
+            document.getElementById("filterNazwa").addEventListener("input", () => this.loadAndRender());
+        },
+
+        /************** POPUP METHODS **************/
+        openDeletePopup() { document.getElementById("deletePopup").classList.add("show"); },
+        closeDeletePopup() { document.getElementById("deletePopup").classList.remove("show"); },
+        openSuccessPopup() { document.getElementById("successPopup").classList.add("show"); },
+        closeSuccessPopup() { document.getElementById("successPopup").classList.remove("show"); },
+
+        /************** DATA METHODS **************/
+        async loadAndRender() {
+            await Model.fetchProducts();
+            this.applyFilters();
+        },
+
+        applyFilters() {
+            const filters = View.getFilters();
+            let filtered = Model.products.slice();
+
+            if (filters.nazwa) {
+                filtered = filtered.filter(p =>
+                    p.nazwa_produktu.toLowerCase().includes(filters.nazwa)
+                );
+            }
+
+            View.renderProducts(filtered);
+            
+            if (Model.savedSort) {
+                const { colIndex, isNumeric, asc } = Model.savedSort;
+                this.sortTable(colIndex, isNumeric, asc); // forceAsc = zachowujemy kierunek
+            }
+            // 🔥 JEŚLI MAMY ZAPISANE SORTOWANIE
+            // if (Model.savedSort) {
+            //     Model.sortDirection[Model.savedSort.colIndex] = Model.savedSort.asc;
+            //     this.sortTable(Model.savedSort.colIndex, Model.savedSort.isNumeric);
+            // } else {
+            //     this.sortTable(0, false); // domyślne A-Z po nazwie
+            // }
+            // DOMYŚLNE A-Z PO NAZWIE
+            // this.sortTable(0, false);
+        },
+
+        async handleAddForm(e) {
+            e.preventDefault();
+            const form = e.target;
+            const newProduct = {
+                nazwa_produktu: form.nazwa_produktu.value.trim(),
+                nazwa_jednostki: form.nazwa_jednostki.value,
+                jednostka_per_gram: parseInt(form.jednostka_per_gram.value),
+                makro: {
+                    kcal: parseFloat(document.getElementById("kcal").value) || 0,
+                    b: parseFloat(document.getElementById("b").value) || 0,
+                    t: parseFloat(document.getElementById("t").value) || 0,
+                    w: parseFloat(document.getElementById("w").value) || 0
+                }
+            };
+            if (!newProduct.nazwa_produktu || newProduct.jednostka_per_gram <= 0) {
+                alert("Proszę wprowadzić poprawne dane!");
+                return;
+            }
+            await Model.addProduct(newProduct);
+            form.reset();
+            this.loadAndRender();
+            this.openSuccessPopup();
+        },
+
+        async handleEditForm(e) {
+            const id = document.getElementById("edit_id").value;
+            const updatedProduct = {
+                nazwa_produktu: document.getElementById("edit_nazwa").value.trim(),
+                nazwa_jednostki: document.getElementById("edit_jednostka").value,
+                jednostka_per_gram: parseInt(document.getElementById("edit_gramy").value),
+                czy_w_lodowce: document.getElementById("edit_lodowka").value,
+                makro: {
+                    kcal: parseFloat(document.getElementById("edit_kcal").value) || 0,
+                    b: parseFloat(document.getElementById("edit_b").value) || 0,
+                    t: parseFloat(document.getElementById("edit_t").value) || 0,
+                    w: parseFloat(document.getElementById("edit_w").value) || 0
+                }
+            };
+
+            if (this.mode === "edit") {
+                await Model.updateProduct(id, updatedProduct);
+                showSaveNoticeGlobal();
+            } else {
+                await Model.addProduct(updatedProduct);
+                Controller.openSuccessPopup();
+            }
+
+            showSaveNoticeGlobal();
+            Controller.closeEditPopup();
+            Controller.loadAndRender();
+        },
+
+        confirmDelete(id, name) {
+            Model.productToDeleteId = id;
+            Model.productToDeleteName = name;
+            View.deleteMessage.textContent = `Czy na pewno chcesz usunąć produkt "${name}"?`;
+            this.openDeletePopup();
+        },
+
+        async handleDelete() {
+            if (!Model.productToDeleteId) return;
+            await Model.deleteProduct(Model.productToDeleteId);
+            Model.productToDeleteId = null;
+            Model.productToDeleteName = "";
+            this.closeDeletePopup();
+            this.loadAndRender();
+        },
+
+        /************** POPUP FORM METHODS **************/
+        openEditPopup(id) {
+            this.mode = "edit";
+            const product = Model.products.find(p => p.id === id);
+            if (!product) return;
+
+            document.getElementById("edit_id").value = product.id;
+            document.getElementById("edit_nazwa").value = product.nazwa_produktu;
+            document.getElementById("edit_jednostka").value = product.nazwa_jednostki;
+            document.getElementById("edit_lodowka").value = product.czy_w_lodowce || "Nie";
+            document.getElementById("edit_gramy").value = product.jednostka_per_gram;
+            document.getElementById("edit_kcal").value = product.makro?.kcal || 0;
+            document.getElementById("edit_b").value = product.makro?.b || 0;
+            document.getElementById("edit_t").value = product.makro?.t || 0;
+            document.getElementById("edit_w").value = product.makro?.w || 0;
+
+            document.getElementById("editProductModal").classList.add("show");
+            document.getElementById("modalSubmitBtn").textContent = "Zapisz";
+        },
+
+        openAddPopup() {
+            this.mode = "add";
+            document.getElementById("editForm").reset();
+            document.getElementById("edit_id").value = "";
+            document.getElementById("modalSubmitBtn").textContent = "Dodaj";
+            document.getElementById("editProductModal").classList.add("show");
+            document.getElementById("edit_lodowka").value = "Nie";
+        },
+
+        closeEditPopup() {
+            document.getElementById("editProductModal").classList.remove("show");
+        },
+
+        /************** SORTING **************/
+        sortTable(colIndex, isNumeric, forceAsc = null) {
+            const table = document.getElementById("productsTable");
+            const tbody = table.querySelector("tbody");
+            const rows = Array.from(tbody.querySelectorAll("tr"));
+
+            if (!Model.sortDirection) Model.sortDirection = {};
+
+            if (forceAsc !== null) {
+                Model.sortDirection[colIndex] = forceAsc;
+            } else {
+                Model.sortDirection[colIndex] = !Model.sortDirection[colIndex];
+            }
+
+            rows.sort((a, b) => {
+                let aValue = a.cells[colIndex].textContent.trim();
+                let bValue = b.cells[colIndex].textContent.trim();
+
+                if (isNumeric) {
+                    aValue = parseFloat(aValue) || 0;
+                    bValue = parseFloat(bValue) || 0;
+                    return Model.sortDirection[colIndex] ? aValue - bValue : bValue - aValue;
+                }
+
+                return Model.sortDirection[colIndex]
+                    ? aValue.localeCompare(bValue)
+                    : bValue.localeCompare(aValue);
+            });
+
+            tbody.innerHTML = "";
+            rows.forEach(row => tbody.appendChild(row));
+
+            const headers = table.querySelectorAll("th");
+            headers.forEach((th, index) => {
+                const icon = th.querySelector(".sort-icon");
+                if (!icon) return;
+                if (index === colIndex) {
+                    icon.textContent = Model.sortDirection[colIndex] ? "▲" : "▼";
+                    icon.style.opacity = "1";
+                } else {
+                    icon.textContent = "▲▼";
+                    icon.style.opacity = "0.4";
+                }
+            });
+
+            // 🔥 zapis sortowania
+            Model.savedSort = { colIndex, isNumeric, asc: Model.sortDirection[colIndex] };
+        }
+    };
+
+    /************** GLOBAL NOTICES **************/
+    function showSaveNoticeGlobal(state = "success") {
+        let notice = document.querySelector(".save-notice-global");
+
+        if (!notice) {
+            notice = document.createElement("div");
+            notice.className = "save-notice-global";
+            document.body.appendChild(notice);
+        }
+
+        if (state === "loading") {
+            notice.textContent = "Zapisywanie...";
+            notice.classList.remove("success", "error");
+            notice.classList.add("show");
+        }
+
+        if (state === "success") {
+            notice.textContent = "Zapisano ✔";
+            notice.classList.remove("error");
+            notice.classList.add("success", "show");
+            setTimeout(() => notice.classList.remove("show"), 1200);
+        }
+
+        if (state === "error") {
+            notice.textContent = "Błąd zapisu ❌";
+            notice.classList.remove("success");
+            notice.classList.add("error", "show");
+            setTimeout(() => notice.classList.remove("show"), 2000);
+        }
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+        Controller.init();
+    });
+</script>
+
+{% endblock %}

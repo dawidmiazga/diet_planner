@@ -1,0 +1,100 @@
+[
+    {
+        "id": 11,
+        "name": "Tosty francuskie z puddingiem proteinowym i owocami",
+        "description": "\nMleko 1,5%\n0.24 szklanka (60 gram)\n\nMiód\n0.83 lyzeczka (10 gram)\n\nMasło orzechowe\n2.5 lyzeczka (25 gram)\n\nJajko kurze całe\n1 sztuka (56 gram)\n\nPrzyprawa do pierników\n2.5 gram\n\nPudding proteinowy smak waniliowy Go Active\n0.5 opakowanie (100 gram)\n\nMaliny świeże lub mrożone\n75 gram\n\nChleb tostowy 3 ziarna\n3 kromka (90 gram)\n\nJajko rozkłócamy z mlekiem i przyprawą do piernika.\nW masie jajecznej obtaczamy chleb i podsmażamy beztłuszczowo na dobrze rozgrzanej patelni. Smażymy z jednej i z drugiej strony do zezłocenia.\nKromki pieczywa przekładamy puddingiem proteinowym.\nWierzchnią kromkę smarujemy masłem orzechowym i polewamy miodem. Danie podajemy z owocami.",
+        "person": "osoba1",
+        "dish": 1,
+        "ingredients": [
+            {
+                "id": 1,
+                "name": "Mleko 1,5%",
+                "grams": 60
+            },
+            {
+                "id": 2,
+                "name": "Miód",
+                "grams": 10
+            },
+            {
+                "id": 3,
+                "name": "Masło orzechowe",
+                "grams": 25
+            },
+            {
+                "id": 4,
+                "name": "Jajko kurze całe",
+                "grams": 56
+            },
+            {
+                "id": 5,
+                "name": "Przyprawa do pierników",
+                "grams": 2.5
+            },
+            {
+                "id": 6,
+                "name": "Pudding proteinowy smak waniliowy Go Active",
+                "grams": 100
+            },
+            {
+                "id": 7,
+                "name": "Maliny mrożone",
+                "grams": 75
+            },
+            {
+                "id": 8,
+                "name": "Chleb tostowy 3 ziarna",
+                "grams": 90
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "name": "Czekoladowe placuszki",
+        "description": "\nCzekolada gorzka 70%\n15 gram\n\nJajko kurze całe\n1 sztuka (56 gram)\n\nKvarg waniliowy Fruvita\n0.6 opakowanie (120 gram)\n\nMąka pszenna pełnoziarnista\n45 gram\n\nProszek do pieczenia\n1 lyzeczka (4 gram)\n\nOlej rzepakowy\n5 gram\n\nOdżywka białkowa\n10 gram\n\nBorówki amerykańskie, świeże lub mrożone\n150 gram\n\nKvarg waniliowy fruvita oraz jajko mieszamy.\nDodajemy: gorzką czekoladę, mąkę pszenną pełnoziarnistą, proszek do pieczenia oraz odżywkę białkową. Mieszamy. Jeżeli ciasto jest zbyt gęste, dodajemy wodę, ciasto na placuszki powinno być gęstsze niż ciasto naleśnikowe.\nPlacuszki smażymy na dobrze rozgrzanej patelni, posmarowanej olejem. Ciasto nakładamy małymi porcjami, pozostawiając odstępy między placuszkami. Zmniejszamy moc palnika, smażymy do ścięcia smażonej strony, nie poruszając patelnią. Placuszki przewracamy na drugą stronę przy pomocy płaskiej łopatki i smażymy drugą stronę do zarumienienia.\nPodajemy z owocami.",
+        "person": "osoba1",
+        "dish": 1,
+        "ingredients": [
+            {
+                "id": 1,
+                "name": "Czekolada gorzka 70%",
+                "grams": 15
+            },
+            {
+                "id": 2,
+                "name": "Jajko kurze całe",
+                "grams": 56
+            },
+            {
+                "id": 3,
+                "name": "Kvarg waniliowy Fruvita",
+                "grams": 120
+            },
+            {
+                "id": 4,
+                "name": "Mąka pszenna pełnoziarnista",
+                "grams": 45
+            },
+            {
+                "id": 5,
+                "name": "Proszek do pieczenia",
+                "grams": 4
+            },
+            {
+                "id": 6,
+                "name": "Olej rzepakowy",
+                "grams": 5
+            },
+            {
+                "id": 7,
+                "name": "Odżywka białkowa",
+                "grams": 10
+            },
+            {
+                "id": 8,
+                "name": "Borówki mrożone",
+                "grams": 75
+            }
+        ]
+    }
+]
