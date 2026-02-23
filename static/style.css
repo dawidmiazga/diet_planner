@@ -1067,6 +1067,9 @@ select {
 }
 
 .undo-btn {
+    position: relative;
+    overflow: hidden;
+
     display: flex;
     align-items: center;
     gap: 10px;
@@ -1078,8 +1081,23 @@ select {
     font-weight: 600;
     font-size: 14px;
     cursor: pointer;
-    transition: all 0.25s ease;
     backdrop-filter: blur(8px);
+
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* .undo-btn {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+} */
+
+.undo-btn.hidden {
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
 }
 
 .undo-btn:hover {
@@ -1101,6 +1119,28 @@ select {
 
 .undo-btn:hover .undo-icon {
     transform: rotate(-180deg);
+}
+
+/* Pasek postępu w tle */
+.undo-progress {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    width: 100%;
+    background: rgba(34, 197, 94, 0.4);
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+/* animacja 5 sekund */
+.undo-progress.animate {
+    animation: undoCountdown 5s linear forwards;
+}
+
+@keyframes undoCountdown {
+    from { transform: scaleX(1); }
+    to   { transform: scaleX(0); }
 }
 
 .date-range-wrapper {

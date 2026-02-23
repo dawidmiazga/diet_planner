@@ -31,7 +31,7 @@
                 Odśwież listę
             </button>
 
-            <button id="undoButton" onclick="undoLastRemoval()" class="undo-btn" style="display: none;">
+            <button id="undoButton" onclick="undoLastRemoval()" class="undo-btn hidden" style="display:none">
             </button>
 
         </div>
@@ -46,10 +46,22 @@
     <thead>
         <tr>
             <th></th>
-            <th onclick="sortTable('name')">Nazwa ⬍</th>
-            <th onclick="sortTable('ilosc')">Ilość ⬍</th>
-            <th onclick="sortTable('dzial_w_sklepie')">Dział ⬍</th>
-            <th onclick="sortTable('czy_w_lodowce')">Lodówka ⬍</th>
+
+            <th data-key="name" onclick="sortTable('name')">
+                Nazwa <span class="sort-icon">▲▼</span>
+            </th>
+
+            <th data-key="ilosc" onclick="sortTable('ilosc')">
+                Ilość <span class="sort-icon">▲▼</span>
+            </th>
+
+            <th data-key="dzial_w_sklepie" onclick="sortTable('dzial_w_sklepie')">
+                Dział <span class="sort-icon">▲▼</span>
+            </th>
+
+            <th data-key="czy_w_lodowce" onclick="sortTable('czy_w_lodowce')">
+                Lodówka <span class="sort-icon">▲▼</span>
+            </th>
         </tr>
     </thead>
 
@@ -64,11 +76,15 @@
     let shoppingEndDate = null;
     let plannerData = {};
     let shoppingData = [];
-    let currentSort = { key: null, asc: true };
+    let currentSort = { key: "name", asc: true };
     let lastRemovedProductId = null;
     let lastRemovedProductName = null;
+    let undoTimeout = null;
 
     function loadShopping() {
+        // lastRemovedProductId = null;
+        // lastRemovedProductName = null;
+        // updateUndoButton();
 
         // jeśli inputy mają pustą wartość, to nic nie rób
         const startVal = document.getElementById("shoppingStartDate").value;
@@ -83,7 +99,7 @@
             .then(res => res.json())
             .then(data => {
                 shoppingData = data.filter(item => !item.checked);
-                renderTable();
+                sortTable(currentSort.key, false);
             });
     }
 
@@ -119,13 +135,17 @@
         });
     }
 
-    function sortTable(key) {
+    function sortTable(key, toggle = true) {
 
-        if (currentSort.key === key) {
-            currentSort.asc = !currentSort.asc;
+        if (toggle) {
+            if (currentSort.key === key) {
+                currentSort.asc = !currentSort.asc;
+            } else {
+                currentSort.key = key;
+                currentSort.asc = true;
+            }
         } else {
             currentSort.key = key;
-            currentSort.asc = true;
         }
 
         shoppingData.sort((a, b) => {
@@ -144,8 +164,27 @@
             if (valA > valB) return currentSort.asc ? 1 : -1;
             return 0;
         });
-
         renderTable();
+        updateSortIcons();
+    }
+
+    function updateSortIcons() {
+
+        const headers = document.querySelectorAll(".shopping-table th[data-key]");
+
+        headers.forEach(th => {
+
+            const key = th.getAttribute("data-key");
+            const icon = th.querySelector(".sort-icon");
+
+            if (!icon) return;
+
+            if (key === currentSort.key) {
+                icon.textContent = currentSort.asc ? "▲" : "▼";
+            } else {
+                icon.textContent = "▲▼";
+            }
+        });
     }
 
     function markBought(id) {
@@ -169,17 +208,52 @@
 
         const btn = document.getElementById("undoButton");
 
+        // ===== UKRYWANIE =====
         if (!lastRemovedProductId) {
-            btn.style.display = "none";
+
+            btn.classList.add("hidden");
+
+            setTimeout(() => {
+                if (!lastRemovedProductId) {
+                    btn.style.display = "none";
+                    btn.innerHTML = ""; // wyczyść pasek
+                }
+            }, 400);
+
             return;
         }
 
+        // ===== POKAZYWANIE =====
+
         btn.innerHTML = `
-                        <span class="undo-icon">↺</span>
-                        Usunięto: <strong>${lastRemovedProductName}</strong> – Cofnij
-                    `;
+        <span class="undo-icon">↺</span>
+        Usunięto: <strong>${lastRemovedProductName}</strong> - Cofnij
+        <div class="undo-progress"></div>
+    `;
 
         btn.style.display = "flex";
+
+        requestAnimationFrame(() => {
+            btn.classList.remove("hidden");
+        });
+
+        // uruchom animację paska
+        const progress = btn.querySelector(".undo-progress");
+        requestAnimationFrame(() => {
+            progress.classList.add("animate");
+        });
+
+        // reset poprzedniego timera
+        if (undoTimeout) {
+            clearTimeout(undoTimeout);
+        }
+
+        // auto fade-out po 5 sekundach
+        undoTimeout = setTimeout(() => {
+            lastRemovedProductId = null;
+            lastRemovedProductName = null;
+            updateUndoButton();
+        }, 5000);
     }
 
     function undoLastRemoval() {
@@ -191,6 +265,10 @@
         })
             .then(() => {
 
+                if (undoTimeout) {
+                    clearTimeout(undoTimeout);
+                }
+
                 lastRemovedProductId = null;
                 lastRemovedProductName = null;
 
@@ -200,6 +278,12 @@
     }
 
     function resetList() {
+
+        // 🔹 wyczyść stan cofania
+        lastRemovedProductId = null;
+        lastRemovedProductName = null;
+        updateUndoButton();   // schowa przycisk
+
         fetch("/api/shopping_reset", {
             method: "POST"
         }).then(() => loadShopping());
