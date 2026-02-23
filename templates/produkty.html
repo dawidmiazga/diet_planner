@@ -7,12 +7,15 @@
 <div class="toolbar">
     <div class="toolbar-left">
         <div class="filter-group">
-            <input type="text" id="filterNazwa" class="modern-input" placeholder="🔍 Szukaj produktu...">
+            <div class="filter-with-clear" id="productFilterWrapper">
+                <input type="text" id="filterNazwa" class="modern-input" placeholder="🔍 Szukaj produktu...">
+                <button type="button" id="clearProductFilter" class="clear-filter-btn">✕</button>
+            </div>
         </div>
     </div>
 
     <div class="toolbar-center">
-        <button class="main-btn" onclick="Controller.openAddPopup()">
+        <button class="btn main-btn" onclick="Controller.openAddPopup()">
             + Dodaj produkt
         </button>
     </div>
@@ -41,6 +44,7 @@
 
 <script>
     /************** MODEL **************/
+
     const Model = {
         products: [],
         productToDeleteId: null,
@@ -124,8 +128,8 @@
                 <td>${p.makro?.t || 0}</td>
                 <td>${p.makro?.w || 0}</td>
                 <td>
-                    <button class="edit-btn" onclick="Controller.openEditPopup(${p.id})">Edytuj</button>
-                    <button class="delete-btn" onclick="Controller.confirmDelete(${p.id}, '${p.nazwa_produktu}')">Usuń</button>
+                    <button class="btn yellow-btn" onclick="Controller.openEditPopup(${p.id})">Edytuj</button>
+                    <button class="btn red-btn" onclick="Controller.confirmDelete(${p.id}, '${p.nazwa_produktu}')">Usuń</button>
                 </td>
             `;
                 tbody.appendChild(row);
@@ -179,7 +183,26 @@
             View.deleteYes.addEventListener("click", () => this.handleDelete());
 
             this.closeDeletePopup();
-            document.getElementById("filterNazwa").addEventListener("input", () => this.loadAndRender());
+
+            const filterInput = document.getElementById("filterNazwa");
+            const clearBtn = document.getElementById("clearProductFilter");
+            const wrapper = document.getElementById("productFilterWrapper");
+
+            filterInput.addEventListener("input", () => {
+                if (filterInput.value.length > 0) {
+                    wrapper.classList.add("has-text");
+                } else {
+                    wrapper.classList.remove("has-text");
+                }
+                this.loadAndRender();
+            });
+
+            clearBtn.addEventListener("click", () => {
+                filterInput.value = "";
+                wrapper.classList.remove("has-text");
+                this.loadAndRender();
+            });
+
         },
 
         /************** POPUP METHODS **************/
@@ -205,7 +228,7 @@
             }
 
             View.renderProducts(filtered);
-            
+
             if (Model.savedSort) {
                 const { colIndex, isNumeric, asc } = Model.savedSort;
                 this.sortTable(colIndex, isNumeric, asc); // forceAsc = zachowujemy kierunek
@@ -252,6 +275,7 @@
                 nazwa_jednostki: document.getElementById("edit_jednostka").value,
                 jednostka_per_gram: parseInt(document.getElementById("edit_gramy").value),
                 czy_w_lodowce: document.getElementById("edit_lodowka").value,
+                dzial_w_sklepie: document.getElementById("edit_dzial").value,
                 makro: {
                     kcal: parseFloat(document.getElementById("edit_kcal").value) || 0,
                     b: parseFloat(document.getElementById("edit_b").value) || 0,
@@ -304,18 +328,25 @@
             document.getElementById("edit_b").value = product.makro?.b || 0;
             document.getElementById("edit_t").value = product.makro?.t || 0;
             document.getElementById("edit_w").value = product.makro?.w || 0;
+            document.getElementById("edit_dzial").value = product.dzial_w_sklepie || "";
 
-            document.getElementById("editProductModal").classList.add("show");
+            document.getElementById("editModalTitle").textContent = "Edytuj produkt";
             document.getElementById("modalSubmitBtn").textContent = "Zapisz";
+    
+            document.getElementById("editProductModal").classList.add("show");
         },
 
         openAddPopup() {
             this.mode = "add";
             document.getElementById("editForm").reset();
             document.getElementById("edit_id").value = "";
-            document.getElementById("modalSubmitBtn").textContent = "Dodaj";
-            document.getElementById("editProductModal").classList.add("show");
             document.getElementById("edit_lodowka").value = "Nie";
+            document.getElementById("edit_dzial").value = "";
+            
+            document.getElementById("editModalTitle").textContent = "Nowy produkt";
+            document.getElementById("modalSubmitBtn").textContent = "Dodaj";
+
+            document.getElementById("editProductModal").classList.add("show");
         },
 
         closeEditPopup() {

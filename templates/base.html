@@ -28,8 +28,8 @@
             <input type="number" id="productGrams" placeholder="g" value="0">
 
             <div class="modal-buttons">
-                <button class="save-btn" onclick="selectProduct()">Dodaj</button>
-                <button class="close-btn" onclick="closeProductModal()">Zamknij</button>
+                <button class="btn save-btn" onclick="selectProduct()">Dodaj</button>
+                <button class="btn red-btn" onclick="closeProductModal()">Zamknij</button>
             </div>
         </div>
     </div>
@@ -42,7 +42,8 @@
             <a class="nav-link {% if request.path in ['/', '/planner'] %}active{% endif %}" href="/">Planner</a>
             <a class="nav-link {% if request.path == '/zakupy' %}active{% endif %}" href="/zakupy">Lista zakupów</a>
             <a class="nav-link {% if request.path == '/dania' %}active{% endif %}" href="/dania">Dania</a>
-            <a class="nav-link {% if request.path == '/produkty' %}active{% endif %}" href="/produkty">Lista produktów</a>
+            <a class="nav-link {% if request.path == '/produkty' %}active{% endif %}" href="/produkty">Lista
+                produktów</a>
         </nav>
 
         <!-- Główna treść -->
@@ -54,51 +55,84 @@
 
     <!-- Popup edycji produktu -->
     <div class="modal" id="editProductModal">
-        <div class="modal-content">
+        <div class="modal-content modal-product-form">
 
             <div class="modal-header">
-                <h3>Edytuj produkt</h3>
+                <h3 id="editModalTitle"></h3>
                 <button class="modal-close" onclick="Controller.closeEditPopup()">×</button>
             </div>
 
             <form id="editForm">
-
                 <input type="hidden" id="edit_id">
 
-                <label>Nazwa produktu</label>
-                <input type="text" id="edit_nazwa" class="modern-input">
-                <label>Jednostka</label>
-                <select id="edit_jednostka" class="modern-input">
-                    {% for j in jednostki %}
-                    <option value="{{ j }}">{{ j }}</option>
-                    {% endfor %}
-                </select>
+                <div class="form-field full-width">
+                    <label>Nazwa produktu</label>
+                    <input type="text" id="edit_nazwa" class="modern-input">
+                </div>
 
-                <label>Ilość gram w jednostce</label>
-                <input type="number" id="edit_gramy" class="modern-input", step="any">
+                <div class="form-field">
+                    <label>Jednostka</label>
+                    <select id="edit_jednostka" class="modern-input">
+                        {% for j in jednostki %}
+                        <option value="{{ j }}">{{ j }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
 
-                <label>Kcal</label>
-                <input type="number" id="edit_kcal" class="modern-input", step="any">
+                <div class="form-field">
+                    <label>Ilość gram w jednostce</label>
+                    <input type="number" id="edit_gramy" class="modern-input" step="any">
+                </div>
 
-                <label>Białko</label>
-                <input type="number" id="edit_b" class="modern-input", step="any">
+                <div class="form-field">
+                    <label for="edit_dzial">Dział w sklepie</label>
+                    <select id="edit_dzial" class="modern-input">
+                        <option value="">-- wybierz dział --</option>
+                        {% for dzial in dzialy %}
+                        <option value="{{ dzial }}">{{ dzial }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
 
-                <label>Tłuszcz</label>
-                <input type="number" id="edit_t" class="modern-input", step="any">
+                <div class="form-field">
+                    <label>Czy w lodówce?</label>
+                    <select id="edit_lodowka" class="modern-input">
+                        <option value="Tak">Tak</option>
+                        <option value="Nie">Nie</option>
+                        <option value="Tak/Nie">Tak/Nie</option>
+                    </select>
+                </div>
 
-                <label>Węglowodany</label>
-                <input type="number" id="edit_w" class="modern-input", step="any">
+                <div class="macro-section">
+                    <div class="macro-title">Makroskładniki (na 100g)</div>
 
-                <label>Czy w lodówce?</label>
-                <select id="edit_lodowka" class="modern-input">
-                    <option value="Tak">Tak</option>
-                    <option value="Nie">Nie</option>
-                    <option value="Tak/Nie">Tak/Nie</option>
-                </select>
+                    <div class="macro-grid">
 
+                        <div class="form-field">
+                            <label>Kcal</label>
+                            <input type="number" id="edit_kcal" class="modern-input" step="any">
+                        </div>
+
+                        <div class="form-field">
+                            <label>Białko</label>
+                            <input type="number" id="edit_b" class="modern-input" step="any">
+                        </div>
+
+                        <div class="form-field">
+                            <label>Tłuszcz</label>
+                            <input type="number" id="edit_t" class="modern-input" step="any">
+                        </div>
+
+                        <div class="form-field">
+                            <label>Węglowodany</label>
+                            <input type="number" id="edit_w" class="modern-input" step="any">
+                        </div>
+
+                    </div>
+                </div>
                 <div class="modal-buttons">
-                    <button type="submit" class="save-btn" id="modalSubmitBtn">Zapisz</button>
-                    <button type="button" class="close-btn" onclick="Controller.closeEditPopup()">Anuluj</button>
+                    <button type="submit" class="btn save-btn" id="modalSubmitBtn">Zapisz</button>
+                    <button type="button" class="btn red-btn" onclick="Controller.closeEditPopup()">Anuluj</button>
                 </div>
 
             </form>
@@ -107,18 +141,18 @@
     </div>
 
     <div class="modal" id="deletePopup">
-        <div class="modal-content">
+        <div class="modal-content modal-delete-product">
 
             <div class="modal-header">
                 <h3>Usunąć produkt?</h3>
-                <button class="modal-close" onclick="Controller.closeDeletePopup()">×</button>
+                <button class="btn modal-close" onclick="Controller.closeDeletePopup()">×</button>
             </div>
 
             <p id="deleteMessage"></p>
 
             <div class="modal-buttons">
-                <button id="deleteYes" class="delete-btn">Usuń</button>
-                <button id="deleteNo" class="close-btn">Anuluj</button>
+                <button id="deleteYes" class="btn red-btn">Usuń</button>
+                <button id="deleteNo" class="btn cancel-btn">Anuluj</button>
             </div>
 
         </div>
@@ -136,7 +170,7 @@
 
             <div class="modal-buttons">
                 <button id="addAnotherYes" class="main-btn">Tak</button>
-                <button id="addAnotherNo" class="close-btn">Nie</button>
+                <button id="addAnotherNo" class="red-btn">Nie</button>
             </div>
 
         </div>
@@ -150,19 +184,28 @@
             <label>Nazwa</label>
             <input type="text" id="mealName">
 
+            <label>Numer dania</label>
+            <div id="dishSelection" class="dish-selection">
+                <label><input type="checkbox" value="1"> 1</label>
+                <label><input type="checkbox" value="2"> 2</label>
+                <label><input type="checkbox" value="3"> 3</label>
+                <label><input type="checkbox" value="4"> 4</label>
+                <label><input type="checkbox" value="5"> 5</label>
+            </div>
+
             <label>Opis</label>
             <textarea id="mealDescription" class="modal-mealDescription"></textarea>
 
             <label>Składniki</label>
             <div id="ingredientsContainer"></div>
 
-            <button type="button" class="main-btn" onclick="openProductModal()">+ Dodaj składnik</button>
+            <button type="button" class="btn main-btn" onclick="openProductModal()">+ Dodaj składnik</button>
 
 
             <div class="modal-buttons">
-                <button class="save-btn" onclick="saveMeal()">Zapisz</button>
-                <button class="delete-btn" onclick="deleteMeal()">Usuń</button>
-                <button class="close-btn" onclick="closeModal()">Zamknij</button>
+                <button class="btn save-btn" onclick="saveMeal()">Zapisz</button>
+                <button class="btn red-btn" onclick="deleteMeal()">Usuń</button>
+                <button class="btn red-btn" onclick="closeModal()">Zamknij</button>
             </div>
         </div>
     </div>

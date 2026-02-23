@@ -9,8 +9,8 @@
 }
 
 :root {
-    --primary: #6366f1;
-    --primary-strong: #4f46e5;
+    --primary: #368994;
+    --primary-strong: #368994;
     --danger: #ef4444;
     --bg: linear-gradient(135deg, #eef2ff, #f8fafc);
     --card-bg: rgba(255, 255, 255, 0.75);
@@ -109,18 +109,17 @@ select {
     font-size: 14px;
 }
 
-button {
+.btn {
     padding: 6px 12px;
     border: none;
     border-radius: 5px;
-    background: #28a745;
     color: #fff;
     cursor: pointer;
     font-size: 13px;
 }
 
-button:hover {
-    background: #218838;
+.btn:hover {
+    transform: translateY(-2px);
 }
 
 .main-btn {
@@ -229,12 +228,13 @@ button:hover {
 }
 
 .nav-link:hover {
-    color: #111827;
+    color: white;
 }
 
 .nav-link.active {
     color: white;
     min-width: 200px;
+    background: var(--primary-strong);
 }
 
 .nav-highlight {
@@ -243,7 +243,7 @@ button:hover {
     left: 0;
     height: 100%;
     width: 0;
-    background: #6366f1;
+    background: var(--primary);
     border-radius: 999px;
     z-index: 0;
     transition: all 0.35s cubic-bezier(0.77, 0, 0.175, 1);
@@ -382,11 +382,11 @@ button:hover {
     padding-right: 30px;
     padding-left: 30px;
     padding-bottom: 30px;
-    padding-top: 10px;
+    padding-top: 30px;
     border-radius: 12px;
     width: 80%;
     max-width: 90%;
-    max-height: 80vh;
+    max-height: 90vh;
     overflow: auto;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
     animation: fadeIn 0.2s ease;
@@ -457,10 +457,14 @@ button:hover {
     font-size: 18px;
     font-weight: bold;
     transition: all 0.2s ease;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .modal-close:hover {
-    background: #e2e2e2;
+    background: #c93131;
     transform: rotate(90deg);
 }
 
@@ -477,6 +481,11 @@ button:hover {
 }
 
 .modal-content select {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0 18px 0;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
     height: auto;
     flex: 0 0 auto;
 }
@@ -494,6 +503,84 @@ button:hover {
 
 .modal-content .ingredient-row .ingredient-grams {
     flex: 0.5;
+}
+
+/* ===== PRODUCT MODAL – dla edycji/dodania nowego produktu ===== */
+
+.modal-product-form {
+    width: 600px;
+}
+
+.modal-product-form form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 30px;
+    align-items: start;
+    /* 🔥 bardzo ważne */
+}
+
+.modal-product-form .full-width {
+    grid-column: 1 / -1;
+}
+
+.modal-product-form .form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-product-form .form-field label {
+    display: flex;
+    align-items: flex-end;
+    /* min-height: 42px;         */
+    margin-bottom: 6px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.modal-product-form .form-field input,
+.modal-product-form .form-field select {
+    width: 100%;
+}
+
+.modal-product-form .modal-buttons {
+    grid-column: 1 / -1;
+    margin-top: 20px;
+}
+
+.modal-product-form .form-field input,
+.modal-product-form .form-field select {
+    margin-bottom: 6px;
+}
+
+/* ==================== MODAL USUWANIA PRODUKTU ==================== */
+/* ================================================================= */
+
+.modal-delete-product {
+    width: 500px;
+}
+
+
+/* ===== SEKCJA MAKRO ===== */
+
+.macro-section {
+    grid-column: 1 / -1;
+    /* zajmuje całą szerokość */
+    background: rgba(99, 102, 241, 0.05);
+    padding: 20px;
+    border-radius: 16px;
+    margin-top: 10px;
+}
+
+.macro-title {
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--primary);
+}
+
+.macro-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
 }
 
 /* ===== STICKY HEADER W MODALU PRZEPISU ===== */
@@ -731,6 +818,7 @@ button:hover {
     flex: 1;
     overflow-y: auto;
     padding-right: 5px;
+    margin-bottom: 20px;
     scrollbar-width: thin;
     scrollbar-color: rgba(99, 102, 241, 0.5) transparent;
 }
@@ -937,6 +1025,7 @@ button:hover {
 .shopping-toolbar {
     display: flex;
     justify-content: flex-end;
+    gap: 14px;
     margin-bottom: 20px;
 }
 
@@ -975,6 +1064,43 @@ button:hover {
 
 .refresh-btn:hover .refresh-icon {
     transform: rotate(180deg);
+}
+
+.undo-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    background: rgba(34, 197, 94, 0.08);
+    color: #16a34a;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(8px);
+}
+
+.undo-btn:hover {
+    background: #16a34a;
+    color: white;
+    box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+    transform: translateY(-2px);
+}
+
+.undo-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.undo-icon {
+    font-size: 16px;
+    transition: transform 0.4s ease;
+}
+
+.undo-btn:hover .undo-icon {
+    transform: rotate(-180deg);
 }
 
 .date-range-wrapper {
@@ -1106,7 +1232,7 @@ button:hover {
 }
 
 .clear-filter-btn:hover {
-    color: var(--primary);
+    color: #333;
 }
 
 .filter-with-clear.has-text .clear-filter-btn {
@@ -1338,7 +1464,7 @@ input:checked+.slider:before {
 
 .meal-search-input:focus {
     outline: none;
-    border-color: #6366f1;
+    border-color: var(--primary);
     box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -1397,32 +1523,52 @@ input:checked+.slider:before {
 }
 
 .save-btn {
-    background: var(--primary);
+    background: #36ac2b;
     color: white;
 }
 
 .save-btn:hover {
-    background: var(--primary-strong);
+    background: #23741c;
 }
 
-.delete-btn {
-    background: rgba(255, 80, 80, 0.15);
+.cancel-btn {
+    background: rgba(255, 80, 80, 0.6);
     border: 1px solid rgba(255, 80, 80, 0.4);
-    color: #ff8080;
+    color: white;
     padding: 6px 10px;
     border-radius: 6px;
     cursor: pointer;
 }
 
-.delete-btn:hover {
-    background: rgba(255, 80, 80, 0.25);
+.cancel-btn:hover {
+    background: rgba(255, 80, 80, 0.4);
 }
 
-.close-btn {
-    background: #e5e7eb;
+.red-btn {
+    background: #bd5851;
 }
 
-.edit-btn {
+.red-btn:hover {
+    background: #b92323;
+}
+
+.yellow-btn {
+    background: rgba(255, 193, 7, 0.15);
+    border: 1px solid rgba(255, 193, 7, 0.6);
+    color: #eab308;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 6px;
+    transition: 0.2s;
+}
+
+.yellow-btn:hover {
+    background: rgba(255, 193, 7, 0.25);
+}
+
+
+/* .edit-btn {
     background: rgba(255, 193, 7, 0.15);
     border: 1px solid rgba(255, 193, 7, 0.6);
     color: #eab308;
@@ -1435,7 +1581,7 @@ input:checked+.slider:before {
 
 .edit-btn:hover {
     background: rgba(255, 193, 7, 0.25);
-}
+} */
 
 /* ========================= FORMS ======================== */
 /* ======================================================== */
@@ -1529,6 +1675,37 @@ form select {
 }
 
 .product-item.selected {
+    background: var(--primary);
+    color: white;
+}
+
+/* ===== DISH CHECKBOXES W JEDNEJ LINII ===== */
+
+.dish-selection {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.dish-pill {
+    cursor: pointer;
+}
+
+.dish-pill input {
+    display: none;
+}
+
+.dish-pill span {
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(99, 102, 241, 0.15);
+    transition: 0.2s;
+    font-weight: 500;
+}
+
+.dish-pill input:checked+span {
     background: var(--primary);
     color: white;
 }

@@ -25,14 +25,19 @@
     <div class="toolbar-center">
 
         <div class="shopping-toolbar">
-            <button onclick="resetList()" class="refresh-btn">
+
+            <button onclick="resetList()" class="btn refresh-btn">
                 <span class="refresh-icon">↻</span>
                 Odśwież listę
             </button>
+
+            <button id="undoButton" onclick="undoLastRemoval()" class="undo-btn" style="display: none;">
+            </button>
+
         </div>
     </div>
     <div class="toolbar-spacer">
-        
+
     </div>
 </div>
 
@@ -60,15 +65,23 @@
     let plannerData = {};
     let shoppingData = [];
     let currentSort = { key: null, asc: true };
+    let lastRemovedProductId = null;
+    let lastRemovedProductName = null;
 
     function loadShopping() {
 
-        if (!shoppingStartDate || !shoppingEndDate) return;
+        // jeśli inputy mają pustą wartość, to nic nie rób
+        const startVal = document.getElementById("shoppingStartDate").value;
+        const endVal = document.getElementById("shoppingEndDate").value;
 
-        fetch(`/api/shopping_list?start=${shoppingStartDate}&end=${shoppingEndDate}`)
+        if (!startVal || !endVal) {
+            console.warn("Brak dat w inputach — nie wywołuję API:", startVal, endVal);
+            return;
+        }
+
+        fetch(`/api/shopping_list?start=${startVal}&end=${endVal}`)
             .then(res => res.json())
             .then(data => {
-
                 shoppingData = data.filter(item => !item.checked);
                 renderTable();
             });
@@ -94,7 +107,7 @@
             const row = document.createElement("tr");
             row.innerHTML = `
             <td>
-                <button class="remove-btn" onclick="markBought(${item.id})">✕</button>
+                <button class="btn remove-btn" onclick="markBought(${item.id})">✕</button>
             </td>
             <td>${item.name}</td>
             <td>${iloscText}</td>
@@ -136,9 +149,54 @@
     }
 
     function markBought(id) {
+        const product = shoppingData.find(p => p.id === id);
+
+        if (product) {
+            lastRemovedProductId = id;
+            lastRemovedProductName = product.name;
+
+            updateUndoButton();
+        }
+
         fetch("/api/shopping_check/" + id, {
             method: "POST"
-        }).then(() => loadShopping());
+        }).then(() => {
+            loadShopping();
+        });
+    }
+
+    function updateUndoButton() {
+
+        const btn = document.getElementById("undoButton");
+
+        if (!lastRemovedProductId) {
+            btn.style.display = "none";
+            return;
+        }
+
+        btn.innerHTML = `
+                        <span class="undo-icon">↺</span>
+                        Usunięto: <strong>${lastRemovedProductName}</strong> – Cofnij
+                    `;
+
+        btn.style.display = "flex";
+    }
+
+    function undoLastRemoval() {
+
+        if (!lastRemovedProductId) return;
+
+        fetch("/api/shopping_uncheck/" + lastRemovedProductId, {
+            method: "POST"
+        })
+            .then(() => {
+
+                lastRemovedProductId = null;
+                lastRemovedProductName = null;
+
+                updateUndoButton();
+                loadShopping();
+            });
     }
 
     function resetList() {
@@ -159,14 +217,16 @@
                 shoppingStartDate = data.start_date || today;
                 shoppingEndDate = data.end_date || today;
 
+                document.getElementById("shoppingStartDate").value = shoppingStartDate;
+                document.getElementById("shoppingEndDate").value = shoppingEndDate;
+
                 flatpickr("#shoppingStartDate", {
                     locale: "pl",
                     dateFormat: "Y-m-d",
                     defaultDate: shoppingStartDate,
                     onChange: function (selectedDates, dateStr) {
                         shoppingStartDate = dateStr;
-                        saveShoppingDates();
-                        loadShopping();
+                        saveShoppingDates().then(() => loadShopping());
                     }
                 });
 
@@ -176,8 +236,7 @@
                     defaultDate: shoppingEndDate,
                     onChange: function (selectedDates, dateStr) {
                         shoppingEndDate = dateStr;
-                        saveShoppingDates();
-                        loadShopping();
+                        saveShoppingDates().then(() => loadShopping());
                     }
                 });
 
@@ -185,11 +244,9 @@
             });
     });
     function saveShoppingDates() {
-        fetch("/api/save_shopping_dates", {
+        return fetch("/api/save_shopping_dates", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 start_date: shoppingStartDate,
                 end_date: shoppingEndDate
@@ -205,7 +262,6 @@
 
         let mealIds = [];
 
-        // 🔥 przechodzimy po plannerData
         for (const person in plannerData) {
 
             for (const dateStr in plannerData[person]) {
@@ -223,13 +279,6 @@
                 }
             }
         }
-
-        console.log("Dania w zakresie:", mealIds);
-
-        // tutaj dalej masz swoją logikę:
-        // - pobranie meals
-        // - zsumowanie składników
-        // - render tabeli
     }
 </script>
 

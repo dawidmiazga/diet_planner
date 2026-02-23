@@ -22,7 +22,7 @@
     </div>
 
     <div class="toolbar-center">
-        <button class="main-btn" onclick="openAddForm()">+ Dodaj danie</button>
+        <button class="btn main-btn" onclick="openAddForm()">+ Dodaj danie</button>
     </div>
 
     <div class="toolbar-spacer"></div>
@@ -30,10 +30,23 @@
 
 <div class="grid" id="mealsGrid"></div>
 
-
-
-
 <script>
+    const DISH_CONFIG = {
+        osoba1: {
+            1: "Śniadanie",
+            2: "II Śniadanie",
+            3: "Obiad",
+            4: "Kolacja",
+            5: "Przekąska"
+        },
+        osoba2: {
+            1: "Śniadanie",
+            2: "Obiad",
+            3: "Kolacja",
+            4: "Przekąska"
+        }
+    };
+
     let currentPerson = "osoba1";
     let currentDay = 1;
     let meals = [];
@@ -94,13 +107,39 @@
         row.innerHTML = `
         <input type="text" class="ingredient-name" id="ingredient-name-${ingId}" name="ingredient-name-${ingId}" placeholder="Nazwa składnika" value="${name}">
         <input type="number" class="ingredient-grams" id="ingredient-grams-${ingId}" name="ingredient-grams-${ingId}" placeholder="g" value="${grams}">
-        <button type="button" class="ingredient-delete" onclick="this.parentElement.remove()">×</button>
+        <button type="button" class="brn ingredient-delete" onclick="this.parentElement.remove()">×</button>
     `;
 
         container.appendChild(row);
     }
 
+    function renderDishSelection(selected = []) {
+        const container = document.getElementById("dishSelection");
+        container.innerHTML = "";
 
+        const config = DISH_CONFIG[currentPerson];
+        if (!config) return;
+
+        Object.entries(config).forEach(([value, label]) => {
+            const wrapper = document.createElement("label");
+            wrapper.classList.add("dish-pill");
+
+            const input = document.createElement("input");
+            input.type = "checkbox";
+            input.value = value;
+
+            if (selected.includes(Number(value))) {
+                input.checked = true;
+            }
+
+            const span = document.createElement("span");
+            span.textContent = label;
+
+            wrapper.appendChild(input);
+            wrapper.appendChild(span);
+            container.appendChild(wrapper);
+        });
+    }
 
     function loadMeals() {
         fetch("/api/meals")
@@ -198,7 +237,8 @@
             firstDayTab.classList.add("active");
         }
 
-        animateGrid();   // 🔥 ZMIANA TUTAJ
+        animateGrid();
+        renderDishSelection([]);
     }
 
     function setDay(day, el) {
@@ -272,6 +312,9 @@
         document.getElementById("mealName").value = meal.name;
         document.getElementById("mealDescription").value = meal.description;
 
+        // 🔥 NOWE
+        renderDishSelection(meal.dish || []);
+
         const container = document.getElementById("ingredientsContainer");
         container.innerHTML = "";
 
@@ -280,7 +323,6 @@
                 addIngredientField(ing.name, ing.grams, ing.id);
             });
         }
-
 
         document.getElementById("mealModal").classList.add("show");
     }
@@ -293,6 +335,8 @@
         const container = document.getElementById("ingredientsContainer");
         container.innerHTML = "";
         addIngredientField();
+
+        renderDishSelection([]);
 
         document.getElementById("mealModal").classList.add("show");
     }
@@ -319,12 +363,21 @@
             }
         });
 
+        // 🔥 pobierz zaznaczone dish
+        const selectedDish = Array.from(
+            document.querySelectorAll("#dishSelection input[type='checkbox']:checked")
+        ).map(cb => Number(cb.value));
+
+        if (selectedDish.length === 0) {
+            return alert("Wybierz przynajmniej jeden posiłek");
+        }
+
         const mealData = {
             name: document.getElementById("mealName").value,
             description: document.getElementById("mealDescription").value,
             ingredients: ingredients,
             person: currentPerson,
-            dish: [currentDay]   // 🔥 teraz zawsze tablica
+            dish: selectedDish
         };
 
 

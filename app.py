@@ -436,6 +436,15 @@ def check_product(product_id):
     save_shopping_state(state)
     return jsonify({"status": "ok"})
 
+@app.route("/api/shopping_uncheck/<int:product_id>", methods=["POST"])
+def uncheck_product(product_id):
+    state = load_shopping_state()
+
+    if str(product_id) in state:
+        state[str(product_id)] = False
+
+    save_shopping_state(state)
+    return jsonify({"status": "ok"})
 
 @app.route("/api/shopping_reset", methods=["POST"])
 def reset_shopping():
@@ -448,16 +457,17 @@ def generate_shopping_list():
 
     start_str = request.args.get("start")
     end_str = request.args.get("end")
-
-    if not start_str or not end_str:
+    
+    try:
+        start_date = datetime.strptime(start_str, "%Y-%m-%d") if start_str else None
+        end_date = datetime.strptime(end_str, "%Y-%m-%d") if end_str else None
+    except ValueError:
         return jsonify([])
-
-    start_date = datetime.strptime(start_str, "%Y-%m-%d")
-    end_date = datetime.strptime(end_str, "%Y-%m-%d")
 
     meals = load_meals()
     products = load_products()
 
+    # jeśli planner nie istnieje lub jest pusty
     if not os.path.exists(PLANNER_FILE):
         return jsonify([])
 
@@ -469,15 +479,18 @@ def generate_shopping_list():
 
     product_totals = defaultdict(float)
 
+    # Sumowanie grams dla składników z planner
     for person in planner.values():
         for date_str, meals_for_day in person.items():
+            try:
+                current_date = datetime.strptime(date_str, "%Y-%m-%d")
+            except ValueError:
+                continue
 
-            current_date = datetime.strptime(date_str, "%Y-%m-%d")
-
-            if start_date <= current_date <= end_date:
+            if (not start_date or current_date >= start_date) and \
+               (not end_date or current_date <= end_date):
 
                 for meal_id in meals_for_day.values():
-
                     meal = next((m for m in meals if m.get("id") == meal_id), None)
                     if not meal:
                         continue
@@ -485,39 +498,36 @@ def generate_shopping_list():
                     for ingredient in meal.get("ingredients", []):
                         product_totals[ingredient["id"]] += ingredient.get("grams", 0)
 
+    # budujemy finalną listę
     shopping_list = []
     shopping_state = load_shopping_state()
 
-    for product_id, total_grams in product_totals.items():
-        product = next((p for p in products if p["id"] == product_id), None)
+    for pid, total_grams in product_totals.items():
+        product = next((p for p in products if p["id"] == pid), None)
         if not product:
             continue
 
-        jednostka_per_gram = product.get("jednostka_per_gram")
-        nazwa_jednostki = product.get("nazwa_jednostki")
+        jednostka_per_gram = product.get("jednostka_per_gram", 0)
+        nazwa_jednostki = product.get("nazwa_jednostki", "")
 
         ilosc_sztuk = None
-        if jednostka_per_gram and jednostka_per_gram > 0:
+        if jednostka_per_gram > 0:
             ilosc_sztuk = round(total_grams / jednostka_per_gram, 2)
 
-        shopping_list.append(
-            {
-                "id": product_id,
-                "name": product.get("nazwa_produktu"),
-                "grams": total_grams,
-                "sztuki": ilosc_sztuk,
-                "jednostka": nazwa_jednostki,
-                "dzial_w_sklepie": product.get("dzial_w_sklepie", "Inne"),
-                "czy_w_lodowce": product.get("czy_w_lodowce", "Nie"),
-                "checked": shopping_state.get(str(product_id), False),
-            }
-        )
+        shopping_list.append({
+            "id": pid,
+            "name": product.get("nazwa_produktu", ""),
+            "grams": total_grams,
+            "sztuki": ilosc_sztuk,
+            "jednostka": nazwa_jednostki,
+            "dzial_w_sklepie": product.get("dzial_w_sklepie", ""),
+            "czy_w_lodowce": product.get("czy_w_lodowce", ""),
+            "checked": shopping_state.get(str(pid), False)
+        })
 
+    # sortowanie po dziale
     shopping_list.sort(key=lambda x: x["dzial_w_sklepie"])
-
     return jsonify(shopping_list)
-
-
 # =====================================================
 # START
 # =====================================================
