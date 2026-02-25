@@ -232,11 +232,6 @@
         ],
         "ingredients": [
             {
-                "id": 269,
-                "name": "Miks sałat",
-                "grams": 15
-            },
-            {
                 "id": 334,
                 "name": "Pieprz czarny",
                 "grams": 0.25
@@ -265,6 +260,11 @@
                 "id": 97,
                 "name": "Bułka owsiana",
                 "grams": 100
+            },
+            {
+                "id": 271,
+                "name": "Rukola",
+                "grams": 10
             }
         ]
     },
@@ -1804,7 +1804,8 @@
                 "name": "Kiwi",
                 "grams": 150
             }
-        ]
+        ],
+        "rating": 4
     },
     {
         "id": 47,
@@ -18298,5 +18299,17 @@
                 "grams": 455
             }
         ]
+    },
+    {
+        "name": "a",
+        "description": "",
+        "ingredients": [],
+        "person": "osoba1",
+        "dish": [
+            1,
+            2
+        ],
+        "id": 385,
+        "rating": 4
     }
 ]

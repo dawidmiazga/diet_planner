@@ -1,9 +1,9 @@
 {
     "planner": {
-        "start_date": "2026-02-14"
+        "start_date": "2026-02-25"
     },
     "shopping": {
-        "start_date": "2026-02-15",
-        "end_date": "2026-02-28"
+        "start_date": "2026-02-25",
+        "end_date": "2026-03-01"
     }
 }

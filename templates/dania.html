@@ -22,7 +22,15 @@
     </div>
 
     <div class="toolbar-center">
-        <button class="btn main-btn" onclick="openAddForm()">+ Dodaj danie</button>
+        <button class="btn main-btn animate-btn" onclick="openAddForm()">
+            <span class="plus-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+                    <path d="M4 20h4l10-10a2.8 2.8 0 0 0-4-4L4 16v4z" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </span>
+            Dodaj danie
+        </button>
     </div>
 
     <div class="toolbar-spacer"></div>
@@ -31,22 +39,9 @@
 <div class="grid" id="mealsGrid"></div>
 
 <script>
-    const DISH_CONFIG = {
-        osoba1: {
-            1: "Śniadanie",
-            2: "II Śniadanie",
-            3: "Obiad",
-            4: "Kolacja",
-            5: "Przekąska"
-        },
-        osoba2: {
-            1: "Śniadanie",
-            2: "Obiad",
-            3: "Kolacja",
-            4: "Przekąska"
-        }
-    };
 
+
+    let currentRating = 0;
     let currentPerson = "osoba1";
     let currentDay = 1;
     let meals = [];
@@ -72,20 +67,49 @@
         animateGrid();
     });
 
+    function renderStars(rating) {
+        currentRating = rating;
+
+        const stars = document.querySelectorAll("#mealRating span");
+
+        stars.forEach(star => {
+            const value = Number(star.dataset.value);
+
+            star.classList.remove("hovered");
+
+            if (value <= rating) {
+                star.classList.add("filled");
+            } else {
+                star.classList.remove("filled");
+            }
+        });
+    }
+    function generateStaticStars(rating) {
+        let starsHTML = "";
+
+        for (let i = 1; i <= 5; i++) {
+            if (i <= rating) {
+                starsHTML += '<span class="static-star filled"></span>';
+            } else {
+                starsHTML += '<span class="static-star"></span>';
+            }
+        }
+
+        return starsHTML;
+    }
     function updateDayTabs() {
         const container = document.getElementById("dayTabs");
         container.innerHTML = "";
 
         const isDawid = currentPerson === "osoba1";
         const count = isDawid ? 5 : 4;
-        const label = isDawid ? "Dzień " : "Danie ";
 
         for (let i = 1; i <= count; i++) {
             const tab = document.createElement("div");
             tab.className = "tab";
             if (i === 1) tab.classList.add("active");
 
-            tab.textContent = label + i;
+            tab.textContent = DISH_CONFIG[currentPerson][i];
             tab.onclick = function () {
                 setDay(i, this);
             };
@@ -140,7 +164,35 @@
             container.appendChild(wrapper);
         });
     }
+    function updateDishSelectionForModal(person, selected = []) {
 
+        const container = document.getElementById("dishSelection");
+        container.innerHTML = "";
+
+        const config = DISH_CONFIG[person];
+        if (!config) return;
+
+        Object.entries(config).forEach(([value, label]) => {
+
+            const wrapper = document.createElement("label");
+            wrapper.classList.add("dish-pill");
+
+            const input = document.createElement("input");
+            input.type = "checkbox";
+            input.value = value;
+
+            if (selected.includes(Number(value))) {
+                input.checked = true;
+            }
+
+            const span = document.createElement("span");
+            span.textContent = label;
+
+            wrapper.appendChild(input);
+            wrapper.appendChild(span);
+            container.appendChild(wrapper);
+        });
+    }
     function loadMeals() {
         fetch("/api/meals")
             .then(res => res.json())
@@ -193,7 +245,12 @@
 
             const card = document.createElement("div");
             card.className = "card";
-            card.innerHTML = `<strong>${m.name}</strong>`;
+
+            card.innerHTML = `<strong>${m.name}</strong>
+                                <div class="meal-rating">
+                                    ${generateStaticStars(m.rating || 0)}
+                                </div>`;
+
             card.onclick = () => openModal(m);
 
             grid.appendChild(card);
@@ -311,9 +368,12 @@
         document.getElementById("mealId").value = meal.id;
         document.getElementById("mealName").value = meal.name;
         document.getElementById("mealDescription").value = meal.description;
-
-        // 🔥 NOWE
-        renderDishSelection(meal.dish || []);
+        renderPersonSelection(meal.person);
+        updateDishSelectionForModal(meal.person, meal.dish || []);
+        if (!meal.rating) {
+            meal.rating = 0;
+        }
+        renderStars(meal.rating);
 
         const container = document.getElementById("ingredientsContainer");
         container.innerHTML = "";
@@ -324,6 +384,8 @@
             });
         }
 
+        document.getElementById("editModalTitleMeal").textContent = "Edytuj danie";
+        document.getElementById("deleteMealBtn").style.display = "inline-block";
         document.getElementById("mealModal").classList.add("show");
     }
 
@@ -331,18 +393,66 @@
         document.getElementById("mealId").value = "";
         document.getElementById("mealName").value = "";
         document.getElementById("mealDescription").value = "";
+        renderPersonSelection(currentPerson);
+        updateDishSelectionForModal(currentPerson, []);
 
         const container = document.getElementById("ingredientsContainer");
         container.innerHTML = "";
-        addIngredientField();
+        // addIngredientField();
 
-        renderDishSelection([]);
+        // renderDishSelection([]);
 
+        document.getElementById("editModalTitleMeal").textContent = "Dodaj danie";
+        document.getElementById("deleteMealBtn").style.display = "none";
         document.getElementById("mealModal").classList.add("show");
-    }
 
+        renderStars(0);
+    }
+    function renderPersonSelection(selectedPerson = "osoba1") {
+
+        const container = document.getElementById("mealPersonSelection");
+        container.innerHTML = "";
+
+        const persons = {
+            osoba1: "Dawid",
+            osoba2: "Kasia"
+        };
+
+        Object.entries(persons).forEach(([value, label]) => {
+
+            const wrapper = document.createElement("label");
+            wrapper.classList.add("dish-pill");
+
+            const input = document.createElement("input");
+            input.type = "radio";
+            input.name = "mealPersonRadio";
+            input.value = value;
+
+            if (value === selectedPerson) {
+                input.checked = true;
+            }
+
+            input.addEventListener("change", function () {
+                updateDishSelectionForModal(this.value, []);
+            });
+
+            const span = document.createElement("span");
+            span.textContent = label;
+
+            wrapper.appendChild(input);
+            wrapper.appendChild(span);
+            container.appendChild(wrapper);
+        });
+    }
     function closeModal() {
-        document.getElementById("mealModal").classList.remove("show");
+        const modal = document.getElementById("mealModal");
+
+        modal.classList.add("closing");
+
+        setTimeout(() => {
+            modal.classList.remove("show");
+            modal.classList.remove("closing");
+        }, 200);
     }
 
     function saveMeal() {
@@ -372,12 +482,17 @@
             return alert("Wybierz przynajmniej jeden posiłek");
         }
 
+        const selectedPerson = document.querySelector(
+            "#mealPersonSelection input[name='mealPersonRadio']:checked"
+        )?.value;
+
         const mealData = {
             name: document.getElementById("mealName").value,
             description: document.getElementById("mealDescription").value,
             ingredients: ingredients,
-            person: currentPerson,
-            dish: selectedDish
+            person: selectedPerson,
+            dish: selectedDish,
+            rating: currentRating  // ⭐ NOWE
         };
 
 
@@ -395,22 +510,116 @@
     }
 
 
-    function deleteMeal() {
+    let mealToDeleteId = null;
+
+    /* =========================
+       DELETE POPUP LOGIC
+    ========================= */
+
+    function confirmDeleteMeal() {
         const id = document.getElementById("mealId").value;
         if (!id) return;
 
-        fetch(`/api/meals/${id}`, { method: "DELETE" })
-            .then(() => {
-                closeModal();
-                loadMeals();
-            });
+        mealToDeleteId = id;
+
+        const mealName = document.getElementById("mealName").value;
+
+        const message = document.getElementById("deleteMessage");
+        message.textContent = `Czy na pewno chcesz usunąć danie "${mealName}"?`;
+
+        document.getElementById("deletePopup").classList.add("show");
     }
+    function highlightStars(rating) {
+        const stars = document.querySelectorAll("#mealRating span");
+
+        stars.forEach(star => {
+            const value = Number(star.dataset.value);
+
+            if (value <= rating) {
+                star.classList.add("hovered");
+            } else {
+                star.classList.remove("hovered");
+            }
+        });
+    }
+    // kliknięcie ANULUJ
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const deleteNo = document.getElementById("deleteNo");
+        const deleteYes = document.getElementById("deleteYes");
+
+        if (deleteNo) {
+            deleteNo.addEventListener("click", () => {
+                mealToDeleteId = null;
+                document.getElementById("deletePopup").classList.remove("show");
+            });
+        }
+
+        if (deleteYes) {
+            deleteYes.addEventListener("click", () => {
+                if (!mealToDeleteId) return;
+
+                fetch(`/api/meals/${mealToDeleteId}`, { method: "DELETE" })
+                    .then(() => {
+                        mealToDeleteId = null;
+                        document.getElementById("deletePopup").classList.remove("show");
+                        closeModal();
+                        loadMeals();
+                    });
+            });
+        }
+
+    });
 
     loadMeals();
+    document.addEventListener("DOMContentLoaded", function () {
+        const stars = document.querySelectorAll("#mealRating span");
 
+        stars.forEach(star => {
+
+            // klik
+            star.addEventListener("click", function () {
+                const value = Number(this.dataset.value);
+                renderStars(value);
+            });
+
+            // hover
+            star.addEventListener("mouseenter", function () {
+                const value = Number(this.dataset.value);
+                highlightStars(value);
+            });
+
+            star.addEventListener("mouseleave", function () {
+                renderStars(currentRating);
+            });
+        });
+    });
+    // document.addEventListener("DOMContentLoaded", function () {
+    //     document.querySelectorAll("#mealRating span").forEach(star => {
+    //         star.addEventListener("click", function () {
+    //             const value = Number(this.dataset.value);
+    //             renderStars(value);
+    //         });
+    //     });
+    // });
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const personSelect = document.getElementById("mealPerson");
+
+        if (personSelect) {
+            personSelect.addEventListener("change", function () {
+
+                updateDishSelectionForModal(this.value, []);
+
+            });
+        }
+
+    });
     document.addEventListener("DOMContentLoaded", function () {
         updateDayTabs();
     });
+
 </script>
 
 {% endblock %}

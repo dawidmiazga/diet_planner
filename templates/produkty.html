@@ -15,7 +15,7 @@
     </div>
 
     <div class="toolbar-center">
-        <button class="btn main-btn" onclick="Controller.openAddPopup()">
+        <button class="btn main-btn animate-btn" onclick="Controller.openAddPopup()">
             + Dodaj produkt
         </button>
     </div>
@@ -207,9 +207,26 @@
 
         /************** POPUP METHODS **************/
         openDeletePopup() { document.getElementById("deletePopup").classList.add("show"); },
-        closeDeletePopup() { document.getElementById("deletePopup").classList.remove("show"); },
-        openSuccessPopup() { document.getElementById("successPopup").classList.add("show"); },
-        closeSuccessPopup() { document.getElementById("successPopup").classList.remove("show"); },
+        closeDeletePopup() {
+            const modal = document.getElementById("deletePopup");
+
+            modal.classList.add("closing");
+
+            setTimeout(() => {
+                modal.classList.remove("show");
+                modal.classList.remove("closing");
+            }, 200);
+        },
+        openSuccessPopup() { document.getElementById("successPopup").classList.add("show"); }, closeSuccessPopup() {
+            const modal = document.getElementById("successPopup");
+
+            modal.classList.add("closing");
+
+            setTimeout(() => {
+                modal.classList.remove("show");
+                modal.classList.remove("closing");
+            }, 200);
+        },
 
         /************** DATA METHODS **************/
         async loadAndRender() {
@@ -332,7 +349,7 @@
 
             document.getElementById("editModalTitle").textContent = "Edytuj produkt";
             document.getElementById("modalSubmitBtn").textContent = "Zapisz";
-    
+
             document.getElementById("editProductModal").classList.add("show");
         },
 
@@ -342,7 +359,7 @@
             document.getElementById("edit_id").value = "";
             document.getElementById("edit_lodowka").value = "Nie";
             document.getElementById("edit_dzial").value = "";
-            
+
             document.getElementById("editModalTitle").textContent = "Nowy produkt";
             document.getElementById("modalSubmitBtn").textContent = "Dodaj";
 
@@ -350,7 +367,14 @@
         },
 
         closeEditPopup() {
-            document.getElementById("editProductModal").classList.remove("show");
+            const modal = document.getElementById("editProductModal");
+
+            modal.classList.add("closing");
+
+            setTimeout(() => {
+                modal.classList.remove("show");
+                modal.classList.remove("closing");
+            }, 200);
         },
 
         /************** SORTING **************/
@@ -436,6 +460,15 @@
     document.addEventListener("DOMContentLoaded", () => {
         Controller.init();
     });
+
+    document.addEventListener("click", function (e) {
+        const modal = document.getElementById("editProductModal");
+
+        if (e.target === modal) {
+            Controller.closeEditPopup();
+        }
+    });
+
 </script>
 
 {% endblock %}

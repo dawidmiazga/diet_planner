@@ -330,6 +330,9 @@ def add_meal():
         max_id = max(m.get("id", 0) for m in meals)
     else:
         max_id = 0
+    
+    if "rating" not in new_meal:
+        new_meal["rating"] = 0
 
     new_meal["id"] = max_id + 1
     meals.append(new_meal)
@@ -343,8 +346,17 @@ def update_meal(id):
     meals = load_meals()
     updated_data = request.json
 
+    # 🔥 jeśli rating nie istnieje → ustaw 0
+    if "rating" not in updated_data:
+        updated_data["rating"] = 0
+
     for m in meals:
         if m.get("id") == id:
+
+            # 🔥 jeśli stare danie nie miało rating
+            if "rating" not in m:
+                m["rating"] = 0
+
             m.update(updated_data)
             break
 

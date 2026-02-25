@@ -16,7 +16,13 @@
     <!-- Modal wyboru składnika z products.json -->
     <div class="modal" id="productModal">
         <div class="modal-content">
-            <h3>Wybierz składnik</h3>
+            <div class="modal-header fancy-header">
+                <h3>Wybierz składnik</h3>
+            </div>
+
+            <button class="fancy-close-btn" onclick="closeProductModal()" aria-label="Zamknij">
+                <span class="close-icon">✕</span>
+            </button>
 
             <!-- Pole do filtrowania produktów -->
             <input type="text" id="productSearch" placeholder="Szukaj produktu..." oninput="filterProducts()"
@@ -29,7 +35,6 @@
 
             <div class="modal-buttons">
                 <button class="btn save-btn" onclick="selectProduct()">Dodaj</button>
-                <button class="btn red-btn" onclick="closeProductModal()">Zamknij</button>
             </div>
         </div>
     </div>
@@ -57,10 +62,13 @@
     <div class="modal" id="editProductModal">
         <div class="modal-content modal-product-form">
 
-            <div class="modal-header">
+            <div class="modal-header fancy-header">
                 <h3 id="editModalTitle"></h3>
-                <button class="modal-close" onclick="Controller.closeEditPopup()">×</button>
             </div>
+
+            <button class="fancy-close-btn" onclick="Controller.closeEditPopup()" aria-label="Zamknij">
+                <span class="close-icon">✕</span>
+            </button>
 
             <form id="editForm">
                 <input type="hidden" id="edit_id">
@@ -143,10 +151,13 @@
     <div class="modal" id="deletePopup">
         <div class="modal-content modal-delete-product">
 
-            <div class="modal-header">
+            <div class="modal-header fancy-header">
                 <h3>Usunąć produkt?</h3>
-                <button class="btn modal-close" onclick="Controller.closeDeletePopup()">×</button>
             </div>
+
+            <button class="fancy-close-btn" onclick="Controller.closeDeletePopup()" aria-label="Zamknij">
+                <span class="close-icon">✕</span>
+            </button>
 
             <p id="deleteMessage"></p>
 
@@ -161,10 +172,13 @@
     <div class="modal" id="successPopup">
         <div class="modal-content">
 
-            <div class="modal-header">
+            <div class="modal-header fancy-header">
                 <h3>Produkt dodany!</h3>
-                <button class="modal-close" onclick="Controller.closeSuccessPopup()">×</button>
             </div>
+
+            <button class="fancy-close-btn" onclick="Controller.closeSuccessPopup()" aria-label="Zamknij">
+                <span class="close-icon">✕</span>
+            </button>
 
             <p>Czy chcesz dodać nowy produkt?</p>
 
@@ -175,42 +189,124 @@
 
         </div>
     </div>
-
-    <!-- Modal przeniesiony poza container, zawsze na środku ekranu -->
-    <div class="modal" id="mealModal">
+    <!-- Modal wyboru dania (Planner) -->
+    <div class="modal" id="plannerMealModal">
         <div class="modal-content">
-            <input type="hidden" id="mealId">
 
-            <label>Nazwa</label>
-            <input type="text" id="mealName">
-
-            <label>Numer dania</label>
-            <div id="dishSelection" class="dish-selection">
-                <label><input type="checkbox" value="1"> 1</label>
-                <label><input type="checkbox" value="2"> 2</label>
-                <label><input type="checkbox" value="3"> 3</label>
-                <label><input type="checkbox" value="4"> 4</label>
-                <label><input type="checkbox" value="5"> 5</label>
+            <div class="modal-header fancy-header">
+                <h3>Wybierz danie</h3>
             </div>
 
-            <label>Opis</label>
-            <textarea id="mealDescription" class="modal-mealDescription"></textarea>
+            <button class="fancy-close-btn" onclick="closePlannerMealModal()" aria-label="Zamknij">
+                <span class="close-icon">✕</span>
+            </button>
 
-            <label>Składniki</label>
-            <div id="ingredientsContainer"></div>
+            <input type="hidden" id="cellDish">
+            <input type="hidden" id="cellDate">
 
-            <button type="button" class="btn main-btn" onclick="openProductModal()">+ Dodaj składnik</button>
+            <input type="text" id="mealSearch" placeholder="Szukaj dan..." class="meal-search-input">
 
+            <div id="mealTiles" class="meal-tiles"></div>
+        </div>
+    </div>
+    <!-- Modal opisu dania (Planner) -->
+    <div class="modal" id="mealDescriptionModal">
+        <div class="modal-content">
+
+            <div class="modal-header fancy-header">
+                <h3 id="descriptionTitle"></h3>
+            </div>
+
+            <button class="fancy-close-btn" onclick="closeDescriptionModal()" aria-label="Zamknij">
+                <span class="close-icon">✕</span>
+            </button>
+
+            <div id="descriptionContent" class="meal-description-layout">
+                <div id="mealDescriptionLeft" class="meal-description-left"></div>
+                <div id="mealDescriptionRight" class="meal-description-right"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal przeniesiony poza container, zawsze na środku ekranu -->
+    <div class="modal" id="mealModal">
+        <div class="modal-content modal-meal-layout">
+            <div class="modal-title-with-stars">
+                <!-- <h3>Edytuj danie</h3>                 -->
+                <h3 id="editModalTitleMeal"></h3>
+                <div id="mealRating" class="star-rating">
+                    <span data-value="1"></span>
+                    <span data-value="2"></span>
+                    <span data-value="3"></span>
+                    <span data-value="4"></span>
+                    <span data-value="5"></span>
+                </div>
+            </div>
+
+            <button class="fancy-close-btn" onclick="closeModal()" aria-label="Zamknij">
+                <span class="close-icon">✕</span>
+            </button>
+
+            <input type="hidden" id="mealId">
+
+            <div class="meal-modal-grid">
+
+                <!-- LEWA STRONA -->
+                <div class="meal-left">
+
+                    <label>Nazwa</label>
+                    <input type="text" id="mealName" class="modern-input">
+
+                    <label>Osoba</label>
+                    <div id="mealPersonSelection" class="dish-selection"></div>
+
+                    <label>Numer dania</label>
+                    <div id="dishSelection" class="dish-selection"></div>
+
+                    <label>Opis</label>
+                    <textarea id="mealDescription" class="modal-mealDescription"></textarea>
+
+                </div>
+
+                <!-- PRAWA STRONA -->
+                <div class="meal-right">
+
+                    <div class="ingredients-header">
+                        <label>Składniki</label>
+                        <button type="button" class="btn main-btn small-btn" onclick="openProductModal()">+
+                            Dodaj</button>
+                    </div>
+
+                    <div id="ingredientsContainer" class="ingredients-list"></div>
+
+                </div>
+
+            </div>
 
             <div class="modal-buttons">
                 <button class="btn save-btn" onclick="saveMeal()">Zapisz</button>
-                <button class="btn red-btn" onclick="deleteMeal()">Usuń</button>
-                <button class="btn red-btn" onclick="closeModal()">Zamknij</button>
+                <button class="btn red-btn" id="deleteMealBtn" onclick="confirmDeleteMeal()">Usuń</button>
             </div>
+
         </div>
     </div>
 
     <script>
+        const DISH_CONFIG = {
+            osoba1: {
+                1: "Śniadanie",
+                2: "II Śniadanie",
+                3: "Obiad",
+                4: "Kolacja",
+                5: "Przekąska"
+            },
+            osoba2: {
+                1: "Śniadanie",
+                2: "Obiad",
+                3: "Kolacja",
+                4: "Przekąska"
+            }
+        };
+
         // ===== Animowany przesuwający się highlight w nav =====
         const nav = document.getElementById("mainNav");
         const highlight = document.getElementById("navHighlight");
@@ -263,8 +359,15 @@
 
         // Zamknięcie modalu produktu
         function closeProductModal() {
-            document.getElementById("productModal").classList.remove("show");
-            selectedProductId = null;
+            const modal = document.getElementById("productModal");
+
+            modal.classList.add("closing");
+
+            setTimeout(() => {
+                modal.classList.remove("show");
+                modal.classList.remove("closing");
+                selectedProductId = null;
+            }, 200);
         }
 
         function moveHighlight(el) {
@@ -297,6 +400,38 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pl.js"></script>
+
+    <script>
+        /* ===== GLOBALNY SYSTEM MODALI ===== */
+
+        function closeModalElement(modal) {
+            if (!modal) return;
+
+            modal.classList.add("closing");
+
+            setTimeout(() => {
+                modal.classList.remove("show");
+                modal.classList.remove("closing");
+            }, 200);
+        }
+
+        // ESC zamyka wszystkie otwarte modale
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") {
+                document.querySelectorAll(".modal.show").forEach(modal => {
+                    closeModalElement(modal);
+                });
+            }
+        });
+
+        // Klik w tło zamyka modal
+        document.addEventListener("click", function (e) {
+            if (e.target.classList.contains("modal")) {
+                closeModalElement(e.target);
+            }
+        });
+    </script>
+
 </body>
 
 </html>

@@ -4842,5 +4842,33 @@
             "t": 3,
             "w": 60
         }
+    },
+    {
+        "nazwa_produktu": "aaaaa",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "czy_w_lodowce": "Nie",
+        "dzial_w_sklepie": "Bakalie",
+        "makro": {
+            "kcal": 1,
+            "b": 1,
+            "t": 1,
+            "w": 1
+        },
+        "id": 347
+    },
+    {
+        "nazwa_produktu": "aaaaa",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 1,
+        "czy_w_lodowce": "Nie",
+        "dzial_w_sklepie": "Bakalie",
+        "makro": {
+            "kcal": 1,
+            "b": 1,
+            "t": 1,
+            "w": 1
+        },
+        "id": 348
     }
 ]

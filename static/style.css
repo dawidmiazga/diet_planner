@@ -9,13 +9,15 @@
 }
 
 :root {
-    --primary: #368994;
-    --primary-strong: #368994;
+    --primary: rgb(54, 137, 148, 1);
+    --primary-strong: rgb(54, 137, 148, 1);
+    --primary-soft: rgb(54, 137, 148, 0.5);
     --danger: #ef4444;
     --bg: linear-gradient(135deg, #eef2ff, #f8fafc);
     --card-bg: rgba(255, 255, 255, 0.75);
     --text: #111827;
-    --muted: #6b7280;
+    --muted: rgb(107, 114, 128);
+    --grey-soft: rgba(211, 211, 211, 0.692);
 }
 
 body {
@@ -355,8 +357,8 @@ select {
     color: var(--primary);
 }
 
-/* ==================== MODAL (OGÓLNY) ==================== */
-/* ======================================================== */
+/* ==================== MODAL ==================== */
+/* =============================================== */
 
 .modal {
     display: none;
@@ -370,6 +372,8 @@ select {
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    /* backdrop-filter: blur(4px);
+    transition: background 0.3s ease; */
 }
 
 .modal.show {
@@ -384,8 +388,8 @@ select {
     padding-bottom: 30px;
     padding-top: 30px;
     border-radius: 12px;
-    width: 80%;
-    max-width: 90%;
+    width: 1000px;
+    max-width: 95vw;
     max-height: 90vh;
     overflow: auto;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
@@ -395,6 +399,7 @@ select {
     transform: scale(0.95);
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .modal-content form {
@@ -505,6 +510,114 @@ select {
     flex: 0.5;
 }
 
+/* ===== GWIAZDKI RATING ===== */
+
+.modal-title-with-stars {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* tekst lewo, gwiazdki prawo */
+    margin-bottom: 10px;
+    gap: 20px;
+}
+
+.star-rating {
+    display: flex;
+    gap: 6px;
+}
+
+.star-rating span {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    background-color: #ddd;
+
+    clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+    );
+
+    transition: 0.2s ease;
+}
+
+.star-rating span.filled {
+    background: linear-gradient(45deg, gold, orange);
+    transform: scale(1.1);
+}
+
+/* .star-rating span.hovered {
+    background: gold;
+} */
+
+/* ===== GWIAZDKI W KAFELKU ===== */
+
+.meal-rating {
+    display: flex;
+    gap: 4px;
+    margin-top: 6px;
+}
+
+.static-star {
+    width: 14px;
+    height: 14px;
+    background-color: #ddd;
+
+    clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+    );
+}
+
+.static-star.filled {
+    background: linear-gradient(45deg, gold, orange);
+}
+
+/* ====== MODAL DANIA – UKŁAD 2 KOLUMNY ====== */
+
+.modal-meal-layout {
+    width: 1100px;
+    max-width: 95vw;
+}
+
+.meal-modal-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 50px;
+    margin-top: 20px;
+    align-items: start;
+}
+
+.meal-left {
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    padding-right: 30px;
+}
+
+.meal-right {
+    display: flex;
+    flex-direction: column;
+}
+
+/* usuń duży odstęp tylko w tym modalu */
+.meal-left input,
+.meal-left textarea {
+    margin-bottom: 12px;
+}
+
 /* ===== PRODUCT MODAL – dla edycji/dodania nowego produktu ===== */
 
 .modal-product-form {
@@ -557,8 +670,61 @@ select {
 
 .modal-delete-product {
     width: 500px;
+    z-index: 1100;
 }
 
+
+.modal.closing .modal-content {
+    transform: scale(0.9);
+    opacity: 0;
+}
+
+/* ==================== FANCY CLOSE BUTTON ==================== */
+
+.fancy-close-btn {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.15),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+
+    transition: all 0.25s ease;
+    z-index: 10;
+}
+
+.fancy-close-btn:hover {
+    background: #ef4444;
+    color: white;
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 12px 30px rgba(239, 68, 68, 0.4);
+}
+
+.fancy-close-btn:active {
+    transform: rotate(90deg) scale(0.95);
+}
+
+.close-icon {
+    transition: transform 0.3s ease;
+    font-weight: 600;
+}
+
+.fancy-close-btn:hover .close-icon {
+    transform: rotate(180deg);
+}
 
 /* ===== SEKCJA MAKRO ===== */
 
@@ -617,6 +783,20 @@ select {
 #productModal {
     z-index: 10000;
 }
+
+#deletePopup {
+    z-index: 11000;
+}
+
+/* #mealPersonSelection .dish-pill input[type="radio"] {
+    display: none;
+}
+
+#mealPersonSelection .dish-pill input:checked + span {
+    background: rgba(99, 102, 241, 0.15);
+    color: white;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+} */
 
 /* ==================== POPUP (DRUGI SYSTEM MODALA) ==================== */
 /* ===================================================================== */
@@ -815,12 +995,15 @@ select {
 }
 
 #ingredientsContainer {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    max-height: 420px;
     overflow-y: auto;
-    padding-right: 5px;
-    margin-bottom: 20px;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(99, 102, 241, 0.5) transparent;
+    padding-right: 8px;
+
+    margin-top: 15px;
 }
 
 #ingredientsContainer::-webkit-scrollbar {
@@ -839,6 +1022,26 @@ select {
 
 #ingredientsContainer::-webkit-scrollbar-thumb:hover {
     background: rgba(99, 102, 241, 0.7);
+}
+
+/* ===== Nagłówek składników ===== */
+
+.ingredients-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.small-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+}
+
+@media (max-width: 900px) {
+    .meal-modal-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
 }
 
 /* ==================== KROKI PRZEPISU ==================== */
@@ -895,7 +1098,6 @@ select {
 
 .planner-grid {
     display: grid;
-    grid-template-columns: 150px repeat(5, 1fr);
     gap: 15px;
     margin-top: 30px;
 }
@@ -911,6 +1113,11 @@ select {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
     transition: transform 0.2s, box-shadow 0.2s;
     font-weight: 500;
+
+    display: flex;
+    align-items: center;      
+    justify-content: center;  
+    text-align: center;
 }
 
 .planner-grid .header {
@@ -1022,14 +1229,14 @@ select {
     transform: scale(1.05);
 }
 
-.shopping-toolbar {
+.button-toolbar {
     display: flex;
     justify-content: flex-end;
     gap: 14px;
     margin-bottom: 20px;
 }
 
-.refresh-btn {
+.animate-btn {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -1043,18 +1250,23 @@ select {
     cursor: pointer;
     transition: all 0.25s ease;
     backdrop-filter: blur(8px);
+    align-items: center;
 }
 
-.refresh-btn:hover {
+.animate-btn:hover {
     background: var(--primary);
     color: white;
     box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
     transform: translateY(-2px);
 }
 
-.refresh-btn:active {
+.animate-btn:active {
     transform: translateY(0);
     box-shadow: none;
+}
+
+.animate-btn:hover .refresh-icon {
+    transform: rotate(180deg);
 }
 
 .refresh-icon {
@@ -1062,8 +1274,19 @@ select {
     transition: transform 0.4s ease;
 }
 
-.refresh-btn:hover .refresh-icon {
-    transform: rotate(180deg);
+.animate-btn:hover .plus-icon {
+    transform: rotate(45deg);
+}
+
+.plus-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: transform 0.4s ease;
+    transform-origin: center center;
 }
 
 .undo-btn {
@@ -1139,8 +1362,13 @@ select {
 }
 
 @keyframes undoCountdown {
-    from { transform: scaleX(1); }
-    to   { transform: scaleX(0); }
+    from {
+        transform: scaleX(1);
+    }
+
+    to {
+        transform: scaleX(0);
+    }
 }
 
 .date-range-wrapper {
@@ -1740,9 +1968,14 @@ form select {
 .dish-pill span {
     padding: 6px 14px;
     border-radius: 999px;
-    background: rgba(99, 102, 241, 0.15);
+    background: var(--grey-soft);
     transition: 0.2s;
     font-weight: 500;
+}
+
+.dish-pill span:hover {
+    background: var(--primary-soft);
+    color: white;
 }
 
 .dish-pill input:checked+span {
