@@ -206,6 +206,12 @@
 
             <input type="text" id="mealSearch" placeholder="Szukaj dan..." class="meal-search-input">
 
+            <!-- ⭐ FILTR RATINGU -->
+            <div class="rating-filter-wrapper">
+                <div id="ratingFilter" class="rating-filter"></div>
+                <button id="clearRatingFilter" type="button" class="clear-rating-btn">✕</button>
+            </div>
+
             <div id="mealTiles" class="meal-tiles"></div>
         </div>
     </div>
@@ -213,8 +219,19 @@
     <div class="modal" id="mealDescriptionModal">
         <div class="modal-content">
 
-            <div class="modal-header fancy-header">
+            <div class="modal-header fancy-header" style="display:flex; align-items:center; gap:15px;">
                 <h3 id="descriptionTitle"></h3>
+
+                <!-- 🔢 MNOŻNIK PORCJI -->
+                <!-- <div class="portion-multiplier">
+                    <button type="button" onclick="changePortion(-0.5)">−</button>
+                    <span id="portionValue">1.0</span>
+                    <button type="button" onclick="changePortion(0.5)">+</button>
+                </div> -->
+
+                <button id="editMealFromPreviewBtn" class="btn main-btn small-btn" style="display:none;">
+                    ✏ Edytuj
+                </button>
             </div>
 
             <button class="fancy-close-btn" onclick="closeDescriptionModal()" aria-label="Zamknij">
@@ -431,7 +448,11 @@
             }
         });
     </script>
-
+    <script src="{{ url_for('static', filename='js/core/api.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/core/modal.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/core/notice.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/core/tableSort.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/core/datepicker.js') }}"></script>
 </body>
 
 </html>
