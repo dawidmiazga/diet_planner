@@ -1,24 +1,24 @@
-// const state = {
-//     meals: [],
-//     products: [],
-//     plannerData: { osoba1: {}, osoba2: {} },
-//     currentPerson: "osoba1",
-//     isEditMode: false,
-//     selectedRatingFilter: 0,
-//     currentPreviewMeal: null,
-//     portionMultiplier: 1,
-//     baseIngredients: []
-// };
+const state = {
+    meals: [],
+    products: [],
+    plannerData: { osoba1: {}, osoba2: {} },
+    currentPerson: "osoba1",
+    isEditMode: false,
+    selectedRatingFilter: 0,
+    currentPreviewMeal: null,
+    portionMultiplier: 1,
+    baseIngredients: []
+};
 
-let currentPreviewMeal = null;
-let selectedRatingFilter = 0;
-let currentPerson = "osoba1";
-let meals = [];
-let products = [];
-let currentPortionMultiplier = 1.0;
-let baseIngredients = [];
-let plannerData = { "osoba1": {}, "osoba2": {} };
-let isEditMode = false;  // Domyślnie tryb podglądu
+// let currentPreviewMeal = null;
+// let selectedRatingFilter = 0;
+// let currentPerson = "osoba1";
+// let meals = [];
+// let products = [];
+// let currentPortionMultiplier = 1.0;
+// let baseIngredients = [];
+// let plannerData = { "osoba1": {}, "osoba2": {} };
+// let isEditMode = false;  // Domyślnie tryb podglądu
 
 function setBaseIngredients(ingredients) {
     baseIngredients = ingredients; 
@@ -95,7 +95,7 @@ function renderScaledIngredients() {
 
     baseIngredients.forEach(ingredient => {
 
-        const product = products.find(p => p.id === ingredient.id);
+        const product = state.products.find(p => p.id === ingredient.id);
 
         const scaledGrams = ingredient.grams * currentPortionMultiplier;
 
@@ -162,8 +162,8 @@ function renderPlanner() {
         grid.appendChild(createCell(d.toLocaleDateString('pl-PL', { weekday: 'short', day: 'numeric', month: 'numeric' })));
 
         for (let dish = 1; dish <= maxDishes; dish++) {
-            const mealId = plannerData[currentPerson][dateStr]?.[dish] || "";
-            const meal = meals.find(m => m.id === mealId);
+            const mealId = state.plannerData[currentPerson][dateStr]?.[dish] || "";
+            const meal = state.meals.find(m => m.id === mealId);
             const cellText = meal ? meal.name : "-";
 
             const cell = createCell(cellText, "cell");
@@ -230,9 +230,9 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch("/api/products").then(res => res.json())
     ])
         .then(([mealsData, plannerSaved, productsData]) => {
-            meals = mealsData;
-            plannerData = plannerSaved;
-            products = productsData;
+            state.meals = mealsData;
+            state.plannerData = plannerSaved;
+            state.products = productsData;
             renderPlanner();
         });
 
@@ -243,10 +243,10 @@ function savePlannerMeal(mealId) {
     const dish = parseInt(document.getElementById("cellDish").value);
     const dateStr = document.getElementById("cellDate").value;
 
-    if (!plannerData[currentPerson][dateStr])
-        plannerData[currentPerson][dateStr] = {};
+    if (!state.plannerData[currentPerson][dateStr])
+        state.plannerData[currentPerson][dateStr] = {};
 
-    plannerData[currentPerson][dateStr][dish] = mealId;
+    state.plannerData[currentPerson][dateStr][dish] = mealId;
 
     closePlannerMealModal();
     renderPlanner();
@@ -257,7 +257,7 @@ function savePlannerMeal(mealId) {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(plannerData)
+        body: JSON.stringify(state.plannerData)
     });
 
     showSaveNoticeGlobal();
@@ -271,11 +271,11 @@ function setPerson(person, el) {
 }
 
 function removeMeal(dateStr, dish) {
-    if (plannerData[currentPerson][dateStr] && plannerData[currentPerson][dateStr][dish]) {
-        delete plannerData[currentPerson][dateStr][dish];
+    if (state.plannerData[currentPerson][dateStr] && state.plannerData[currentPerson][dateStr][dish]) {
+        delete state.plannerData[currentPerson][dateStr][dish];
 
-        if (Object.keys(plannerData[currentPerson][dateStr]).length === 0) {
-            delete plannerData[currentPerson][dateStr];
+        if (Object.keys(state.plannerData[currentPerson][dateStr]).length === 0) {
+            delete state.plannerData[currentPerson][dateStr];
         }
     }
 
@@ -285,7 +285,7 @@ function removeMeal(dateStr, dish) {
     fetch("/api/save_planner", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(plannerData)
+        body: JSON.stringify(state.plannerData)
     });
 
     showSaveNoticeGlobal();
@@ -462,7 +462,7 @@ function openMealModal(dateStr, dish) {
 
         const container = document.getElementById("mealTiles");
         container.innerHTML = "";
-        window.currentMealOptions = meals
+        window.currentMealOptions = state.meals
             .filter(m =>
                 m.person === currentPerson &&
                 Array.isArray(m.dish) &&
@@ -473,7 +473,7 @@ function openMealModal(dateStr, dish) {
             );
 
         window.currentSelectedMealId =
-            plannerData[currentPerson][dateStr]?.[dish] || null;
+            state.plannerData[currentPerson][dateStr]?.[dish] || null;
 
         renderMealTiles();
 
@@ -491,8 +491,8 @@ function openMealModal(dateStr, dish) {
         };
     } else {
         // Jeśli podgląd, to wyświetl opis i składniki dania
-        const mealId = plannerData[currentPerson][dateStr]?.[dish];
-        const meal = meals.find(m => m.id === mealId);
+        const mealId = state.plannerData[currentPerson][dateStr]?.[dish];
+        const meal = state.meals.find(m => m.id === mealId);
 
         if (meal) {
             openDescriptionModal(meal);
