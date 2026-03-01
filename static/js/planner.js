@@ -1,3 +1,15 @@
+// const state = {
+//     meals: [],
+//     products: [],
+//     plannerData: { osoba1: {}, osoba2: {} },
+//     currentPerson: "osoba1",
+//     isEditMode: false,
+//     selectedRatingFilter: 0,
+//     currentPreviewMeal: null,
+//     portionMultiplier: 1,
+//     baseIngredients: []
+// };
+
 let currentPreviewMeal = null;
 let selectedRatingFilter = 0;
 let currentPerson = "osoba1";
@@ -5,17 +17,39 @@ let meals = [];
 let products = [];
 let currentPortionMultiplier = 1.0;
 let baseIngredients = [];
-
 let plannerData = { "osoba1": {}, "osoba2": {} };
-
-let isEditMode = false;  // Domyślnie ustawiamy tryb edycji
+let isEditMode = false;  // Domyślnie tryb podglądu
 
 function setBaseIngredients(ingredients) {
-    baseIngredients = ingredients; // zapamiętujemy oryginał
+    baseIngredients = ingredients; 
     currentPortionMultiplier = 1.0;
-    // document.getElementById("portionValue").innerText = currentPortionMultiplier.toFixed(1);
     renderScaledIngredients();
 }
+
+function setMode(edit, el) {
+    isEditMode = edit;
+
+    document.querySelectorAll(".mode-btn")
+        .forEach(btn => btn.classList.remove("active"));
+
+    el.classList.add("active");
+
+    moveIndicator();
+    renderPlanner();
+}
+
+function moveIndicator() {
+    const active = document.querySelector(".mode-btn.active");
+    const indicator = document.querySelector(".mode-indicator");
+
+    if (!active || !indicator) return;
+
+    indicator.style.width = active.offsetWidth + "px";
+    indicator.style.left = active.offsetLeft + "px";
+}
+
+window.addEventListener("load", moveIndicator);
+window.addEventListener("resize", moveIndicator);
 
 function changePortion(step) {
     let newValue = currentPortionMultiplier + step;
@@ -37,9 +71,22 @@ function renderScaledIngredients() {
             <h4>Składniki</h4>
 
             <div class="portion-multiplier">
-                <button type="button" onclick="changePortion(-0.5)">−</button>
+
+                <button type="button" onclick="changePortion(-0.5)">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="5" y="11" width="14" height="2" rx="1"></rect>
+                    </svg>
+                </button>
+
                 <span id="portionValue">${currentPortionMultiplier.toFixed(1)}</span>
-                <button type="button" onclick="changePortion(0.5)">+</button>
+
+                <button type="button" onclick="changePortion(0.5)">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="5" y="11" width="14" height="2" rx="1"></rect>
+                        <rect x="11" y="5" width="2" height="14" rx="1"></rect>
+                    </svg>
+                </button>
+
             </div>
         </div>
     `;
@@ -87,29 +134,7 @@ function renderScaledIngredients() {
     left.innerHTML = ingredientsHTML;
 }
 
-// Funkcja przełączająca tryb edycji/podglądu
-// Funkcja przełączająca tryb edycji/podglądu
-function toggleEditMode() {
-    isEditMode = !isEditMode;  // Przełącz stan trybu
-    document.getElementById("editModeLabel").textContent = isEditMode ? "Tryb Edycji" : "Tryb Podglądu";
-    renderPlanner();  // Ponownie renderujemy planner, aby zaktualizować zachowanie komórek
-}
 
-
-// Funkcja wywoływana po kliknięciu w komórkę
-// function handleCellClick(dateStr, dish) {
-//     if (isEditMode) {
-//         openMealModal(dateStr, dish);  // W trybie edycji otwieramy modal do wyboru dania
-//     } else {
-//         const mealId = plannerData[currentPerson][dateStr]?.[dish] || "";
-//         const meal = meals.find(m => m.id === mealId);
-//         if (meal) {
-//             openDescriptionModal(meal);  // W trybie podglądu pokazujemy modal z opisem
-//         }
-//     }
-// }
-
-// Zmodyfikuj funkcję renderującą planner, aby reagowała na tryb edycji
 function renderPlanner() {
     const startDateInput = document.getElementById("startDate").value;
     if (!startDateInput) return;
@@ -149,7 +174,12 @@ function renderPlanner() {
             // dodajemy przycisk X tylko jeśli jest wybrane danie i tylko w trybie edycji
             if (meal && isEditMode) {
                 const removeBtn = document.createElement("button");
-                removeBtn.textContent = "×";
+                removeBtn.innerHTML = `
+                    <svg viewBox="0 0 24 24">
+                        <line x1="6" y1="6" x2="18" y2="18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="18" y1="6" x2="6" y2="18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                `;
                 removeBtn.className = "remove-meal-btn";
 
                 removeBtn.onclick = (e) => {
@@ -159,42 +189,12 @@ function renderPlanner() {
 
                 cell.appendChild(removeBtn);
             }
-
-            // // dodajemy przycisk notatki
-            // if (meal) {
-            //     const noteBtn = document.createElement("button");
-            //     noteBtn.innerHTML = "📝";
-            //     noteBtn.className = "note-btn";
-
-            //     noteBtn.onclick = (e) => {
-            //         e.stopPropagation();
-            //         openDescriptionModal(meal);
-            //     };
-
-            //     cell.appendChild(noteBtn);
-            // }
-
             grid.appendChild(cell);
         }
     }
 }
 
-
-function createCell(text, cls = "cell") {
-    const div = document.createElement("div");
-    div.className = cls;
-    if (!isEditMode) {
-        div.classList.add("preview-mode");
-    }
-    div.textContent = text;
-    return div;
-}
-
-
 document.addEventListener("DOMContentLoaded", () => {
-    // const today = new Date().toISOString().split('T')[0];
-    // document.getElementById("startDate").value = today;
-
     let startPicker;
 
     fetch("/api/get_planner_date")
@@ -208,8 +208,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 allowInput: false,
                 animate: true,
                 onChange: function (selectedDates, dateStr) {
-
-                    // 🔥 ZAPIS DO PLIKU
                     fetch("/api/save_planner_date", {
                         method: "POST",
                         headers: {
@@ -272,80 +270,10 @@ function setPerson(person, el) {
     renderPlanner();
 }
 
-// function renderPlanner() {
-//     const startDateInput = document.getElementById("startDate").value;
-//     if (!startDateInput) return;
-
-//     const startDate = new Date(startDateInput);
-//     const grid = document.getElementById("plannerGrid");
-//     grid.innerHTML = "";
-
-//     // nagłówki kolumn
-//     grid.appendChild(createHeaderCell("Data"));
-//     for (let dish = 1; dish <= 5; dish++) {
-//         grid.appendChild(createHeaderCell("Posiłek " + dish));
-//     }
-
-//     // wiersze = daty
-//     for (let row = 0; row < 5; row++) {
-//         const d = new Date(startDate);
-//         d.setDate(d.getDate() + row);
-//         const dateStr = d.toISOString().split('T')[0];
-
-//         // komórka daty
-//         grid.appendChild(createCell(d.toLocaleDateString('pl-PL', { weekday: 'short', day: 'numeric', month: 'numeric' })));
-
-//         for (let dish = 1; dish <= 5; dish++) {
-
-//             const mealId = plannerData[currentPerson][dateStr]?.[dish] || "";
-//             const meal = meals.find(m => m.id === mealId);
-//             const cellText = meal ? meal.name : "-";
-
-//             const cell = createCell(cellText, "cell");
-
-//             // kliknięcie w komórkę otwiera popup tylko jeśli jest danie
-//             cell.onclick = () => openMealModal(dateStr, dish);
-
-//             // dodajemy przycisk X tylko jeśli jest wybrane danie
-//             if (meal) {
-
-//                 // // 📒 przycisk notatki
-//                 // const noteBtn = document.createElement("button");
-//                 // noteBtn.innerHTML = "📝";
-//                 // noteBtn.className = "note-btn";
-
-//                 // noteBtn.onclick = (e) => {
-//                 //     e.stopPropagation();
-//                 //     openDescriptionModal(meal);
-//                 // };
-
-//                 // cell.appendChild(noteBtn);
-
-//                 // ❌ przycisk usuwania
-//                 const removeBtn = document.createElement("button");
-//                 removeBtn.textContent = "×";
-//                 removeBtn.className = "remove-meal-btn";
-
-//                 removeBtn.onclick = (e) => {
-//                     e.stopPropagation();
-//                     removeMeal(dateStr, dish);
-//                 };
-
-//                 cell.appendChild(removeBtn);
-//             }
-
-
-//             grid.appendChild(cell);
-//         }
-
-//     }
-// }
 function removeMeal(dateStr, dish) {
-    // usuń z danych
     if (plannerData[currentPerson][dateStr] && plannerData[currentPerson][dateStr][dish]) {
         delete plannerData[currentPerson][dateStr][dish];
 
-        // jeśli wiersz pusty, usuń też datę
         if (Object.keys(plannerData[currentPerson][dateStr]).length === 0) {
             delete plannerData[currentPerson][dateStr];
         }
@@ -397,33 +325,6 @@ function openDescriptionModal(meal) {
     left.innerHTML = "";
     right.innerHTML = "";
 
-    // ===== LEWA STRONA — OPIS =====
-    // ===== PRAWA STRONA — OPIS (kroki) =====
-
-    // let descriptionHTML = "<h4>Przygotowanie</h4>";
-
-    // if (meal.description && meal.description.trim() !== "") {
-
-    //     const steps = meal.description
-    //         .split("\n")
-    //         .map(step => step.trim())
-    //         .filter(step => step.length > 0);
-
-    //     descriptionHTML += "<ol>";
-
-    //     steps.forEach(step => {
-    //         descriptionHTML += `<li>${step}</li>`;
-    //     });
-
-    //     descriptionHTML += "</ol>";
-
-    // } else {
-    //     descriptionHTML += "<p>Brak opisu.</p>";
-    // }
-
-    // right.innerHTML = descriptionHTML;
-    // ===== PRAWA STRONA — PRZYGOTOWANIE (interaktywne kroki) =====
-
     let descriptionHTML = "<h4>Przygotowanie</h4>";
 
     if (meal.description && meal.description.trim() !== "") {
@@ -451,79 +352,8 @@ function openDescriptionModal(meal) {
     }
 
     right.innerHTML = descriptionHTML;
-    // ===== LEWA STRONA — SKŁADNIKI =====
-    // let ingredientsHTML = "<h4>Składniki</h4>";
-    // ingredientsHTML += `<div class="ingredients-display-list">`;
-
-    // meal.ingredients.forEach(ingredient => {
-    //     const product = products.find(p => p.id === ingredient.id);
-
-    //     let gramsPart = `${ingredient.grams}g`;
-    //     let extraUnitPart = "";
-
-    //     if (
-    //         product &&
-    //         product.jednostka_per_gram &&
-    //         product.nazwa_jednostki &&
-    //         product.nazwa_jednostki.toLowerCase() !== "gram"
-    //     ) {
-    //         let iloscJednostek = ingredient.grams / product.jednostka_per_gram;
-
-    //         iloscJednostek = Number.isInteger(iloscJednostek)
-    //             ? iloscJednostek
-    //             : iloscJednostek.toFixed(1);
-
-    //         extraUnitPart = ` (${iloscJednostek} ${product.nazwa_jednostki})`;
-    //     }
-
-    //     ingredientsHTML += `
-    //     <div class="ingredient-display-row" onclick="toggleIngredient(this)">
-    //         <div class="ingredient-display-name">
-    //             ${ingredient.name}
-    //         </div>
-    //         <div class="ingredient-display-value">
-    //             ${gramsPart}${extraUnitPart}
-    //         </div>
-    //     </div>
-    // `;
-    // });
 
     setBaseIngredients(meal.ingredients);
-
-    // ingredientsHTML += `</div>`;
-    // left.innerHTML = ingredientsHTML;
-    // ===== PRAWA STRONA — SKŁADNIKI =====
-    // let ingredientsHTML = "<h4>Składniki</h4><ul>";
-
-    // meal.ingredients.forEach(ingredient => {
-    //     const product = products.find(p => p.id === ingredient.id);
-
-    //     let jednostkaInfo = "";
-
-    //     if (
-    //         product &&
-    //         product.jednostka_per_gram &&
-    //         product.nazwa_jednostki &&
-    //         product.nazwa_jednostki.toLowerCase() !== "gram"
-    //     ) {
-    //         let iloscJednostek = ingredient.grams / product.jednostka_per_gram;
-
-    //         iloscJednostek = Number.isInteger(iloscJednostek)
-    //             ? iloscJednostek
-    //             : iloscJednostek.toFixed(1);
-
-    //         jednostkaInfo = ` (${iloscJednostek} ${product.nazwa_jednostki})`;
-    //     }
-
-    //     ingredientsHTML += `
-    //     <li>
-    //         ${ingredient.name} - ${ingredient.grams}g${jednostkaInfo}
-    //     </li>
-    // `;
-    // });
-
-    // ingredientsHTML += "</ul>";
-    // left.innerHTML = ingredientsHTML;
 
     document.getElementById("mealDescriptionModal").classList.add("show");
 }
@@ -532,7 +362,6 @@ function openMealEditModalFromPlanner(meal) {
 
     if (!meal) return;
 
-    // ustaw dane w modal edycji (ten z dania.html)
     document.getElementById("mealId").value = meal.id;
     document.getElementById("mealName").value = meal.name;
     document.getElementById("mealDescription").value = meal.description;
@@ -657,10 +486,6 @@ function openMealModal(dateStr, dish) {
             searchInput.focus();
         }, 220);
 
-
-
-        renderMealTiles();
-
         searchInput.oninput = (e) => {
             renderMealTiles(e.target.value);
         };
@@ -720,23 +545,11 @@ function renderMealTiles(filterText = "") {
     }
 }
 
-
-
-/**
- * Closes the meal modal by removing the 'show' class from the modal element.
- */
 function closePlannerMealModal() {
     const modal = document.getElementById("plannerMealModal");
     closeModalElement(modal);
 }
 
-
-// zamknięcie po kliknięciu w tło
-// document.getElementById("mealModal").addEventListener("click", function (e) {
-//     if (e.target === this) {
-//         closeModal();
-//     }
-// });
 function showSaveNoticeGlobal() {
     // sprawdź, czy już istnieje
     let notice = document.querySelector(".save-notice-global");
@@ -747,10 +560,8 @@ function showSaveNoticeGlobal() {
         document.body.appendChild(notice);
     }
 
-    // pokaż
     notice.classList.add("show");
 
-    // po 1,2 sekundy zniknij
     setTimeout(() => {
         notice.classList.remove("show");
     }, 1200);

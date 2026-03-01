@@ -18,6 +18,8 @@
     --text: #111827;
     --muted: rgb(107, 114, 128);
     --grey-soft: rgba(211, 211, 211, 0.692);
+
+    --primary_2: rgb(177, 62, 148);
 }
 
 body {
@@ -96,9 +98,18 @@ h2 {
     height: 28px;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
     transition: 0.2s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.portion-multiplier button svg {
+    width: 14px;
+    height: 14px;
+    fill: #111;
 }
 
 .portion-multiplier button:hover {
@@ -272,7 +283,7 @@ select {
 .nav-link.active {
     color: white;
     min-width: 200px;
-    background: var(--primary-strong);
+    /* background: var(--primary-strong); */
 }
 
 .nav-highlight {
@@ -287,6 +298,44 @@ select {
     transition: all 0.35s cubic-bezier(0.77, 0, 0.175, 1);
     min-width: 200px;
 }
+
+.main-nav:hover .nav-link.active:not(:hover) {
+    color: var(--primary);
+}
+
+.nav-link.active::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--primary);
+
+    opacity: 0;
+    transition: all 0.2s ease;
+}
+
+.main-nav:hover .nav-link.active:not(:hover)::before {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+}
+
+@keyframes popDot {
+    from {
+        transform: translateX(-50%) scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+    }
+}
+
 
 .page-content {
     opacity: 0;
@@ -306,7 +355,15 @@ select {
     display: flex;
     justify-content: center;
     gap: 10px;
+    /* margin-bottom: 25px; */
+}
+
+.tabs-dishes {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
     margin-bottom: 25px;
+    margin-top: 25px;
 }
 
 .tab {
@@ -1165,10 +1222,16 @@ select {
     text-align: center;
 }
 
+
 .planner-grid .header {
     background: var(--primary);
     color: white;
 }
+
+/* .planner-grid .header-osoba2 {
+    background: var(--primary_2);
+    color: white;
+} */
 
 .planner-grid .cell:hover {
     transform: translateY(-5px);
@@ -1183,16 +1246,19 @@ select {
     background: #f87171;
     border: none;
     border-radius: 50%;
-    color: white;
-    font-weight: bold;
     width: 20px;
     height: 20px;
     cursor: pointer;
-    font-size: 0.9rem;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background 0.2s;
+    padding: 0;
+}
+
+.remove-meal-btn svg {
+    width: 12px;
+    height: 12px;
 }
 
 .remove-meal-btn:hover {
@@ -1508,6 +1574,8 @@ select {
 
 .toolbar-left {
     flex: 1;
+    display: flex;
+    justify-content: left
 }
 
 .toolbar-center {
@@ -1518,6 +1586,7 @@ select {
 
 .toolbar-spacer {
     flex: 1;
+    display: flex;
     justify-content: right;
 }
 
@@ -1587,6 +1656,50 @@ select {
 .filters select {
     padding: 5px 8px;
     border-radius: 6px;
+}
+
+/* ==================== TOOGLE ==================== */
+/* ================================================ */
+
+.mode-toggle {
+    position: relative;
+    display: inline-flex;
+    background: #f3f4f6;
+    border-radius: 999px;
+    padding: 4px;
+}
+
+.mode-btn {
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-weight: 500;
+    cursor: pointer;
+    z-index: 1;
+    transition: 0.25s;
+    color: #6b7280;
+}
+
+.mode-btn.active {
+    color: #111;
+}
+
+.mode-btn:hover:not(.mode-btn.active) {
+    background: var(--primary);
+    color: white;
+}
+
+.mode-indicator {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    height: calc(100% - 8px);
+    background: white;
+    border-radius: 999px;
+    transition: 0.3s cubic-bezier(.77, 0, .175, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 /* ==================== SWITCH (TRYB EDYCJI) ==================== */

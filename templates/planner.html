@@ -4,112 +4,38 @@
 
 {% block content %}
 
-
-
-
 <div class="toolbar">
     <div class="toolbar-left">
-
-        <!-- Wybór daty startowej -->
         <div class="date-picker-wrapper">
             <label for="startDate">📅 Data startowa</label>
             <input type="text" id="startDate" class="modern-date-input">
         </div>
     </div>
-    <div class="toolbar-center">
 
-        <!-- Wybór osoby -->
+    <div class="toolbar-center">
         <div class="tabs" id="personTabs">
             <div class="tab active" onclick="setPerson('osoba1', this)">Dawid</div>
             <div class="tab" onclick="setPerson('osoba2', this)">Kasia</div>
         </div>
     </div>
-    <div class="toolbar-spacer">
-        <div class="switch-container">
-            <label class="switch">
-                <input type="checkbox" id="editModeSwitch" onclick="toggleEditMode()" checked>
-                <span class="slider round"></span>
-            </label>
-            <span id="editModeLabel">Tryb Podglądu</span>
-        </div>
 
+    <div class="toolbar-spacer">
+        <div class="mode-toggle">
+            <div class="mode-indicator"></div>
+
+            <button class="mode-btn active" data-mode="preview" onclick="setMode(false, this)">
+                Podgląd
+            </button>
+
+            <button class="mode-btn" data-mode="edit" onclick="setMode(true, this)">
+                Edycja
+            </button>
+        </div>
     </div>
 </div>
 
-
-
-
-
 <!-- Nowoczesna tabelka jako grid -->
 <div class="planner-grid" id="plannerGrid"></div>
-
-<!-- Modal wyboru dania -->
-<!-- <div class="modal" id="mealModal">
-    <div class="modal-content">
-
-
-        <div class="modal-header">
-            <h3>Wybierz danie</h3>
-            <button class="btn modal-close" onclick="closeModal()">×</button>
-        </div>
-
-        <input type="hidden" id="cellDish">
-        <input type="hidden" id="cellDate">
-
-        <input type="text" id="mealSearch" placeholder="Szukaj dan..." class="meal-search-input">
-
-        <div id="mealTiles" class="meal-tiles"></div>
-    </div>
-
-</div> -->
-
-<!-- Modal opisu dania -->
-<!-- <div class="modal" id="mealDescriptionModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3 id="descriptionTitle"></h3>
-            <button class="btn modal-close" onclick="closeDescriptionModal()">×</button>
-        </div>
-
-        <div id="descriptionContent" class="meal-description-layout">
-            <div id="mealDescriptionLeft" class="meal-description-left"></div>
-            <div id="mealDescriptionRight" class="meal-description-right"></div>
-        </div>
-    </div>
-</div> -->
-
-<style>
-    /* ===== Planner Grid ===== */
-    /* .planner-grid {
-        display: grid;
-        grid-template-columns: 150px repeat(5, 1fr);
-        gap: 15px;
-        margin-top: 30px;
-    }
-
-    .planner-grid .header,
-    .planner-grid .cell {
-        padding: 20px;
-        border-radius: 16px;
-        background: var(--card-bg);
-        backdrop-filter: blur(10px);
-        text-align: center;
-        cursor: pointer;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-        transition: transform 0.2s, box-shadow 0.2s;
-        font-weight: 500;
-    }
-
-    .planner-grid .header {
-        background: var(--pr    imary);
-        color: white;
-    }
-
-    .planner-grid .cell:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    } */
-</style>
 
 <script src="{{ url_for('static', filename='js/planner.js') }}"></script>
 
