@@ -14,8 +14,8 @@
 
     <div class="toolbar-center">
         <div class="tabs" id="personTabs">
-            <div class="tab active" onclick="setPerson('osoba1', this)">Dawid</div>
-            <div class="tab" onclick="setPerson('osoba2', this)">Kasia</div>
+            <div class="tab active" onclick="Planner.setPerson('osoba1', this)">Dawid</div>
+            <div class="tab" onclick="Planner.setPerson('osoba2', this)">Kasia</div>
         </div>
     </div>
 
@@ -23,11 +23,11 @@
         <div class="mode-toggle">
             <div class="mode-indicator"></div>
 
-            <button class="mode-btn active" data-mode="preview" onclick="setMode(false, this)">
+            <button class="mode-btn active" data-mode="preview" onclick="Planner.setMode(false, this)">
                 Podgląd
             </button>
 
-            <button class="mode-btn" data-mode="edit" onclick="setMode(true, this)">
+            <button class="mode-btn" data-mode="edit" onclick="Planner.setMode(true, this)">
                 Edycja
             </button>
         </div>

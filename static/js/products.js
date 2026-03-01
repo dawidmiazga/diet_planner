@@ -1,24 +1,34 @@
+/* =====================================================
+   STATE
+===================================================== */
 
-/************** MODEL **************/
-
-const Model = {
+const ProductsState = {
     products: [],
     productToDeleteId: null,
     productToDeleteName: "",
     sortDirection: {},
     savedSort: null,
+    mode: "add"
+};
 
+const $ = id => document.getElementById(id);
+
+/* =====================================================
+   API
+===================================================== */
+
+const ProductsAPI = {
     async fetchProducts() {
-        this.products = await API.get("/api/products");
-        return this.products;
+        ProductsState.products = await API.get("/api/products");
+        return ProductsState.products;
     },
 
     async addProduct(product) {
-        this.products = await API.post("/api/products", product);
+        ProductsState.products = await API.post("/api/products", product);
     },
 
     async updateProduct(id, product) {
-        this.products = await API.put(`/api/products/${id}`, product);
+        ProductsState.products = await API.put(`/api/products/${id}`, product);
     },
 
     async deleteProduct(id) {
@@ -26,8 +36,11 @@ const Model = {
     }
 };
 
-/************** VIEW **************/
-const View = {
+/* =====================================================
+   UI
+===================================================== */
+
+const ProductsUI = {
     popupContainer: null,
     cancelButton: null,
     successPopup: null,
@@ -39,15 +52,15 @@ const View = {
     deleteNo: null,
 
     init() {
-        this.popupContainer = document.getElementById('popupContainer');
-        this.cancelButton = document.getElementById('cancelButton');
-        this.successPopup = document.getElementById("successPopup");
-        this.addAnotherYes = document.getElementById("addAnotherYes");
-        this.addAnotherNo = document.getElementById("addAnotherNo");
-        this.deletePopup = document.getElementById("deletePopup");
-        this.deleteMessage = document.getElementById("deleteMessage");
-        this.deleteYes = document.getElementById("deleteYes");
-        this.deleteNo = document.getElementById("deleteNo");
+        this.popupContainer = $('popupContainer');
+        this.cancelButton = $('cancelButton');
+        this.successPopup = $("successPopup");
+        this.addAnotherYes = $("addAnotherYes");
+        this.addAnotherNo = $("addAnotherNo");
+        this.deletePopup = $("deletePopup");
+        this.deleteMessage = $("deleteMessage");
+        this.deleteYes = $("deleteYes");
+        this.deleteNo = $("deleteNo");
     },
 
     renderProducts(products) {
@@ -75,8 +88,8 @@ const View = {
                 <td>${p.makro?.t || 0}</td>
                 <td>${p.makro?.w || 0}</td>
                 <td>
-                    <button class="btn yellow-btn" onclick="Controller.openEditPopup(${p.id})">Edytuj</button>
-                    <button class="btn red-btn" onclick="Controller.confirmDelete(${p.id}, '${p.nazwa_produktu}')">Usuń</button>
+                    <button class="btn yellow-btn" onclick="Products.openEditPopup(${p.id})">Edytuj</button>
+                    <button class="btn red-btn" onclick="Products.confirmDelete(${p.id}, '${p.nazwa_produktu}')">Usuń</button>
                 </td>
             `;
             tbody.appendChild(row);
@@ -85,27 +98,77 @@ const View = {
 
     getFilters() {
         return {
-            nazwa: document.getElementById("filterNazwa").value.toLowerCase()
+            nazwa: $("filterNazwa").value.toLowerCase()
         };
     },
+
+    sortTable(colIndex, isNumeric, forceAsc = null) {
+        const table = $("productsTable");
+        const tbody = table.querySelector("tbody");
+        const rows = Array.from(tbody.querySelectorAll("tr"));
+
+        if (!ProductsState.sortDirection) ProductsState.sortDirection = {};
+
+        if (forceAsc !== null) {
+            ProductsState.sortDirection[colIndex] = forceAsc;
+        } else {
+            ProductsState.sortDirection[colIndex] = !ProductsState.sortDirection[colIndex];
+        }
+
+        rows.sort((a, b) => {
+            let aValue = a.cells[colIndex].textContent.trim();
+            let bValue = b.cells[colIndex].textContent.trim();
+
+            if (isNumeric) {
+                aValue = parseFloat(aValue) || 0;
+                bValue = parseFloat(bValue) || 0;
+                return ProductsState.sortDirection[colIndex] ? aValue - bValue : bValue - aValue;
+            }
+
+            return ProductsState.sortDirection[colIndex]
+                ? aValue.localeCompare(bValue)
+                : bValue.localeCompare(aValue);
+        });
+
+        tbody.innerHTML = "";
+        rows.forEach(row => tbody.appendChild(row));
+
+        const headers = table.querySelectorAll("th");
+        headers.forEach((th, index) => {
+            const icon = th.querySelector(".sort-icon");
+            if (!icon) return;
+            if (index === colIndex) {
+                icon.textContent = ProductsState.sortDirection[colIndex] ? "▲" : "▼";
+                icon.style.opacity = "1";
+            } else {
+                icon.textContent = "▲▼";
+                icon.style.opacity = "0.4";
+            }
+        });
+
+        ProductsState.savedSort = { colIndex, isNumeric, asc: ProductsState.sortDirection[colIndex] };
+    }
 };
 
-/************** CONTROLLER **************/
-const Controller = {
+/* =====================================================
+   PRODUCTS LOGIC
+===================================================== */
+
+const Products = {
     mode: "add", // add | edit
 
     async init() {
-        View.init();
+        ProductsUI.init();
         this.bindEvents();
         await this.loadAndRender();
 
         // domyślne sortowanie na starcie: kolumna Nazwa, ascending
-        if (!Model.sortDirection[0]) Model.sortDirection[0] = true; // ascending
-        this.sortTable(0, false, true);
+        if (!ProductsState.sortDirection[0]) ProductsState.sortDirection[0] = true; // ascending
+        ProductsUI.sortTable(0, false, true);
     },
 
     bindEvents() {
-        const editForm = document.getElementById("editForm");
+        const editForm = $("editForm");
         if (editForm) {
             editForm.addEventListener("submit", async (e) => {
                 e.preventDefault();
@@ -113,27 +176,27 @@ const Controller = {
             });
         }
 
-        View.addAnotherYes.addEventListener("click", () => {
-            Controller.closeSuccessPopup();
-            Controller.openAddPopup(); // od razu otwórz formularz dodawania
+        ProductsUI.addAnotherYes.addEventListener("click", () => {
+            Products.closeSuccessPopup();
+            Products.openAddPopup(); // od razu otwórz formularz dodawania
         });
 
-        View.addAnotherNo.addEventListener("click", () => {
-            Controller.closeSuccessPopup();
+        ProductsUI.addAnotherNo.addEventListener("click", () => {
+            Products.closeSuccessPopup();
         });
 
-        View.deleteNo.addEventListener("click", () => {
-            Model.productToDeleteId = null;
-            Controller.closeDeletePopup();
+        ProductsUI.deleteNo.addEventListener("click", () => {
+            ProductsState.productToDeleteId = null;
+            Products.closeDeletePopup();
         });
 
-        View.deleteYes.addEventListener("click", () => this.handleDelete());
+        ProductsUI.deleteYes.addEventListener("click", () => this.handleDelete());
 
         this.closeDeletePopup();
 
-        const filterInput = document.getElementById("filterNazwa");
-        const clearBtn = document.getElementById("clearProductFilter");
-        const wrapper = document.getElementById("productFilterWrapper");
+        const filterInput = $("filterNazwa");
+        const clearBtn = $("clearProductFilter");
+        const wrapper = $("productFilterWrapper");
 
         filterInput.addEventListener("input", () => {
             if (filterInput.value.length > 0) {
@@ -153,9 +216,9 @@ const Controller = {
     },
 
     /************** POPUP METHODS **************/
-    openDeletePopup() { document.getElementById("deletePopup").classList.add("show"); },
+    openDeletePopup() { $("deletePopup").classList.add("show"); },
     closeDeletePopup() {
-        const modal = document.getElementById("deletePopup");
+        const modal = $("deletePopup");
 
         modal.classList.add("closing");
 
@@ -164,8 +227,9 @@ const Controller = {
             modal.classList.remove("closing");
         }, 200);
     },
-    openSuccessPopup() { document.getElementById("successPopup").classList.add("show"); }, closeSuccessPopup() {
-        const modal = document.getElementById("successPopup");
+    
+    openSuccessPopup() { $("successPopup").classList.add("show"); }, closeSuccessPopup() {
+        const modal = $("successPopup");
 
         modal.classList.add("closing");
 
@@ -177,13 +241,13 @@ const Controller = {
 
     /************** DATA METHODS **************/
     async loadAndRender() {
-        await Model.fetchProducts();
+        await ProductsAPI.fetchProducts();
         this.applyFilters();
     },
 
     applyFilters() {
-        const filters = View.getFilters();
-        let filtered = Model.products.slice();
+        const filters = ProductsUI.getFilters();
+        let filtered = ProductsState.products.slice();
 
         if (filters.nazwa) {
             filtered = filtered.filter(p =>
@@ -191,11 +255,11 @@ const Controller = {
             );
         }
 
-        View.renderProducts(filtered);
+        ProductsUI.renderProducts(filtered);
 
-        if (Model.savedSort) {
-            const { colIndex, isNumeric, asc } = Model.savedSort;
-            this.sortTable(colIndex, isNumeric, asc); // forceAsc = zachowujemy kierunek
+        if (ProductsState.savedSort) {
+            const { colIndex, isNumeric, asc } = ProductsState.savedSort;
+            ProductsUI.sortTable(colIndex, isNumeric, asc); // forceAsc = zachowujemy kierunek
         }
     },
 
@@ -207,63 +271,63 @@ const Controller = {
             nazwa_jednostki: form.nazwa_jednostki.value,
             jednostka_per_gram: parseInt(form.jednostka_per_gram.value),
             makro: {
-                kcal: parseFloat(document.getElementById("kcal").value) || 0,
-                b: parseFloat(document.getElementById("b").value) || 0,
-                t: parseFloat(document.getElementById("t").value) || 0,
-                w: parseFloat(document.getElementById("w").value) || 0
+                kcal: parseFloat($("kcal").value) || 0,
+                b: parseFloat($("b").value) || 0,
+                t: parseFloat($("t").value) || 0,
+                w: parseFloat($("w").value) || 0
             }
         };
         if (!newProduct.nazwa_produktu || newProduct.jednostka_per_gram <= 0) {
             alert("Proszę wprowadzić poprawne dane!");
             return;
         }
-        await Model.addProduct(newProduct);
+        await ProductsAPI.addProduct(newProduct);
         form.reset();
         this.loadAndRender();
         this.openSuccessPopup();
     },
 
     async handleEditForm(e) {
-        const id = document.getElementById("edit_id").value;
+        const id = $("edit_id").value;
         const updatedProduct = {
-            nazwa_produktu: document.getElementById("edit_nazwa").value.trim(),
-            nazwa_jednostki: document.getElementById("edit_jednostka").value,
-            jednostka_per_gram: parseInt(document.getElementById("edit_gramy").value),
-            czy_w_lodowce: document.getElementById("edit_lodowka").value,
-            dzial_w_sklepie: document.getElementById("edit_dzial").value,
+            nazwa_produktu: $("edit_nazwa").value.trim(),
+            nazwa_jednostki: $("edit_jednostka").value,
+            jednostka_per_gram: parseInt($("edit_gramy").value),
+            czy_w_lodowce: $("edit_lodowka").value,
+            dzial_w_sklepie: $("edit_dzial").value,
             makro: {
-                kcal: parseFloat(document.getElementById("edit_kcal").value) || 0,
-                b: parseFloat(document.getElementById("edit_b").value) || 0,
-                t: parseFloat(document.getElementById("edit_t").value) || 0,
-                w: parseFloat(document.getElementById("edit_w").value) || 0
+                kcal: parseFloat($("edit_kcal").value) || 0,
+                b: parseFloat($("edit_b").value) || 0,
+                t: parseFloat($("edit_t").value) || 0,
+                w: parseFloat($("edit_w").value) || 0
             }
         };
 
         if (this.mode === "edit") {
-            await Model.updateProduct(id, updatedProduct);
+            await ProductsAPI.updateProduct(id, updatedProduct);
             showSaveNoticeGlobal();
         } else {
-            await Model.addProduct(updatedProduct);
-            Controller.openSuccessPopup();
+            await ProductsAPI.addProduct(updatedProduct);
+            Products.openSuccessPopup();
         }
 
         showSaveNoticeGlobal();
         Modal.close("editProductModal");
-        Controller.loadAndRender();
+        Products.loadAndRender();
     },
 
     confirmDelete(id, name) {
-        Model.productToDeleteId = id;
-        Model.productToDeleteName = name;
-        View.deleteMessage.textContent = `Czy na pewno chcesz usunąć produkt "${name}"?`;
+        ProductsState.productToDeleteId = id;
+        ProductsState.productToDeleteName = name;
+        ProductsUI.deleteMessage.textContent = `Czy na pewno chcesz usunąć produkt "${name}"?`;
         this.openDeletePopup();
     },
 
     async handleDelete() {
-        if (!Model.productToDeleteId) return;
-        await Model.deleteProduct(Model.productToDeleteId);
-        Model.productToDeleteId = null;
-        Model.productToDeleteName = "";
+        if (!ProductsState.productToDeleteId) return;
+        await ProductsAPI.deleteProduct(ProductsState.productToDeleteId);
+        ProductsState.productToDeleteId = null;
+        ProductsState.productToDeleteName = "";
         this.closeDeletePopup();
         this.loadAndRender();
     },
@@ -271,41 +335,41 @@ const Controller = {
     /************** POPUP FORM METHODS **************/
     openEditPopup(id) {
         this.mode = "edit";
-        const product = Model.products.find(p => p.id === id);
+        const product = ProductsState.products.find(p => p.id === id);
         if (!product) return;
 
-        document.getElementById("edit_id").value = product.id;
-        document.getElementById("edit_nazwa").value = product.nazwa_produktu;
-        document.getElementById("edit_jednostka").value = product.nazwa_jednostki;
-        document.getElementById("edit_lodowka").value = product.czy_w_lodowce || "Nie";
-        document.getElementById("edit_gramy").value = product.jednostka_per_gram;
-        document.getElementById("edit_kcal").value = product.makro?.kcal || 0;
-        document.getElementById("edit_b").value = product.makro?.b || 0;
-        document.getElementById("edit_t").value = product.makro?.t || 0;
-        document.getElementById("edit_w").value = product.makro?.w || 0;
-        document.getElementById("edit_dzial").value = product.dzial_w_sklepie || "";
+        $("edit_id").value = product.id;
+        $("edit_nazwa").value = product.nazwa_produktu;
+        $("edit_jednostka").value = product.nazwa_jednostki;
+        $("edit_lodowka").value = product.czy_w_lodowce || "Nie";
+        $("edit_gramy").value = product.jednostka_per_gram;
+        $("edit_kcal").value = product.makro?.kcal || 0;
+        $("edit_b").value = product.makro?.b || 0;
+        $("edit_t").value = product.makro?.t || 0;
+        $("edit_w").value = product.makro?.w || 0;
+        $("edit_dzial").value = product.dzial_w_sklepie || "";
 
-        document.getElementById("editModalTitle").textContent = "Edytuj produkt";
-        document.getElementById("modalSubmitBtn").textContent = "Zapisz";
+        $("editModalTitle").textContent = "Edytuj produkt";
+        $("modalSubmitBtn").textContent = "Zapisz";
 
         Modal.open("editProductModal");
     },
 
     openAddPopup() {
         this.mode = "add";
-        document.getElementById("editForm").reset();
-        document.getElementById("edit_id").value = "";
-        document.getElementById("edit_lodowka").value = "Nie";
-        document.getElementById("edit_dzial").value = "";
+        $("editForm").reset();
+        $("edit_id").value = "";
+        $("edit_lodowka").value = "Nie";
+        $("edit_dzial").value = "";
 
-        document.getElementById("editModalTitle").textContent = "Nowy produkt";
-        document.getElementById("modalSubmitBtn").textContent = "Dodaj";
+        $("editModalTitle").textContent = "Nowy produkt";
+        $("modalSubmitBtn").textContent = "Dodaj";
 
         Modal.open("editProductModal");
     },
 
     closeEditPopup() {
-        const modal = document.getElementById("editProductModal");
+        const modal = $("editProductModal");
 
         modal.classList.add("closing");
 
@@ -315,64 +379,18 @@ const Controller = {
         }, 200);
     },
 
-    /************** SORTING **************/
-    sortTable(colIndex, isNumeric, forceAsc = null) {
-        const table = document.getElementById("productsTable");
-        const tbody = table.querySelector("tbody");
-        const rows = Array.from(tbody.querySelectorAll("tr"));
-
-        if (!Model.sortDirection) Model.sortDirection = {};
-
-        if (forceAsc !== null) {
-            Model.sortDirection[colIndex] = forceAsc;
-        } else {
-            Model.sortDirection[colIndex] = !Model.sortDirection[colIndex];
-        }
-
-        rows.sort((a, b) => {
-            let aValue = a.cells[colIndex].textContent.trim();
-            let bValue = b.cells[colIndex].textContent.trim();
-
-            if (isNumeric) {
-                aValue = parseFloat(aValue) || 0;
-                bValue = parseFloat(bValue) || 0;
-                return Model.sortDirection[colIndex] ? aValue - bValue : bValue - aValue;
-            }
-
-            return Model.sortDirection[colIndex]
-                ? aValue.localeCompare(bValue)
-                : bValue.localeCompare(aValue);
-        });
-
-        tbody.innerHTML = "";
-        rows.forEach(row => tbody.appendChild(row));
-
-        const headers = table.querySelectorAll("th");
-        headers.forEach((th, index) => {
-            const icon = th.querySelector(".sort-icon");
-            if (!icon) return;
-            if (index === colIndex) {
-                icon.textContent = Model.sortDirection[colIndex] ? "▲" : "▼";
-                icon.style.opacity = "1";
-            } else {
-                icon.textContent = "▲▼";
-                icon.style.opacity = "0.4";
-            }
-        });
-
-        // 🔥 zapis sortowania
-        Model.savedSort = { colIndex, isNumeric, asc: Model.sortDirection[colIndex] };
-    }
 };
 
-/************** GLOBAL NOTICES **************/
+/* =====================================================
+   INIT
+===================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-    Controller.init();
+    Products.init();
 });
 
 document.addEventListener("click", function (e) {
-    const modal = document.getElementById("editProductModal");
+    const modal = $("editProductModal");
 
     if (e.target === modal) {
         Modal.close("editProductModal");

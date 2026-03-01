@@ -4844,25 +4844,6 @@
         }
     },
     {
-        "nazwa_produktu": "aaaas123123123",
-        "nazwa_jednostki": "gram",
-        "jednostka_per_gram": 1,
-        "czy_w_lodowce": "Nie",
-        "dzial_w_sklepie": "Bakalie",
-        "makro": {
-            "kcal": 2222,
-            "b": 2,
-            "t": 2,
-            "w": 2
-        },
-        "id": 349,
-        "method": "PUT",
-        "headers": {
-            "Content-Type": "application/json"
-        },
-        "body": "{\"nazwa_produktu\":\"aaaas2\",\"nazwa_jednostki\":\"gram\",\"jednostka_per_gram\":1,\"czy_w_lodowce\":\"Nie\",\"dzial_w_sklepie\":\"Bakalie\",\"makro\":{\"kcal\":2,\"b\":2,\"t\":2,\"w\":2}}"
-    },
-    {
         "nazwa_produktu": "aaax",
         "nazwa_jednostki": "gram",
         "jednostka_per_gram": 1,
@@ -4875,5 +4856,19 @@
             "w": 9
         },
         "id": 350
+    },
+    {
+        "nazwa_produktu": "a111111",
+        "nazwa_jednostki": "gram",
+        "jednostka_per_gram": 55,
+        "czy_w_lodowce": "Nie",
+        "dzial_w_sklepie": "Bakalie",
+        "makro": {
+            "kcal": 46,
+            "b": 46,
+            "t": 54,
+            "w": 654
+        },
+        "id": 351
     }
 ]

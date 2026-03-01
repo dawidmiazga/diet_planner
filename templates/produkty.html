@@ -15,7 +15,7 @@
     </div>
 
     <div class="toolbar-center">
-        <button class="btn main-btn animate-btn" onclick="Controller.openAddPopup()">
+        <button class="btn main-btn animate-btn" onclick="Products.openAddPopup()">
             + Dodaj produkt
         </button>
     </div>
@@ -27,14 +27,14 @@
     <table class="modern-table" id="productsTable">
         <thead>
             <tr>
-                <th onclick="Controller.sortTable(0, false)">Nazwa <span class="sort-icon">▲▼</span></th>
-                <th onclick="Controller.sortTable(1, false)">Dział <span class="sort-icon">▲▼</span></th>
-                <th onclick="Controller.sortTable(2, false)">Jednostka <span class="sort-icon">▲▼</span></th>
-                <th onclick="Controller.sortTable(3, false)">Lodówka <span class="sort-icon">▲▼</span></th>
-                <th onclick="Controller.sortTable(4, true)">Kcal <span class="sort-icon">▲▼</span></th>
-                <th onclick="Controller.sortTable(5, true)">B <span class="sort-icon">▲▼</span></th>
-                <th onclick="Controller.sortTable(6, true)">T <span class="sort-icon">▲▼</span></th>
-                <th onclick="Controller.sortTable(7, true)">W <span class="sort-icon">▲▼</span></th>
+                <th onclick="ProductsUI.sortTable(0, false)">Nazwa <span class="sort-icon">▲▼</span></th>
+                <th onclick="ProductsUI.sortTable(1, false)">Dział <span class="sort-icon">▲▼</span></th>
+                <th onclick="ProductsUI.sortTable(2, false)">Jednostka <span class="sort-icon">▲▼</span></th>
+                <th onclick="ProductsUI.sortTable(3, false)">Lodówka <span class="sort-icon">▲▼</span></th>
+                <th onclick="ProductsUI.sortTable(4, true)">Kcal <span class="sort-icon">▲▼</span></th>
+                <th onclick="ProductsUI.sortTable(5, true)">B <span class="sort-icon">▲▼</span></th>
+                <th onclick="ProductsUI.sortTable(6, true)">T <span class="sort-icon">▲▼</span></th>
+                <th onclick="ProductsUI.sortTable(7, true)">W <span class="sort-icon">▲▼</span></th>
                 <th></th>
             </tr>
         </thead>
