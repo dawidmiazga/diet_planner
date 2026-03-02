@@ -1299,6 +1299,27 @@ select {
 /* ==================== SHOPPING / ZAKUPY ==================== */
 /* =========================================================== */
 
+.shopping-cell {
+    padding: 0 10px; /* wyrównanie jak inne td */
+}
+
+.shopping-input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font: inherit;
+    color: inherit;
+    padding: 10px 0; /* żeby zgadzała się wysokość wiersza */
+    margin: 0;
+}
+
+/* usuwa globalny border z input */
+.shopping-input:focus {
+    outline: none;
+    background: rgba(54, 137, 148, 0.06);
+    border-radius: 6px;
+}
+
 .shopping-table {
     width: 100%;
     border-collapse: collapse;

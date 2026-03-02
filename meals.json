@@ -105,7 +105,8 @@
                 "name": "Jogurt skyr waniliowy piątnica",
                 "grams": 150
             }
-        ]
+        ],
+        "rating": 4
     },
     {
         "id": 13,
@@ -1806,7 +1807,7 @@
                 "grams": 150
             }
         ],
-        "rating": 4
+        "rating": 5
     },
     {
         "id": 47,

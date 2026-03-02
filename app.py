@@ -540,6 +540,19 @@ def generate_shopping_list():
     # sortowanie po dziale
     shopping_list.sort(key=lambda x: x["dzial_w_sklepie"])
     return jsonify(shopping_list)
+
+
+
+
+
+
+
+
+
+
+
+
+
 # =====================================================
 # START
 # =====================================================

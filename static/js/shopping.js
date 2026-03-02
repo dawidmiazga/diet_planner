@@ -51,14 +51,85 @@ function renderTable() {
             <td>
                 <button class="btn remove-btn" onclick="markBought(${item.id})">✕</button>
             </td>
-            <td>${item.name}</td>
-            <td>${iloscText}</td>
+            <td class="shopping-cell">
+                <input 
+                    type="text"
+                    class="shopping-input"
+                    value="${item.name}"
+                    data-id="${item.id}"
+                >
+            </td>
+            <td class="shopping-cell">
+                <input 
+                    type="text"
+                    class="shopping-input"
+                    value="${iloscText}"
+                    data-id="${item.id}"
+                >
+            </td>
             <td>${item.dzial_w_sklepie}</td>
             <td>${lodowkaText}</td>
         `;
 
         body.appendChild(row);
     });
+}
+
+function saveShoppingState() {
+    localStorage.setItem("shoppingTableState", JSON.stringify(shoppingData));
+}
+
+function loadShoppingState() {
+    const saved = localStorage.getItem("shoppingTableState");
+    if (saved) {
+        shoppingData = JSON.parse(saved);
+        sortTable(currentSort.key, false);
+    }
+}
+
+function copyNameAndQuantity() {
+
+    if (!shoppingData.length) {
+        alert("Brak produktów do skopiowania.");
+        return;
+    }
+
+    // Budujemy tekst do schowka
+    const textToCopy = shoppingData.map(item => {
+
+        let iloscText = item.grams + " g";
+
+        if (item.sztuki && item.jednostka) {
+            iloscText += " (" + item.sztuki + " " + item.jednostka + ")";
+        }
+
+        return item.name + " - " + iloscText;
+
+    }).join("\n");
+
+    // Nowoczesny sposób (Clipboard API)
+    navigator.clipboard.writeText(textToCopy)
+        .then(() => {
+            showCopySuccess();
+        })
+        .catch(err => {
+            console.error("Błąd kopiowania:", err);
+            alert("Nie udało się skopiować.");
+        });
+}
+
+function showCopySuccess() {
+
+    const btn = document.querySelector('button[onclick="copyNameAndQuantity()"]');
+
+    const originalText = btn.innerHTML;
+    btn.innerHTML = "✅ Skopiowano!";
+    btn.disabled = true;
+
+    setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    }, 3000);
 }
 
 function sortTable(key, toggle = true) {
@@ -92,6 +163,7 @@ function sortTable(key, toggle = true) {
     });
     renderTable();
     updateSortIcons();
+    saveShoppingState();
 }
 
 function updateSortIcons() {
@@ -127,6 +199,7 @@ function markBought(id) {
         method: "POST"
     }).then(() => {
         loadShopping();
+        saveShoppingState();
     });
 }
 
@@ -200,6 +273,7 @@ function undoLastRemoval() {
 
             updateUndoButton();
             loadShopping();
+            saveShoppingState();
         });
 }
 
@@ -260,7 +334,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     saveShoppingDates().then(() => loadShopping());
                 }
             });
-
+            loadShoppingState();
             loadShopping();
         });
 });
