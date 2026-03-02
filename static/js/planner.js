@@ -78,7 +78,7 @@ const Planner = {
         );
 
         // wiersze = daty
-        for (let row = 0; row < maxDishes; row++) {
+        for (let row = 0; row < 5; row++) {
             const d = new Date(startDate);
             d.setDate(d.getDate() + row);
             const dateStr = d.toISOString().split('T')[0];

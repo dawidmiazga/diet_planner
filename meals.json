@@ -18301,17 +18301,5 @@
                 "grams": 455
             }
         ]
-    },
-    {
-        "name": "a",
-        "description": "",
-        "ingredients": [],
-        "person": "osoba1",
-        "dish": [
-            1,
-            2
-        ],
-        "id": 385,
-        "rating": 3
     }
 ]
