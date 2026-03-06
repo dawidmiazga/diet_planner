@@ -4844,7 +4844,7 @@
         }
     },
     {
-        "nazwa_produktu": "aaax",
+        "nazwa_produktu": "aaaxm",
         "nazwa_jednostki": "gram",
         "jednostka_per_gram": 1,
         "czy_w_lodowce": "Nie",
@@ -4858,17 +4858,17 @@
         "id": 350
     },
     {
-        "nazwa_produktu": "a111111",
+        "nazwa_produktu": "aa",
         "nazwa_jednostki": "gram",
-        "jednostka_per_gram": 55,
+        "jednostka_per_gram": null,
         "czy_w_lodowce": "Nie",
-        "dzial_w_sklepie": "Bakalie",
+        "dzial_w_sklepie": "",
         "makro": {
-            "kcal": 46,
-            "b": 46,
-            "t": 54,
-            "w": 654
+            "kcal": 0,
+            "b": 0,
+            "t": 0,
+            "w": 0
         },
-        "id": 351
+        "id": 352
     }
 ]

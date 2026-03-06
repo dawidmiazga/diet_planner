@@ -23,16 +23,17 @@
 
     <div class="toolbar-center">
         <div class="button-toolbar">
-            <button onclick="resetList()" class="btn animate-btn">
+            <button onclick="Shopping.resetList()" class="btn animate-btn">
                 <span class="refresh-icon">↻</span>
                 Odśwież listę
             </button>
 
-            <button id="undoButton" onclick="undoLastRemoval()" class="undo-btn hidden" style="display:none"> </button>
+            <button id="undoButton" onclick="Shopping.undoLastRemoval()" class="undo-btn hidden" style="display:none">
+            </button>
         </div>
     </div>
     <div class="toolbar-spacer">
-        <button onclick="copyNameAndQuantity()" class="btn animate-btn">
+        <button onclick="Shopping.copyNameAndQuantity()" class="btn animate-btn">
             📋 Kopiuj Nazwa + Ilość
         </button>
     </div>
@@ -42,19 +43,19 @@
     <thead>
         <tr>
             <th></th>
-            <th data-key="name" onclick="sortTable('name')">
+            <th data-key="name" onclick="Shopping.sortTable('name')">
                 Nazwa <span class="sort-icon">▲▼</span>
             </th>
 
-            <th data-key="ilosc" onclick="sortTable('ilosc')">
+            <th data-key="ilosc" onclick="Shopping.sortTable('ilosc')">
                 Ilość <span class="sort-icon">▲▼</span>
             </th>
 
-            <th data-key="dzial_w_sklepie" onclick="sortTable('dzial_w_sklepie')">
+            <th data-key="dzial_w_sklepie" onclick="Shopping.sortTable('dzial_w_sklepie')">
                 Dział <span class="sort-icon">▲▼</span>
             </th>
 
-            <th data-key="czy_w_lodowce" onclick="sortTable('czy_w_lodowce')">
+            <th data-key="czy_w_lodowce" onclick="Shopping.sortTable('czy_w_lodowce')">
                 Lodówka <span class="sort-icon">▲▼</span>
             </th>
         </tr>

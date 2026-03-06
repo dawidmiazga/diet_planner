@@ -269,7 +269,7 @@ const Products = {
         const newProduct = {
             nazwa_produktu: form.nazwa_produktu.value.trim(),
             nazwa_jednostki: form.nazwa_jednostki.value,
-            jednostka_per_gram: parseInt(form.jednostka_per_gram.value),
+            jednostka_per_gram: parseFloat(form.jednostka_per_gram.value),
             makro: {
                 kcal: parseFloat($("kcal").value) || 0,
                 b: parseFloat($("b").value) || 0,
@@ -292,7 +292,7 @@ const Products = {
         const updatedProduct = {
             nazwa_produktu: $("edit_nazwa").value.trim(),
             nazwa_jednostki: $("edit_jednostka").value,
-            jednostka_per_gram: parseInt($("edit_gramy").value),
+            jednostka_per_gram: parseFloat($("edit_gramy").value),
             czy_w_lodowce: $("edit_lodowka").value,
             dzial_w_sklepie: $("edit_dzial").value,
             makro: {
@@ -311,7 +311,6 @@ const Products = {
             Products.openSuccessPopup();
         }
 
-        showSaveNoticeGlobal();
         Modal.close("editProductModal");
         Products.loadAndRender();
     },

@@ -1,378 +1,369 @@
-let shoppingStartDate = null;
-let shoppingEndDate = null;
-let plannerData = {};
-let shoppingData = [];
-let currentSort = { key: "name", asc: true };
-let lastRemovedProductId = null;
-let lastRemovedProductName = null;
-let undoTimeout = null;
+/* =====================================================
+   STATE
+===================================================== */
 
-function loadShopping() {
-    // lastRemovedProductId = null;
-    // lastRemovedProductName = null;
-    // updateUndoButton();
+const ShoppingState = {
+    shoppingStartDate: null,
+    shoppingEndDate: null,
+    plannerData: {},
+    shoppingData: [],
+    currentSort: { key: "name", asc: true },
+    lastRemovedProductId: null,
+    lastRemovedProductName: null,
+    undoTimeout: null
+};
 
-    // jeśli inputy mają pustą wartość, to nic nie rób
-    const startVal = document.getElementById("shoppingStartDate").value;
-    const endVal = document.getElementById("shoppingEndDate").value;
+const $ = id => document.getElementById(id);
 
-    if (!startVal || !endVal) {
-        console.warn("Brak dat w inputach — nie wywołuję API:", startVal, endVal);
-        return;
-    }
+// let shoppingStartDate = null;
+// let shoppingEndDate = null;
+// let plannerData = {};
+// let shoppingData = [];
+// let currentSort = { key: "name", asc: true };
+// let lastRemovedProductId = null;
+// let lastRemovedProductName = null;
+// let undoTimeout = null;
+/* =====================================================
+   API
+===================================================== */
 
-    fetch(`/api/shopping_list?start=${startVal}&end=${endVal}`)
-        .then(res => res.json())
-        .then(data => {
-            shoppingData = data.filter(item => !item.checked);
-            sortTable(currentSort.key, false);
+const ShoppingAPI = {
+
+    async fetchShopping(start, end) {
+        const res = await fetch(`/api/shopping_list?start=${start}&end=${end}`);
+        return await res.json();
+    },
+
+    async markBought(id) {
+        return fetch("/api/shopping_check/" + id, { method: "POST" });
+    },
+
+    async undoBought(id) {
+        return fetch("/api/shopping_uncheck/" + id, { method: "POST" });
+    },
+
+    async resetList() {
+        return fetch("/api/shopping_reset", { method: "POST" });
+    },
+
+    async fetchDates() {
+        const res = await fetch("/api/get_shopping_dates");
+        return await res.json();
+    },
+
+    async saveDates(start, end) {
+        return API.post("/api/save_shopping_dates", {
+            start_date: start,
+            end_date: end
         });
-}
+    }
+};
+/* =====================================================
+   UI
+===================================================== */
 
-function renderTable() {
+const ShoppingUI = {
 
-    const body = document.getElementById("shoppingBody");
-    body.innerHTML = "";
+    renderTable() {
+        const body = $("shoppingBody");
+        body.innerHTML = "";
 
-    shoppingData.forEach(item => {
+        ShoppingState.shoppingData.forEach(item => {
 
-        let iloscText = item.grams + " g";
-        if (item.sztuki && item.jednostka) {
-            iloscText += " (" + item.sztuki + " " + item.jednostka + ")";
+            let iloscText = item.grams + " g";
+
+            if (item.sztuki && item.jednostka) {
+                iloscText += " (" + item.sztuki + " " + item.jednostka + ")";
+            }
+
+            let lodowkaText = "—";
+            if (item.czy_w_lodowce === "Tak") lodowkaText = "Tak";
+            if (item.czy_w_lodowce === "Nie") lodowkaText = "Nie";
+            if (item.czy_w_lodowce === "Tak/Nie") lodowkaText = "Tak/Nie";
+
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>
+                    <button class="btn remove-btn" onclick="Shopping.markBought(${item.id})">✕</button>
+                </td>
+                <td class="shopping-cell">
+                    <input type="text" class="shopping-input" value="${item.name}" data-id="${item.id}">
+                </td>
+                <td class="shopping-cell">
+                    <input type="text" class="shopping-input" value="${iloscText}" data-id="${item.id}">
+                </td>
+                <td>${item.dzial_w_sklepie}</td>
+                <td>${lodowkaText}</td>
+            `;
+            body.appendChild(row);
+        });
+    },
+
+    updateSortIcons() {
+        const headers = document.querySelectorAll(".shopping-table th[data-key]");
+
+        headers.forEach(th => {
+            const key = th.getAttribute("data-key");
+            const icon = th.querySelector(".sort-icon");
+            if (!icon) return;
+
+            if (key === ShoppingState.currentSort.key) {
+                icon.textContent = ShoppingState.currentSort.asc ? "▲" : "▼";
+            } else {
+                icon.textContent = "▲▼";
+            }
+        });
+    }
+};
+/* =====================================================
+   SHOPPING LOGIC
+===================================================== */
+
+const Shopping = {
+
+    async loadShopping() {
+
+        const startVal = $("shoppingStartDate").value;
+        const endVal = $("shoppingEndDate").value;
+
+        if (!startVal || !endVal) return;
+
+        const data = await ShoppingAPI.fetchShopping(startVal, endVal);
+
+        ShoppingState.shoppingData = data.filter(item => !item.checked);
+
+        this.sortTable(ShoppingState.currentSort.key, false);
+    },
+
+    sortTable(key, toggle = true) {
+
+        const sort = ShoppingState.currentSort;
+
+        if (toggle) {
+            if (sort.key === key) {
+                sort.asc = !sort.asc;
+            } else {
+                sort.key = key;
+                sort.asc = true;
+            }
+        } else {
+            sort.key = key;
         }
 
-        let lodowkaText = "—";
-        if (item.czy_w_lodowce === "Tak") lodowkaText = "Tak";
-        if (item.czy_w_lodowce === "Nie") lodowkaText = "Nie";
-        if (item.czy_w_lodowce === "Tak/Nie") lodowkaText = "Tak/Nie";
+        ShoppingState.shoppingData.sort((a, b) => {
 
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>
-                <button class="btn remove-btn" onclick="markBought(${item.id})">✕</button>
-            </td>
-            <td class="shopping-cell">
-                <input 
-                    type="text"
-                    class="shopping-input"
-                    value="${item.name}"
-                    data-id="${item.id}"
-                >
-            </td>
-            <td class="shopping-cell">
-                <input 
-                    type="text"
-                    class="shopping-input"
-                    value="${iloscText}"
-                    data-id="${item.id}"
-                >
-            </td>
-            <td>${item.dzial_w_sklepie}</td>
-            <td>${lodowkaText}</td>
+            let valA, valB;
+
+            if (key === "ilosc") {
+                valA = Number(a.grams);
+                valB = Number(b.grams);
+            } else {
+                valA = (a[key] || "").toString().toLowerCase();
+                valB = (b[key] || "").toString().toLowerCase();
+            }
+
+            if (valA < valB) return sort.asc ? -1 : 1;
+            if (valA > valB) return sort.asc ? 1 : -1;
+            return 0;
+        });
+
+        ShoppingUI.renderTable();
+        ShoppingUI.updateSortIcons();
+        this.saveState();
+    },
+
+    async markBought(id) {
+
+        const product = ShoppingState.shoppingData.find(p => p.id === id);
+
+        if (product) {
+            ShoppingState.lastRemovedProductId = id;
+            ShoppingState.lastRemovedProductName = product.name;
+            this.updateUndoButton();
+        }
+
+        await ShoppingAPI.markBought(id);
+        await this.loadShopping();
+        this.saveState();
+    },
+
+    async undoLastRemoval() {
+
+        if (!ShoppingState.lastRemovedProductId) return;
+
+        await ShoppingAPI.undoBought(ShoppingState.lastRemovedProductId);
+
+        if (ShoppingState.undoTimeout) {
+            clearTimeout(ShoppingState.undoTimeout);
+        }
+
+        ShoppingState.lastRemovedProductId = null;
+        ShoppingState.lastRemovedProductName = null;
+
+        this.updateUndoButton();
+        await this.loadShopping();
+        this.saveState();
+    },
+
+    async resetList() {
+
+        ShoppingState.lastRemovedProductId = null;
+        ShoppingState.lastRemovedProductName = null;
+
+        this.updateUndoButton();
+
+        await ShoppingAPI.resetList();
+        await this.loadShopping();
+    },
+
+    saveState() {
+        localStorage.setItem(
+            "shoppingTableState",
+            JSON.stringify(ShoppingState.shoppingData)
+        );
+    },
+
+    loadState() {
+        const saved = localStorage.getItem("shoppingTableState");
+        if (saved) {
+            ShoppingState.shoppingData = JSON.parse(saved);
+            this.sortTable(ShoppingState.currentSort.key, false);
+        }
+    },
+
+    updateUndoButton() {
+
+        const btn = $("undoButton");
+
+        if (!ShoppingState.lastRemovedProductId) {
+            btn.classList.add("hidden");
+
+            setTimeout(() => {
+                if (!ShoppingState.lastRemovedProductId) {
+                    btn.style.display = "none";
+                    btn.innerHTML = "";
+                }
+            }, 400);
+
+            return;
+        }
+
+        btn.innerHTML = `
+            <span class="undo-icon">↺</span>
+            Usunięto: <strong>${ShoppingState.lastRemovedProductName}</strong> - Cofnij
+            <div class="undo-progress"></div>
         `;
 
-        body.appendChild(row);
-    });
-}
+        btn.style.display = "flex";
 
-function saveShoppingState() {
-    localStorage.setItem("shoppingTableState", JSON.stringify(shoppingData));
-}
+        requestAnimationFrame(() => {
+            btn.classList.remove("hidden");
+        });
 
-function loadShoppingState() {
-    const saved = localStorage.getItem("shoppingTableState");
-    if (saved) {
-        shoppingData = JSON.parse(saved);
-        sortTable(currentSort.key, false);
-    }
-}
+        const progress = btn.querySelector(".undo-progress");
+        requestAnimationFrame(() => {
+            progress.classList.add("animate");
+        });
 
-function copyNameAndQuantity() {
-
-    if (!shoppingData.length) {
-        alert("Brak produktów do skopiowania.");
-        return;
-    }
-
-    // Budujemy tekst do schowka
-    const textToCopy = shoppingData.map(item => {
-
-        let iloscText = item.grams + " g";
-
-        if (item.sztuki && item.jednostka) {
-            iloscText += " (" + item.sztuki + " " + item.jednostka + ")";
+        if (ShoppingState.undoTimeout) {
+            clearTimeout(ShoppingState.undoTimeout);
         }
 
-        return item.name + " - " + iloscText;
+        ShoppingState.undoTimeout = setTimeout(() => {
+            ShoppingState.lastRemovedProductId = null;
+            ShoppingState.lastRemovedProductName = null;
+            this.updateUndoButton();
+        }, 5000);
+    },
+    async copyNameAndQuantity() {
 
-    }).join("\n");
+        if (!ShoppingState.shoppingData.length) {
+            alert("Brak produktów do skopiowania.");
+            return;
+        }
 
-    // Nowoczesny sposób (Clipboard API)
-    navigator.clipboard.writeText(textToCopy)
-        .then(() => {
-            showCopySuccess();
-        })
-        .catch(err => {
+        const textToCopy = ShoppingState.shoppingData.map(item => {
+
+            let iloscText = item.grams + " g";
+
+            if (item.sztuki && item.jednostka) {
+                iloscText += " (" + item.sztuki + " " + item.jednostka + ")";
+            }
+
+            return item.name + " - " + iloscText;
+
+        }).join("\n");
+
+        try {
+            await navigator.clipboard.writeText(textToCopy);
+            this.showCopySuccess();
+        } catch (err) {
             console.error("Błąd kopiowania:", err);
             alert("Nie udało się skopiować.");
-        });
-}
-
-function showCopySuccess() {
-
-    const btn = document.querySelector('button[onclick="copyNameAndQuantity()"]');
-
-    const originalText = btn.innerHTML;
-    btn.innerHTML = "✅ Skopiowano!";
-    btn.disabled = true;
-
-    setTimeout(() => {
-        btn.innerHTML = originalText;
-        btn.disabled = false;
-    }, 3000);
-}
-
-function sortTable(key, toggle = true) {
-
-    if (toggle) {
-        if (currentSort.key === key) {
-            currentSort.asc = !currentSort.asc;
-        } else {
-            currentSort.key = key;
-            currentSort.asc = true;
         }
-    } else {
-        currentSort.key = key;
-    }
+    },
 
-    shoppingData.sort((a, b) => {
+    showCopySuccess() {
 
-        let valA, valB;
+        const btn = document.querySelector('[onclick="Shopping.copyNameAndQuantity()"]');
 
-        if (key === "ilosc") {
-            valA = Number(a.grams);
-            valB = Number(b.grams);
-        } else {
-            valA = (a[key] || "").toString().toLowerCase();
-            valB = (b[key] || "").toString().toLowerCase();
-        }
+        if (!btn) return;
 
-        if (valA < valB) return currentSort.asc ? -1 : 1;
-        if (valA > valB) return currentSort.asc ? 1 : -1;
-        return 0;
-    });
-    renderTable();
-    updateSortIcons();
-    saveShoppingState();
-}
+        const originalText = btn.innerHTML;
 
-function updateSortIcons() {
-
-    const headers = document.querySelectorAll(".shopping-table th[data-key]");
-
-    headers.forEach(th => {
-
-        const key = th.getAttribute("data-key");
-        const icon = th.querySelector(".sort-icon");
-
-        if (!icon) return;
-
-        if (key === currentSort.key) {
-            icon.textContent = currentSort.asc ? "▲" : "▼";
-        } else {
-            icon.textContent = "▲▼";
-        }
-    });
-}
-
-function markBought(id) {
-    const product = shoppingData.find(p => p.id === id);
-
-    if (product) {
-        lastRemovedProductId = id;
-        lastRemovedProductName = product.name;
-
-        updateUndoButton();
-    }
-
-    fetch("/api/shopping_check/" + id, {
-        method: "POST"
-    }).then(() => {
-        loadShopping();
-        saveShoppingState();
-    });
-}
-
-function updateUndoButton() {
-
-    const btn = document.getElementById("undoButton");
-
-    // ===== UKRYWANIE =====
-    if (!lastRemovedProductId) {
-
-        btn.classList.add("hidden");
+        btn.innerHTML = "✅ Skopiowano!";
+        btn.disabled = true;
 
         setTimeout(() => {
-            if (!lastRemovedProductId) {
-                btn.style.display = "none";
-                btn.innerHTML = ""; // wyczyść pasek
-            }
-        }, 400);
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        }, 3000);
+    },
+};
+/* =====================================================
+   INIT
+===================================================== */
 
-        return;
-    }
+document.addEventListener("DOMContentLoaded", async () => {
 
-    // ===== POKAZYWANIE =====
+    const data = await ShoppingAPI.fetchDates();
 
-    btn.innerHTML = `
-        <span class="undo-icon">↺</span>
-        Usunięto: <strong>${lastRemovedProductName}</strong> - Cofnij
-        <div class="undo-progress"></div>
-    `;
+    const today = new Date().toISOString().split("T")[0];
 
-    btn.style.display = "flex";
+    ShoppingState.shoppingStartDate = data.start_date || today;
+    ShoppingState.shoppingEndDate = data.end_date || today;
 
-    requestAnimationFrame(() => {
-        btn.classList.remove("hidden");
-    });
+    $("shoppingStartDate").value = ShoppingState.shoppingStartDate;
+    $("shoppingEndDate").value = ShoppingState.shoppingEndDate;
 
-    // uruchom animację paska
-    const progress = btn.querySelector(".undo-progress");
-    requestAnimationFrame(() => {
-        progress.classList.add("animate");
-    });
-
-    // reset poprzedniego timera
-    if (undoTimeout) {
-        clearTimeout(undoTimeout);
-    }
-
-    // auto fade-out po 5 sekundach
-    undoTimeout = setTimeout(() => {
-        lastRemovedProductId = null;
-        lastRemovedProductName = null;
-        updateUndoButton();
-    }, 5000);
-}
-
-function undoLastRemoval() {
-
-    if (!lastRemovedProductId) return;
-
-    fetch("/api/shopping_uncheck/" + lastRemovedProductId, {
-        method: "POST"
-    })
-        .then(() => {
-
-            if (undoTimeout) {
-                clearTimeout(undoTimeout);
-            }
-
-            lastRemovedProductId = null;
-            lastRemovedProductName = null;
-
-            updateUndoButton();
-            loadShopping();
-            saveShoppingState();
-        });
-}
-
-function resetList() {
-
-    // 🔹 wyczyść stan cofania
-    lastRemovedProductId = null;
-    lastRemovedProductName = null;
-    updateUndoButton();   // schowa przycisk
-
-    fetch("/api/shopping_reset", {
-        method: "POST"
-    }).then(() => loadShopping());
-}
-
-// document.addEventListener("DOMContentLoaded", loadShopping);
-document.addEventListener("DOMContentLoaded", () => {
-
-    fetch("/api/get_shopping_dates")
-        .then(res => res.json())
-        .then(data => {
-
-            const today = new Date().toISOString().split("T")[0];
-
-            shoppingStartDate = data.start_date || today;
-            shoppingEndDate = data.end_date || today;
-
-            document.getElementById("shoppingStartDate").value = shoppingStartDate;
-            document.getElementById("shoppingEndDate").value = shoppingEndDate;
-
-            flatpickr("#shoppingStartDate", {
-                locale: "pl",
-                dateFormat: "Y-m-d",
-                defaultDate: shoppingStartDate,
-                onChange: function (selectedDates, dateStr) {
-                    shoppingStartDate = dateStr;
-                    saveShoppingDates().then(() => loadShopping());
-                }
-            });
-
-            // DatePicker.init("#shoppingStartDate", shoppingStartDate, (dateStr) => {
-            //     shoppingStartDate = dateStr;
-            //     saveShoppingDates().then(loadShopping);
-            // });
-
-            // DatePicker.init("#shoppingEndDate", shoppingEndDate, (dateStr) => {
-            //     shoppingEndDate = dateStr;
-            //     saveShoppingDates().then(loadShopping);
-            // });
-
-
-            flatpickr("#shoppingEndDate", {
-                locale: "pl",
-                dateFormat: "Y-m-d",
-                defaultDate: shoppingEndDate,
-                onChange: function (selectedDates, dateStr) {
-                    shoppingEndDate = dateStr;
-                    saveShoppingDates().then(() => loadShopping());
-                }
-            });
-            loadShoppingState();
-            loadShopping();
-        });
-});
-function saveShoppingDates() {
-    return API.post("/api/save_shopping_dates", { start_date: shoppingStartDate, end_date: shoppingEndDate });
-    // return fetch("/api/save_shopping_dates", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({
-    //         start_date: shoppingStartDate,
-    //         end_date: shoppingEndDate
-    //     })
-    // });
-}
-function generateShoppingList() {
-
-    if (!shoppingStartDate || !shoppingEndDate) return;
-
-    const start = new Date(shoppingStartDate);
-    const end = new Date(shoppingEndDate);
-
-    let mealIds = [];
-
-    for (const person in plannerData) {
-
-        for (const dateStr in plannerData[person]) {
-
-            const currentDate = new Date(dateStr);
-
-            if (currentDate >= start && currentDate <= end) {
-
-                const mealsForDay = plannerData[person][dateStr];
-
-                for (const dish in mealsForDay) {
-                    mealIds.push(mealsForDay[dish]);
-                }
-
-            }
+    flatpickr("#shoppingStartDate", {
+        locale: "pl",
+        dateFormat: "Y-m-d",
+        defaultDate: ShoppingState.shoppingStartDate,
+        onChange: async (selectedDates, dateStr) => {
+            ShoppingState.shoppingStartDate = dateStr;
+            await ShoppingAPI.saveDates(
+                ShoppingState.shoppingStartDate,
+                ShoppingState.shoppingEndDate
+            );
+            Shopping.loadShopping();
         }
-    }
-}
+    });
+
+    flatpickr("#shoppingEndDate", {
+        locale: "pl",
+        dateFormat: "Y-m-d",
+        defaultDate: ShoppingState.shoppingEndDate,
+        onChange: async (selectedDates, dateStr) => {
+            ShoppingState.shoppingEndDate = dateStr;
+            await ShoppingAPI.saveDates(
+                ShoppingState.shoppingStartDate,
+                ShoppingState.shoppingEndDate
+            );
+            Shopping.loadShopping();
+        }
+    });
+
+    Shopping.loadState();
+    Shopping.loadShopping();
+});

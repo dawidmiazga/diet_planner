@@ -219,7 +219,7 @@
                 "grams": 300
             }
         ],
-        "rating": 5
+        "rating": 4
     },
     {
         "id": 16,
@@ -18301,5 +18301,44 @@
                 "grams": 455
             }
         ]
+    },
+    {
+        "name": "aaa",
+        "description": "",
+        "ingredients": [
+            {
+                "id": 5,
+                "name": "Żurawina suszona",
+                "grams": 22
+            }
+        ],
+        "person": "osoba2",
+        "dish": [
+            1
+        ],
+        "rating": 0,
+        "id": 388
+    },
+    {
+        "name": "aaaa",
+        "description": "",
+        "ingredients": [
+            {
+                "id": 5,
+                "name": "Żurawina suszona",
+                "grams": 1
+            },
+            {
+                "id": 306,
+                "name": "Kabanosy wieprzowe Tarczyński",
+                "grams": 122
+            }
+        ],
+        "person": "osoba1",
+        "dish": [
+            1
+        ],
+        "rating": 5,
+        "id": 389
     }
 ]
