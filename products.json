@@ -4844,31 +4844,17 @@
         }
     },
     {
-        "nazwa_produktu": "aaax",
+        "nazwa_produktu": "aaaaa",
         "nazwa_jednostki": "gram",
-        "jednostka_per_gram": 1,
+        "jednostka_per_gram": null,
         "czy_w_lodowce": "Nie",
-        "dzial_w_sklepie": "Bakalie",
+        "dzial_w_sklepie": "Mięso / chłodnia",
         "makro": {
-            "kcal": 29,
-            "b": 9,
-            "t": 9,
-            "w": 9
+            "kcal": 1,
+            "b": 2,
+            "t": 3,
+            "w": 4
         },
-        "id": 350
-    },
-    {
-        "nazwa_produktu": "a111111",
-        "nazwa_jednostki": "gram",
-        "jednostka_per_gram": 55,
-        "czy_w_lodowce": "Nie",
-        "dzial_w_sklepie": "Bakalie",
-        "makro": {
-            "kcal": 46,
-            "b": 46,
-            "t": 54,
-            "w": 654
-        },
-        "id": 351
+        "id": 347
     }
 ]

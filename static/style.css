@@ -12,14 +12,24 @@
     --primary: rgb(54, 137, 148, 1);
     --primary-strong: rgb(54, 137, 148, 1);
     --primary-soft: rgb(54, 137, 148, 0.5);
+    --today-row: rgba(54, 137, 148, 0.08);
     --danger: #ef4444;
     --bg: linear-gradient(135deg, #eef2ff, #f8fafc);
     --card-bg: rgba(255, 255, 255, 0.75);
     --text: #111827;
     --muted: rgb(107, 114, 128);
     --grey-soft: rgba(211, 211, 211, 0.692);
-
+    
     --primary_2: rgb(177, 62, 148);
+
+    --z-modal: 1000;
+    --z-modalDelete: 1100;
+    --z-mealModal: 1200;
+    --z-unsavedIndicator: 1200;
+    --z-productModal: 1300;
+    --z-saveNoticeGlobal: 1300;
+    --z-deletePopup: 1400;
+    --z-popup: 1500;
 }
 
 body {
@@ -306,12 +316,12 @@ select {
 .nav-link.active::before {
     content: "";
     position: absolute;
-    top: -20px;
+    top: -25px;
     left: 50%;
     transform: translateX(-50%) scale(0);
-    
-    width: 6px;
-    height: 6px;
+
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background-color: var(--primary);
 
@@ -464,7 +474,7 @@ select {
     background: rgba(0, 0, 0, 0.4);
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: var(--z-modal);
     /* backdrop-filter: blur(4px);
     transition: background 0.3s ease; */
 }
@@ -476,10 +486,7 @@ select {
 
 .modal-content {
     background: white;
-    padding-right: 30px;
-    padding-left: 30px;
-    padding-bottom: 30px;
-    padding-top: 30px;
+    padding: 30px;
     border-radius: 12px;
     width: 1000px;
     max-width: 95vw;
@@ -567,6 +574,7 @@ select {
 }
 
 .modal-content input,
+.modal-content select,
 .modal-content textarea {
     width: 100%;
     padding: 10px;
@@ -578,7 +586,7 @@ select {
     flex: 0 0 auto;
 }
 
-.modal-content select {
+/* .modal-content select {
     width: 100%;
     padding: 10px;
     margin: 6px 0 18px 0;
@@ -586,7 +594,7 @@ select {
     border: 1px solid #e5e7eb;
     height: auto;
     flex: 0 0 auto;
-}
+} */
 
 .modal-content input:focus,
 .modal-content textarea:focus {
@@ -760,7 +768,7 @@ select {
 
 .modal-delete-product {
     width: 500px;
-    z-index: 1100;
+    z-index: var(--z-modalDelete);
 }
 
 
@@ -867,15 +875,15 @@ select {
 }
 
 #mealModal {
-    z-index: 9999;
+    z-index: var(--z-mealModal);
 }
 
 #productModal {
-    z-index: 10000;
+    z-index: var(--z-productModal);
 }
 
 #deletePopup {
-    z-index: 11000;
+    z-index: var(--z-deletePopup);
 }
 
 /* #mealPersonSelection .dish-pill input[type="radio"] {
@@ -890,7 +898,7 @@ select {
 
 /* ==================== POPUP (DRUGI SYSTEM MODALA) ==================== */
 /* ===================================================================== */
-
+/* 
 .popup {
     position: fixed;
     inset: 0;
@@ -898,7 +906,7 @@ select {
     display: none;
     align-items: center;
     justify-content: center;
-    z-index: 99999;
+    z-index: var(--z-popup);
 }
 
 .popup form,
@@ -995,7 +1003,7 @@ select {
 
 .button-container button:hover[type="buttonCancel"] {
     background: #647468;
-}
+} */
 
 /* ==================== SKŁADNIKI (INGREDIENTS) ==================== */
 /* ================================================================= */
@@ -1062,7 +1070,7 @@ select {
     border: none;
     background: #f87171;
     color: white;
-    font-size: 18px;
+    font-size: 11px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1134,10 +1142,10 @@ select {
     font-size: 16px;
 }
 
-.small-btn {
+/* .small-btn {
     padding: 6px 12px;
     font-size: 13px;
-}
+} */
 
 @media (max-width: 900px) {
     .meal-modal-grid {
@@ -1296,11 +1304,16 @@ select {
     cursor: not-allowed;
 }
 
+.planner-grid .today-row {
+    background: var(--today-row);
+}
+
 /* ==================== SHOPPING / ZAKUPY ==================== */
 /* =========================================================== */
 
 .shopping-cell {
-    padding: 0 10px; /* wyrównanie jak inne td */
+    padding: 0 10px;
+    /* wyrównanie jak inne td */
 }
 
 .shopping-input {
@@ -1309,7 +1322,8 @@ select {
     background: transparent;
     font: inherit;
     color: inherit;
-    padding: 10px 0; /* żeby zgadzała się wysokość wiersza */
+    padding: 10px 0;
+    /* żeby zgadzała się wysokość wiersza */
     margin: 0;
 }
 
@@ -1523,7 +1537,7 @@ select {
     opacity: 0;
     transform: translateY(-10px);
     transition: opacity 0.3s, transform 0.3s;
-    z-index: 10000;
+    z-index: var(--z-saveNoticeGlobal);
 }
 
 .save-notice-global.show {
@@ -1701,6 +1715,8 @@ select {
     z-index: 1;
     transition: 0.25s;
     color: #6b7280;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .mode-btn.active {
@@ -1708,7 +1724,7 @@ select {
 }
 
 .mode-btn:hover:not(.mode-btn.active) {
-    background: var(--primary);
+    background: var(--grey-soft);
     color: white;
 }
 
@@ -1990,6 +2006,45 @@ input:checked+.slider:before {
     box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.1);
 }
 
+.meal-eaten {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.meal-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #d1d5db;
+    border-radius: 6px;
+    margin-right: 8px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.15s ease;
+}
+
+.meal-checkbox:hover {
+    border-color: var(--primary);
+}
+
+.meal-checkbox:checked {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.meal-checkbox:checked::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 0px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
 /* ==================== OPIS DANIA (DWIE KOLUMNY) ==================== */
 /* =================================================================== */
 .meal-description-layout {
@@ -2235,4 +2290,50 @@ form select {
 .dish-pill input:checked+span {
     background: var(--primary);
     color: white;
+}
+
+
+
+
+
+#savePlannerBtn.unsaved {
+    animation: pulseSave 1.2s infinite;
+    box-shadow: 0 0 0 rgba(255, 99, 71, 0.7);
+}
+
+@keyframes pulseSave {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 99, 71, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 12px rgba(255, 99, 71, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 99, 71, 0);
+    }
+}
+
+.unsaved-indicator {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: #ff4d4f;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s, transform 0.3s;
+
+    z-index: var(--z-unsavedIndicator);
+}
+
+.unsaved-indicator.show {
+    opacity: 1;
+    transform: translateY(0);
 }

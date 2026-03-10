@@ -219,7 +219,7 @@
                 "grams": 300
             }
         ],
-        "rating": 5
+        "rating": 4
     },
     {
         "id": 16,
@@ -1807,7 +1807,7 @@
                 "grams": 150
             }
         ],
-        "rating": 5
+        "rating": 0
     },
     {
         "id": 47,
@@ -18301,5 +18301,50 @@
                 "grams": 455
             }
         ]
+    },
+    {
+        "name": "aaa",
+        "description": "",
+        "ingredients": [
+            {
+                "id": 5,
+                "name": "Żurawina suszona",
+                "grams": 22
+            }
+        ],
+        "person": "osoba2",
+        "dish": [
+            1
+        ],
+        "rating": 0,
+        "id": 388
+    },
+    {
+        "name": "a",
+        "description": "",
+        "ingredients": [
+            {
+                "id": 227,
+                "name": "Banan",
+                "grams": 3
+            },
+            {
+                "id": 66,
+                "name": "Alpro sojowe wysokobiałkowe",
+                "grams": 2
+            },
+            {
+                "id": 225,
+                "name": "Arbuz",
+                "grams": 555
+            }
+        ],
+        "person": "osoba1",
+        "dish": [
+            1,
+            4
+        ],
+        "rating": 4,
+        "id": 389
     }
 ]

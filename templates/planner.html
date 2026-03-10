@@ -20,7 +20,12 @@
     </div>
 
     <div class="toolbar-spacer">
+        <button id="savePlannerBtn" class="btn animate-btn" style="display:none; margin-right:15px;"
+            onclick="Planner.manualSave()">
+            💾 Zapisz
+        </button>
         <div class="mode-toggle">
+
             <div class="mode-indicator"></div>
 
             <button class="mode-btn active" data-mode="preview" onclick="Planner.setMode(false, this)">
@@ -37,6 +42,8 @@
 <!-- Nowoczesna tabelka jako grid -->
 <div class="planner-grid" id="plannerGrid"></div>
 
+<!-- <script src="{{ url_for('static', filename='js/shared/mealModal.js') }}"></script> -->
+<script src="{{ url_for('static', filename='js/dishes.js') }}"></script>
 <script src="{{ url_for('static', filename='js/planner.js') }}"></script>
 
 {% endblock %}

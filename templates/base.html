@@ -12,36 +12,7 @@
 </head>
 
 <body>
-
-    <!-- Modal wyboru składnika z products.json -->
-    <div class="modal" id="productModal">
-        <div class="modal-content">
-            <div class="modal-header fancy-header">
-                <h3>Wybierz składnik</h3>
-            </div>
-
-            <button class="fancy-close-btn" onclick="closeProductModal()" aria-label="Zamknij">
-                <span class="close-icon">✕</span>
-            </button>
-
-            <!-- Pole do filtrowania produktów -->
-            <input type="text" id="productSearch" placeholder="Szukaj produktu..." oninput="filterProducts()"
-                style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 12px; border: 1px solid #e5e7eb;">
-
-            <div id="productsList" style="max-height: 300px; overflow-y: auto;"></div>
-
-            <label>Ilość (gram):</label>
-            <input type="number" id="productGrams" placeholder="g" value="0">
-
-            <div class="modal-buttons">
-                <button class="btn save-btn" onclick="selectProduct()">Dodaj</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Kontener główny strony -->
     <div class="container">
-        <!-- Nawigacja -->
         <nav class="main-nav" id="mainNav">
             <div class="nav-highlight" id="navHighlight"></div>
             <a class="nav-link {% if request.path in ['/', '/planner'] %}active{% endif %}" href="/">Planner</a>
@@ -51,22 +22,45 @@
                 produktów</a>
         </nav>
 
-        <!-- Główna treść -->
         <div class="page-content" id="pageContent">
             {% block content %}
             {% endblock %}
         </div>
     </div>
 
+    <!-- Modal wyboru składnika z products.json -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-header fancy-header">
+                <h3>Wybierz składnik</h3>
+            </div>
+
+            <button class="fancy-close-btn" onclick="Modal.closeProductModal()" aria-label="Zamknij">
+                <span class="close-icon">✕</span>
+            </button>
+
+            <input type="text" id="productSearch" placeholder="Szukaj produktu..."
+                style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 12px; border: 1px solid #e5e7eb;">
+
+            <div id="productsList" style="max-height: 300px; overflow-y: auto;"></div>
+
+            <label>Ilość (gram):</label>
+            <input type="number" id="productGrams" placeholder="g" value="0">
+
+            <div class="modal-buttons">
+                <button class="btn save-btn" onclick="Modal.selectProduct()">Dodaj</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Popup edycji produktu -->
     <div class="modal" id="editProductModal">
         <div class="modal-content modal-product-form">
-
             <div class="modal-header fancy-header">
                 <h3 id="editModalTitle"></h3>
             </div>
 
-            <button class="fancy-close-btn" onclick="Products.closeEditPopup()" aria-label="Zamknij">
+            <button class="fancy-close-btn" onclick="Modal.closeEditPopup()" aria-label="Zamknij">
                 <span class="close-icon">✕</span>
             </button>
 
@@ -113,9 +107,7 @@
 
                 <div class="macro-section">
                     <div class="macro-title">Makroskładniki (na 100g)</div>
-
                     <div class="macro-grid">
-
                         <div class="form-field">
                             <label>Kcal</label>
                             <input type="number" id="edit_kcal" class="modern-input" step="any">
@@ -135,27 +127,24 @@
                             <label>Węglowodany</label>
                             <input type="number" id="edit_w" class="modern-input" step="any">
                         </div>
-
                     </div>
                 </div>
+
                 <div class="modal-buttons">
                     <button type="submit" class="btn save-btn" id="modalSubmitBtn">Zapisz</button>
-                    <button type="button" class="btn red-btn" onclick="Products.closeEditPopup()">Anuluj</button>
+                    <button type="button" class="btn red-btn" onclick="Modal.closeEditPopup()">Anuluj</button>
                 </div>
-
             </form>
-
         </div>
     </div>
 
     <div class="modal" id="deletePopup">
         <div class="modal-content modal-delete-product">
-
             <div class="modal-header fancy-header">
                 <h3>Usunąć produkt?</h3>
             </div>
 
-            <button class="fancy-close-btn" onclick="Controller.closeDeletePopup()" aria-label="Zamknij">
+            <button class="fancy-close-btn" onclick="Modal.closeDeletePopup()" aria-label="Zamknij">
                 <span class="close-icon">✕</span>
             </button>
 
@@ -165,18 +154,16 @@
                 <button id="deleteYes" class="btn red-btn">Usuń</button>
                 <button id="deleteNo" class="btn cancel-btn">Anuluj</button>
             </div>
-
         </div>
     </div>
 
     <div class="modal" id="successPopup">
         <div class="modal-content">
-
             <div class="modal-header fancy-header">
                 <h3>Produkt dodany!</h3>
             </div>
 
-            <button class="fancy-close-btn" onclick="Controller.closeSuccessPopup()" aria-label="Zamknij">
+            <button class="fancy-close-btn" onclick="Modal.closeSuccessPopup()" aria-label="Zamknij">
                 <span class="close-icon">✕</span>
             </button>
 
@@ -186,18 +173,17 @@
                 <button id="addAnotherYes" class="main-btn">Tak</button>
                 <button id="addAnotherNo" class="red-btn">Nie</button>
             </div>
-
         </div>
     </div>
+
     <!-- Modal wyboru dania (Planner) -->
     <div class="modal" id="plannerMealModal">
         <div class="modal-content">
-
             <div class="modal-header fancy-header">
                 <h3>Wybierz danie</h3>
             </div>
 
-            <button class="fancy-close-btn" onclick="closePlannerMealModal()" aria-label="Zamknij">
+            <button class="fancy-close-btn" onclick="Modal.closePlannerMealModal()" aria-label="Zamknij">
                 <span class="close-icon">✕</span>
             </button>
 
@@ -206,7 +192,6 @@
 
             <input type="text" id="mealSearch" placeholder="Szukaj dan..." class="meal-search-input">
 
-            <!-- ⭐ FILTR RATINGU -->
             <div class="rating-filter-wrapper">
                 <div id="ratingFilter" class="rating-filter"></div>
                 <button id="clearRatingFilter" type="button" class="clear-rating-btn">✕</button>
@@ -215,26 +200,25 @@
             <div id="mealTiles" class="meal-tiles"></div>
         </div>
     </div>
+
     <!-- Modal opisu dania (Planner) -->
     <div class="modal" id="mealDescriptionModal">
         <div class="modal-content">
-
             <div class="modal-header fancy-header" style="display:flex; align-items:center; gap:15px;">
                 <h3 id="descriptionTitle"></h3>
 
-                <!-- 🔢 MNOŻNIK PORCJI -->
-                <!-- <div class="portion-multiplier">
-                    <button type="button" onclick="changePortion(-0.5)">−</button>
-                    <span id="portionValue">1.0</span>
-                    <button type="button" onclick="changePortion(0.5)">+</button>
-                </div> -->
-
-                <button id="editMealFromPreviewBtn" class="btn main-btn small-btn" style="display:none;">
-                    ✏ Edytuj
+                <button id="editMealFromPreviewBtn" class="btn main-btn animate-btn" style="display:none;">
+                    <span class="plus-icon">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+                            <path d="M4 20h4l10-10a2.8 2.8 0 0 0-4-4L4 16v4z" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                    Edytuj
                 </button>
             </div>
-            
-            <button class="fancy-close-btn" onclick="DescriptionModal.closeDescriptionModal()" aria-label="Zamknij">
+ 
+            <button class="fancy-close-btn" onclick="Modal.closeDescriptionModal()" aria-label="Zamknij">
                 <span class="close-icon">✕</span>
             </button>
 
@@ -244,6 +228,7 @@
             </div>
         </div>
     </div>
+
     <!-- Modal przeniesiony poza container, zawsze na środku ekranu -->
     <div class="modal" id="mealModal">
         <div class="modal-content modal-meal-layout">
@@ -259,17 +244,14 @@
                 </div>
             </div>
 
-            <button class="fancy-close-btn" onclick="closeModal()" aria-label="Zamknij">
+            <button class="fancy-close-btn" onclick="Modal.closeModal()" aria-label="Zamknij">
                 <span class="close-icon">✕</span>
             </button>
 
             <input type="hidden" id="mealId">
 
             <div class="meal-modal-grid">
-
-                <!-- LEWA STRONA -->
                 <div class="meal-left">
-
                     <label>Nazwa</label>
                     <input type="text" id="mealName" class="modern-input">
 
@@ -281,175 +263,58 @@
 
                     <label>Opis</label>
                     <textarea id="mealDescription" class="modal-mealDescription"></textarea>
-
                 </div>
 
-                <!-- PRAWA STRONA -->
                 <div class="meal-right">
-
                     <div class="ingredients-header">
                         <label>Składniki</label>
-                        <button type="button" class="btn main-btn small-btn" onclick="openProductModal()">+
+                        <button type="button" class="btn main-btn animate-btn" onclick="Modal.openProductModal()">+
                             Dodaj</button>
                     </div>
-
                     <div id="ingredientsContainer" class="ingredients-list"></div>
-
                 </div>
-
             </div>
 
             <div class="modal-buttons">
-                <button class="btn save-btn" onclick="saveMeal()">Zapisz</button>
-                <button class="btn red-btn" id="deleteMealBtn" onclick="confirmDeleteMeal()">Usuń</button>
+                <button class="btn save-btn" onclick="ModalShared.saveMeal()">Zapisz</button>
+                <button class="btn red-btn" id="deleteMealBtn" onclick="Modal.confirmDeleteMeal()">Usuń</button>
             </div>
-
         </div>
     </div>
 
-    <script>
-        const DISH_CONFIG = {
-            osoba1: {
-                1: "Śniadanie",
-                2: "II Śniadanie",
-                3: "Obiad",
-                4: "Kolacja",
-                5: "Przekąska"
-            },
-            osoba2: {
-                1: "Śniadanie",
-                2: "Obiad",
-                3: "Kolacja",
-                4: "Przekąska"
-            }
-        };
+    <div class="modal" id="unsavedChangesModal">
+        <div class="modal-content">
 
-        // ===== Animowany przesuwający się highlight w nav =====
-        const nav = document.getElementById("mainNav");
-        const highlight = document.getElementById("navHighlight");
-        let productsData = [];  // Przechowywać pełną listę produktów
+            <div class="modal-header fancy-header">
+                <h3>Niezapisane zmiany</h3>
+            </div>
 
-        // Otwórz modal i załaduj produkty
-        function openProductModal() {
-            fetch("/api/products")
-                .then(res => res.json())
-                .then(data => {
-                    productsData = data;  // Zapisz pełną listę produktów w zmiennej
-                    renderProductList(data);
-                    document.getElementById("productModal").classList.add("show");
-                });
-        }
+            <p style="margin:20px 0;">
+                Masz niezapisane zmiany w plannerze.
+                Co chcesz zrobić?
+            </p>
 
-        // Renderowanie listy produktów
-        function renderProductList(data) {
-            const list = document.getElementById("productsList");
-            list.innerHTML = "";  // Czyścimy listę przed załadowaniem nowych produktów
+            <div class="modal-buttons">
+                <button class="btn save-btn" id="saveAndLeaveBtn">
+                    💾 Zapisz i przejdź
+                </button>
 
-            data.forEach(p => {
-                const item = document.createElement("div");
-                item.className = "product-item";
-                item.style.padding = "6px";
-                item.style.cursor = "pointer";
-                item.style.borderBottom = "1px solid #e5e7eb";
-                item.innerText = p.nazwa_produktu;
-                item.dataset.id = p.id;
-                item.dataset.name = p.nazwa_produktu;
+                <button class="btn red-btn" id="discardAndLeaveBtn">
+                    🚪 Opuść bez zapisu
+                </button>
 
-                item.onclick = () => {
-                    selectedProductId = p.id;
-                    document.getElementById("productGrams").value = 0;
-                    document.querySelectorAll("#productsList .product-item")
-                        .forEach(el => el.style.background = "transparent");
-                    item.style.background = "#e5e7eb";
-                };
+                <button class="btn cancel-btn" id="stayOnPageBtn">
+                    ↩ Zostań
+                </button>
+            </div>
+        </div>
+    </div>
 
-                list.appendChild(item);
-            });
-        }
-
-        // Filtrowanie produktów na podstawie wprowadzonego tekstu
-        function filterProducts() {
-            const searchQuery = document.getElementById("productSearch").value.toLowerCase();
-            const filteredProducts = productsData.filter(p => p.nazwa_produktu.toLowerCase().includes(searchQuery));
-            renderProductList(filteredProducts);
-        }
-
-        // Zamknięcie modalu produktu
-        function closeProductModal() {
-            const modal = document.getElementById("productModal");
-
-            modal.classList.add("closing");
-
-            setTimeout(() => {
-                modal.classList.remove("show");
-                modal.classList.remove("closing");
-                selectedProductId = null;
-            }, 200);
-        }
-
-        function moveHighlight(el) {
-            const rect = el.getBoundingClientRect();
-            const navRect = nav.getBoundingClientRect();
-            highlight.style.width = rect.width + "px";
-            highlight.style.left = (rect.left - navRect.left) + "px";
-        }
-
-        // na start ustaw highlight na aktywnym linku
-        document.addEventListener("DOMContentLoaded", () => {
-            const active = nav.querySelector(".nav-link.active");
-            if (active) moveHighlight(active);
-
-            // hover effect
-            nav.querySelectorAll(".nav-link").forEach(link => {
-                link.addEventListener("mouseenter", () => moveHighlight(link));
-                link.addEventListener("mouseleave", () => {
-                    const active = nav.querySelector(".nav-link.active");
-                    if (active) moveHighlight(active);
-                });
-            });
-        });
-
-        // ===== Animacja ładowania strony =====
-        document.addEventListener("DOMContentLoaded", () => {
-            const content = document.getElementById("pageContent");
-            setTimeout(() => content.classList.add("show"), 50);
-        });
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pl.js"></script>
-
-    <script>
-        /* ===== GLOBALNY SYSTEM MODALI ===== */
-
-        function closeModalElement(modal) {
-            if (!modal) return;
-
-            modal.classList.add("closing");
-
-            setTimeout(() => {
-                modal.classList.remove("show");
-                modal.classList.remove("closing");
-            }, 200);
-        }
-
-        // ESC zamyka wszystkie otwarte modale
-        document.addEventListener("keydown", function (e) {
-            if (e.key === "Escape") {
-                document.querySelectorAll(".modal.show").forEach(modal => {
-                    closeModalElement(modal);
-                });
-            }
-        });
-
-        // Klik w tło zamyka modal
-        document.addEventListener("click", function (e) {
-            if (e.target.classList.contains("modal")) {
-                closeModalElement(e.target);
-            }
-        });
-    </script>
+    <script src="{{ url_for('static', filename='js/base.js') }}"></script>
     <script src="{{ url_for('static', filename='js/shared/mealModal.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/core/api.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/api.js') }}"></script>
     <script src="{{ url_for('static', filename='js/core/modal.js') }}"></script>
     <script src="{{ url_for('static', filename='js/core/notice.js') }}"></script>
     <script src="{{ url_for('static', filename='js/core/tableSort.js') }}"></script>

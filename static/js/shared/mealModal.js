@@ -1,150 +1,175 @@
-// // ===== MEAL MODAL SHARED LOGIC =====
+/* =====================================================
+   STATE
+===================================================== */
 
-// const MealModal = (() => {
+const DishesStateModal = {
+    currentRating: 0,
+    currentPerson: "osoba1",
+    currentDay: 1,
+    meals: [],
+    products: [],
+    selectedProductId: null,
+    mealToDeleteId: null
+};
 
-//     let currentRating = 0;
+const ModalShared = {
+    async saveMeal() {
+        const id = document.getElementById("mealId").value;
+        const ingredientRows = document.querySelectorAll(".ingredient-row");
 
-//     function renderStars(rating) {
-//         currentRating = rating;
+        const ingredients = [];
+        // let nextIngredientId = 1; // do generowania nowych id dla składników
 
-//         const stars = document.querySelectorAll("#mealRating span");
+        ingredientRows.forEach(row => {
+            const name = row.querySelector(".ingredient-name").value.trim();
+            const grams = row.querySelector(".ingredient-grams").value;
 
-//         stars.forEach(star => {
-//             const value = Number(star.dataset.value);
+            if (name && grams) {
+                // jeśli wiersz ma dataset.id używamy go, w przeciwnym razie generujemy nowe
+                const ingId = Number(row.dataset.id);
+                ingredients.push({ id: ingId, name, grams: Number(grams) });
+            }
+        });
 
-//             if (value <= rating) {
-//                 star.classList.add("filled");
-//             } else {
-//                 star.classList.remove("filled");
-//             }
-//         });
-//     }
+        // pobierz zaznaczone dish
+        const selectedDish = Array.from(
+            document.querySelectorAll("#dishSelection input[type='checkbox']:checked")
+        ).map(cb => Number(cb.value));
 
-//     function renderPersonSelection(selectedPerson = "osoba1") {
+        if (selectedDish.length === 0) {
+            return alert("Wybierz przynajmniej jeden posiłek");
+        }
 
-//         const container = document.getElementById("mealPersonSelection");
-//         if (!container) return;
+        const selectedPerson = document.querySelector(
+            "#mealPersonSelection input[name='mealPersonRadio']:checked"
+        )?.value;
 
-//         container.innerHTML = "";
+        const mealData = {
+            name: document.getElementById("mealName").value,
+            description: document.getElementById("mealDescription").value,
+            ingredients: ingredients,
+            person: selectedPerson,
+            dish: selectedDish,
+            rating: this.currentRating
+        };
 
-//         const persons = {
-//             osoba1: "Dawid",
-//             osoba2: "Kasia"
-//         };
+        try {
+            await DishesAPI.saveMeal(id, mealData);
+            Modal.closeModal();
+            await Dishes.loadMeals();
 
-//         Object.entries(persons).forEach(([value, label]) => {
+            if (typeof Planner !== "undefined") {
+                const meals = await fetch("/api/meals").then(r => r.json());
+                AppState.meals = meals;
+                Planner.renderPlanner();
+            }
+        } catch (err) {
+            console.error(err);
+            alert("Błąd zapisu");
+        }
+    },
 
-//             const wrapper = document.createElement("label");
-//             wrapper.classList.add("dish-pill");
+    renderPersonSelection(selectedPerson = "osoba1") {
 
-//             const input = document.createElement("input");
-//             input.type = "radio";
-//             input.name = "mealPersonRadio";
-//             input.value = value;
+        const container = document.getElementById("mealPersonSelection");
+        container.innerHTML = "";
 
-//             if (value === selectedPerson) {
-//                 input.checked = true;
-//             }
+        const persons = {
+            osoba1: "Dawid",
+            osoba2: "Kasia"
+        };
 
-//             input.addEventListener("change", function () {
-//                 updateDishSelectionForModal(this.value, []);
-//             });
+        Object.entries(persons).forEach(([value, label]) => {
 
-//             const span = document.createElement("span");
-//             span.textContent = label;
+            const wrapper = document.createElement("label");
+            wrapper.classList.add("dish-pill");
 
-//             wrapper.appendChild(input);
-//             wrapper.appendChild(span);
-//             container.appendChild(wrapper);
-//         });
-//     }
+            const input = document.createElement("input");
+            input.type = "radio";
+            input.name = "mealPersonRadio";
+            input.value = value;
 
-//     function updateDishSelectionForModal(person, selected = []) {
+            if (value === selectedPerson) {
+                input.checked = true;
+            }
 
-//         const container = document.getElementById("dishSelection");
-//         if (!container) return;
+            input.addEventListener("change", function () {
+                this.renderDishSelection(this.value, []);
+            });
 
-//         container.innerHTML = "";
+            const span = document.createElement("span");
+            span.textContent = label;
 
-//         const config = DISH_CONFIG[person];
-//         if (!config) return;
+            wrapper.appendChild(input);
+            wrapper.appendChild(span);
+            container.appendChild(wrapper);
+        });
+    },
 
-//         Object.entries(config).forEach(([value, label]) => {
+    renderDishSelection(person, selected = []) {
 
-//             const wrapper = document.createElement("label");
-//             wrapper.classList.add("dish-pill");
+        const container = document.getElementById("dishSelection");
+        container.innerHTML = "";
 
-//             const input = document.createElement("input");
-//             input.type = "checkbox";
-//             input.value = value;
+        const config = DISH_CONFIG[person];
+        if (!config) return;
 
-//             if (selected.includes(Number(value))) {
-//                 input.checked = true;
-//             }
+        Object.entries(config).forEach(([value, label]) => {
 
-//             const span = document.createElement("span");
-//             span.textContent = label;
+            const wrapper = document.createElement("label");
+            wrapper.classList.add("dish-pill");
 
-//             wrapper.appendChild(input);
-//             wrapper.appendChild(span);
-//             container.appendChild(wrapper);
-//         });
-//     }
+            const input = document.createElement("input");
+            input.type = "checkbox";
+            input.value = value;
 
-//     function addIngredientField(name = "", grams = "", id = null) {
+            if (selected.includes(Number(value))) {
+                input.checked = true;
+            }
 
-//         const container = document.getElementById("ingredientsContainer");
-//         if (!container) return;
+            const span = document.createElement("span");
+            span.textContent = label;
 
-//         const ingId = id || Date.now() + Math.floor(Math.random() * 1000);
+            wrapper.appendChild(input);
+            wrapper.appendChild(span);
+            container.appendChild(wrapper);
+        });
+    },
 
-//         const row = document.createElement("div");
-//         row.className = "ingredient-row";
-//         row.dataset.id = ingId;
+    renderStars(rating) {
+        this.currentRating = rating;
 
-//         row.innerHTML = `
-//             <input type="text" class="ingredient-name" value="${name}">
-//             <input type="number" class="ingredient-grams" value="${grams}">
-//             <button type="button" class="btn ingredient-delete" onclick="this.parentElement.remove()">×</button>
-//         `;
+        const stars = document.querySelectorAll("#mealRating span");
 
-//         container.appendChild(row);
-//     }
+        stars.forEach(star => {
+            const value = Number(star.dataset.value);
 
-//     function open(meal) {
+            star.classList.remove("hovered");
 
-//         if (!meal) return;
+            if (value <= rating) {
+                star.classList.add("filled");
+            } else {
+                star.classList.remove("filled");
+            }
+        });
+    },
 
-//         document.getElementById("mealId").value = meal.id || "";
-//         document.getElementById("mealName").value = meal.name || "";
-//         document.getElementById("mealDescription").value = meal.description || "";
+    addIngredientField(name = "", grams = "", id = null) {
+        const container = document.getElementById("ingredientsContainer");
 
-//         renderPersonSelection(meal.person || "osoba1");
-//         updateDishSelectionForModal(meal.person || "osoba1", meal.dish || []);
-//         renderStars(meal.rating || 0);
+        // jeśli id nie podane, generujemy tymczasowe
+        const ingId = id || Date.now() + Math.floor(Math.random() * 1000);
 
-//         const container = document.getElementById("ingredientsContainer");
-//         container.innerHTML = "";
+        const row = document.createElement("div");
+        row.className = "ingredient-row";
+        row.dataset.id = ingId;
 
-//         if (meal.ingredients && Array.isArray(meal.ingredients)) {
-//             meal.ingredients.forEach(ing => {
-//                 addIngredientField(ing.name, ing.grams, ing.id);
-//             });
-//         }
+        row.innerHTML = `
+            <input type="text" class="ingredient-name" id="ingredient-name-${ingId}" name="ingredient-name-${ingId}" placeholder="Nazwa składnika" value="${name}">
+            <input type="number" class="ingredient-grams" id="ingredient-grams-${ingId}" name="ingredient-grams-${ingId}" placeholder="g" value="${grams}">
+            <button type="button" class="brn ingredient-delete" onclick="this.parentElement.remove()">✕</button>
+        `;
 
-//         document.getElementById("editModalTitleMeal").textContent =
-//             meal.id ? "Edytuj danie" : "Dodaj danie";
-
-//         document.getElementById("deleteMealBtn").style.display =
-//             meal.id ? "inline-block" : "none";
-
-//         document.getElementById("mealModal").classList.add("show");
-//     }
-
-//     return {
-//         open,
-//         renderStars,
-//         addIngredientField
-//     };
-
-// })();
+        container.appendChild(row);
+    },
+}

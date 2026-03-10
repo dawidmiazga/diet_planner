@@ -1,6 +1,7 @@
 /* =====================================================
    STATE
 ===================================================== */
+
 const AppState = {
 
     // konfiguracja
@@ -25,7 +26,10 @@ const AppState = {
 
     // planner modal
     currentSelectedMealId: null,
-    currentMealOptions: []
+    currentMealOptions: [],
+
+    hasUnsavedChanges: false,
+    pendingNavigation: null
 };
 
 const $ = id => document.getElementById(id);
@@ -44,7 +48,7 @@ async function savePlanner() {
 
         if (!res.ok) throw new Error();
 
-        UI.showSaveNoticeGlobal();
+        showSaveNoticeGlobal();
 
     } catch {
         showErrorNotice("Błąd zapisu");
@@ -56,6 +60,24 @@ async function savePlanner() {
 ===================================================== */
 
 const Planner = {
+    openUnsavedModal(targetUrl) {
+
+        AppState.pendingNavigation = targetUrl;
+
+        const modal = document.getElementById("unsavedChangesModal");
+        modal.classList.add("show");
+    },
+    markAsChanged() {
+        AppState.hasUnsavedChanges = true;
+
+        const btn = $("savePlannerBtn");
+        if (btn) {
+            btn.style.display = "inline-block";
+            btn.classList.add("unsaved");
+        }
+
+        UI.showUnsavedIndicator();
+    },
     renderPlanner() {
         const startDateInput = $("startDate").value;
         if (!startDateInput) return;
@@ -81,17 +103,75 @@ const Planner = {
         for (let row = 0; row < 5; row++) {
             const d = new Date(startDate);
             d.setDate(d.getDate() + row);
-            const dateStr = d.toISOString().split('T')[0];
+
+            const dateStr = d.toLocaleDateString('sv-SE');
+            const today = new Date().toLocaleDateString('sv-SE');
+            const isToday = dateStr === today;
 
             // komórka daty
-            grid.appendChild(UI.createCell(d.toLocaleDateString('pl-PL', { weekday: 'short', day: 'numeric', month: 'numeric' })));
+            const dateCell = UI.createCell(
+                d.toLocaleDateString('pl-PL', { weekday: 'short', day: 'numeric', month: 'numeric' })
+            );
+
+            if (isToday) dateCell.classList.add("today-row");
+
+            grid.appendChild(dateCell);
 
             for (let dish = 1; dish <= maxDishes; dish++) {
-                const mealId = AppState.plannerData[AppState.currentPerson][dateStr]?.[dish] || "";
-                const meal = AppState.mealsById[mealId];
-                const cellText = meal ? meal.name : "-";
+                const entry = AppState.plannerData[AppState.currentPerson][dateStr]?.[dish];
 
-                const cell = UI.createCell(cellText, "cell");
+                let mealId = null;
+                let eaten = false;
+
+                if (typeof entry === "object") {
+                    mealId = entry.meal;
+                    eaten = entry.eaten === true;
+                } else {
+                    mealId = entry;
+                }
+
+                const meal = AppState.mealsById[mealId];
+                const cell = UI.createCell("", "cell");
+
+                if (isToday) cell.classList.add("today-row");
+
+                if (meal) {
+
+                    if (!AppState.isEditMode) {
+
+                        const checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+                        checkbox.className = "meal-checkbox";
+                        checkbox.checked = eaten;
+
+                        checkbox.onclick = (e) => {
+                            e.stopPropagation();
+
+                            Planner.toggleEaten(dateStr, dish, checkbox.checked);
+
+                            // 🔥 natychmiastowa aktualizacja przekreślenia
+                            if (checkbox.checked) {
+                                nameSpan.classList.add("meal-eaten");
+                            } else {
+                                nameSpan.classList.remove("meal-eaten");
+                            }
+                        };
+
+                        cell.appendChild(checkbox);
+                    }
+
+                    const nameSpan = document.createElement("span");
+                    nameSpan.textContent = meal.name;
+
+                    if (eaten) {
+                        nameSpan.classList.add("meal-eaten");
+                    }
+
+                    cell.appendChild(nameSpan);
+
+                } else {
+                    cell.textContent = "-";
+                }
 
                 // kliknięcie w komórkę otwiera popup tylko jeśli jest danie
                 cell.onclick = () => Planner.openMealModal(dateStr, dish);
@@ -126,11 +206,15 @@ const Planner = {
         if (!AppState.plannerData[AppState.currentPerson][dateStr])
             AppState.plannerData[AppState.currentPerson][dateStr] = {};
 
-        AppState.plannerData[AppState.currentPerson][dateStr][dish] = mealId;
+        AppState.plannerData[AppState.currentPerson][dateStr][dish] = {
+            meal: mealId,
+            eaten: false
+        };
 
-        Planner.closePlannerMealModal();
-        Planner.renderPlanner();
-        savePlanner();
+        Modal.closePlannerMealModal();
+        this.renderPlanner();
+        this.markAsChanged();
+        // savePlanner();
     },
 
     removeMeal(dateStr, dish) {
@@ -142,16 +226,17 @@ const Planner = {
             }
         }
 
-        Planner.renderPlanner();
-        savePlanner();
-        UI.showSaveNoticeGlobal();
+        this.renderPlanner();
+        this.markAsChanged();
+        // savePlanner();
+        // UI.showSaveNoticeGlobal();
     },
 
     setPerson(person, el) {
         AppState.currentPerson = person;
         document.querySelectorAll("#personTabs .tab").forEach(t => t.classList.remove("active"));
         el.classList.add("active");
-        Planner.renderPlanner();
+        this.renderPlanner();
     },
 
     openMealModal(dateStr, dish) {
@@ -193,7 +278,8 @@ const Planner = {
             };
         } else {
             // Jeśli podgląd, to wyświetl opis i składniki dania
-            const mealId = AppState.plannerData[AppState.currentPerson][dateStr]?.[dish];
+            const entry = AppState.plannerData[AppState.currentPerson][dateStr]?.[dish];
+            const mealId = typeof entry === "object" ? entry.meal : entry;
             const meal = AppState.meals.find(m => m.id === mealId);
 
             if (meal) {
@@ -244,10 +330,7 @@ const Planner = {
         }
     },
 
-    closePlannerMealModal() {
-        const modal = $("plannerMealModal");
-        closeModalElement(modal);
-    },
+
 
     setMode(edit, el) {
         AppState.isEditMode = edit;
@@ -257,8 +340,56 @@ const Planner = {
 
         el.classList.add("active");
 
+        // 🔥 pokazuj/ukrywaj przycisk zapisu
+        // const saveBtn = $("savePlannerBtn");
+        // if (edit) {
+        //     saveBtn.style.display = "inline-block";
+        // } else {
+        //     saveBtn.style.display = "none";
+        // }
+
         UI.moveIndicator();
-        Planner.renderPlanner();
+        this.renderPlanner();
+    },
+
+    async manualSave() {
+        await savePlanner();
+
+        AppState.hasUnsavedChanges = false;
+
+        const btn = $("savePlannerBtn");
+        if (btn) {
+            btn.classList.remove("unsaved");
+            btn.style.display = "none";
+        }
+
+        UI.hideUnsavedIndicator();
+    },
+    checkForChanges() {
+        return AppState.hasUnsavedChanges;
+    },
+
+    toggleEaten(dateStr, dish, checked) {
+
+        const day = AppState.plannerData[AppState.currentPerson][dateStr];
+
+        if (!day || !day[dish]) return;
+
+        let entry = day[dish];
+
+        // jeśli stary format (tylko id)
+        if (typeof entry === "number") {
+            entry = {
+                meal: entry,
+                eaten: checked
+            };
+        } else {
+            entry.eaten = checked;
+        }
+        day[dish] = entry;
+
+        Planner.markAsChanged();
+        // Planner.renderPlanner(); // 🔥 odśwież UI
     }
 }
 
@@ -269,15 +400,14 @@ const Planner = {
 const DescriptionModal = {
     openDescriptionModal(meal) {
         AppState.currentPreviewMeal = meal;
-
+        
         const editBtn = $("editMealFromPreviewBtn");
         editBtn.style.display = "inline-flex";
 
-        editBtn.onclick = function () {
-            DescriptionModal.closeDescriptionModal();
-            MealModal.openMealEditModalFromPlanner(AppState.currentPreviewMeal);
-        };
-
+editBtn.onclick = () => {
+    Modal.closeDescriptionModal();
+    MealModal.openMealEditModalFromPlanner(AppState.currentPreviewMeal);
+};
         $("descriptionTitle").textContent = meal.name;
 
         const left = $("mealDescriptionLeft");
@@ -317,19 +447,6 @@ const DescriptionModal = {
         DescriptionModal.setBaseIngredients(meal.ingredients);
 
         $("mealDescriptionModal").classList.add("show");
-    },
-
-    closeDescriptionModal() {
-        const editBtn = $("editMealFromPreviewBtn");
-        editBtn.style.display = "none";
-
-        $("mealDescriptionModal").classList.remove("show");
-
-        AppState.currentPortionMultiplier = 1.0;
-        AppState.baseIngredients = [];
-
-        const portionEl = $("portionValue");
-        if (portionEl) portionEl.innerText = "1.0";
     },
 
     toggleIngredient(element) {
@@ -438,17 +555,17 @@ const MealModal = {
         $("mealName").value = meal.name;
         $("mealDescription").value = meal.description;
 
-        renderPersonSelection(meal.person);
-        updateDishSelectionForModal(meal.person, meal.dish || []);
+        ModalShared.renderPersonSelection(meal.person);
+        ModalShared.renderDishSelection(meal.person, meal.dish || []);
 
-        renderStars(meal.rating || 0);
+        ModalShared.renderStars(meal.rating || 0);
 
         const container = $("ingredientsContainer");
         container.innerHTML = "";
 
         if (meal.ingredients && Array.isArray(meal.ingredients)) {
             meal.ingredients.forEach(ing => {
-                addIngredientField(ing.name, ing.grams, ing.id);
+                ModalShared.addIngredientField(ing.name, ing.grams, ing.id);
             });
         }
 
@@ -464,6 +581,25 @@ const MealModal = {
 ===================================================== */
 
 const UI = {
+    showUnsavedIndicator() {
+        let indicator = document.querySelector(".unsaved-indicator");
+
+        if (!indicator) {
+            indicator = document.createElement("div");
+            indicator.className = "unsaved-indicator";
+            indicator.textContent = "Masz niezapisane zmiany";
+            document.body.appendChild(indicator);
+        }
+
+        indicator.classList.add("show");
+    },
+
+    hideUnsavedIndicator() {
+        const indicator = document.querySelector(".unsaved-indicator");
+        if (indicator) {
+            indicator.classList.remove("show");
+        }
+    },
     createHeaderCell(text) {
         const div = document.createElement("div");
         div.className = "header " + (AppState.currentPerson === "osoba1" ? "header-osoba1" : "header-osoba2");
@@ -517,22 +653,6 @@ const UI = {
             UI.initRatingFilter();
             Planner.renderMealTiles($("mealSearch").value);
         };
-    },
-
-    showSaveNoticeGlobal() {
-        let notice = document.querySelector(".save-notice-global");
-        if (!notice) {
-            notice = document.createElement("div");
-            notice.className = "save-notice-global";
-            notice.textContent = "Zapisano ✔";
-            document.body.appendChild(notice);
-        }
-
-        notice.classList.add("show");
-
-        setTimeout(() => {
-            notice.classList.remove("show");
-        }, 1200);
     },
 
     moveIndicator() {
@@ -592,3 +712,56 @@ document.addEventListener("DOMContentLoaded", () => {
 
 window.addEventListener("load", UI.moveIndicator);
 window.addEventListener("resize", UI.moveIndicator);
+window.addEventListener("beforeunload", function (e) {
+    if (AppState.hasUnsavedChanges) {
+        e.preventDefault();
+        e.returnValue = "";
+    }
+});
+document.addEventListener("DOMContentLoaded", () => {
+
+    const saveBtn = document.getElementById("saveAndLeaveBtn");
+    const discardBtn = document.getElementById("discardAndLeaveBtn");
+    const stayBtn = document.getElementById("stayOnPageBtn");
+
+    if (!saveBtn) return; // zabezpieczenie gdy nie jesteśmy na plannerze
+
+    saveBtn.addEventListener("click", async () => {
+
+        await Planner.manualSave();
+
+        window.location.href = AppState.pendingNavigation;
+    });
+
+    discardBtn.addEventListener("click", () => {
+        AppState.hasUnsavedChanges = false;
+        window.location.href = AppState.pendingNavigation;
+    });
+
+    stayBtn.addEventListener("click", () => {
+
+        const modal = document.getElementById("unsavedChangesModal");
+        modal.classList.remove("show");
+
+        AppState.pendingNavigation = null;
+    });
+});
+document.addEventListener("DOMContentLoaded", () => {
+
+    document.querySelectorAll(".nav-link").forEach(link => {
+        link.addEventListener("click", function (e) {
+
+            // tylko jeśli jesteśmy na plannerze
+            const isPlanner =
+                window.location.pathname === "/" ||
+                window.location.pathname.includes("planner");
+
+            if (!isPlanner) return;
+
+            if (AppState.hasUnsavedChanges) {
+                e.preventDefault();
+                Planner.openUnsavedModal(this.href);
+            }
+        });
+    });
+});

@@ -3,7 +3,7 @@ from collections import defaultdict
 import json
 from datetime import datetime
 import os
-
+import webbrowser
 
 app = Flask(__name__)
 
@@ -541,22 +541,12 @@ def generate_shopping_list():
     shopping_list.sort(key=lambda x: x["dzial_w_sklepie"])
     return jsonify(shopping_list)
 
-
-
-
-
-
-
-
-
-
-
-
-
 # =====================================================
 # START
 # =====================================================
 
 if __name__ == "__main__":
-    # app.run(debug=True) #to ma byc tylko dla develomplentu
+    # app.run(debug=True) #to ma byc tylko dla develomplentu    
+    url = "http://127.0.0.1:5000"
+    webbrowser.open(url)
     app.run()

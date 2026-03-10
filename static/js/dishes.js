@@ -1,580 +1,368 @@
+/* =====================================================
+   STATE
+===================================================== */
 
+const DishesState = {
+    currentRating: 0,
+    currentPerson: "osoba1",
+    currentDay: 1,
+    meals: [],
+    products: [],
+    selectedProductId: null,
+    mealToDeleteId: null
+};
 
-let currentRating = 0;
-let currentPerson = "osoba1";
-let currentDay = 1;
-let meals = [];
+/* =====================================================
+   API
+===================================================== */
 
-const filterInput = document.getElementById("mealFilterInput");
-const clearBtn = document.getElementById("clearMealFilter");
-const filterWrapper = document.querySelector(".filter-with-clear");
+const DishesAPI = {
 
-filterInput.addEventListener("input", () => {
+    async fetchMeals() {
+        const data = await App.API.get("/api/meals");
+        DishesState.meals = data;
+        return data;
+    },
 
-    if (filterInput.value.length > 0) {
-        filterWrapper.classList.add("has-text");
-    } else {
-        filterWrapper.classList.remove("has-text");
+    async saveMeal(id, mealData) {
+        if (id) {
+            return App.API.put(`/api/meals/${id}`, mealData);
+        }
+        return App.API.post("/api/meals", mealData);
+    },
+
+    async deleteMeal(id) {
+        return App.API.delete(`/api/meals/${id}`);
+    },
+
+    async fetchProducts() {
+        return App.API.get("/api/products");
     }
+};
 
-    animateGrid();
-});
+/* =====================================================
+   UI
+===================================================== */
 
-clearBtn.addEventListener("click", () => {
-    filterInput.value = "";
-    filterWrapper.classList.remove("has-text");
-    animateGrid();
-});
+const DishesUI = {
+    renderProductList(products) {
+        const list = document.getElementById("productsList");
+        list.innerHTML = "";
 
-function renderStars(rating) {
-    currentRating = rating;
+        products.forEach(p => {
+            const item = document.createElement("div");
+            item.className = "product-item";
+            item.innerText = p.nazwa_produktu;
+            item.dataset.id = p.id;
+            item.dataset.name = p.nazwa_produktu;
 
-    const stars = document.querySelectorAll("#mealRating span");
+            item.addEventListener("click", () => {
+                DishesState.selectedProductId = p.id;
 
-    stars.forEach(star => {
-        const value = Number(star.dataset.value);
+                document.querySelectorAll("#productsList .product-item")
+                    .forEach(el => el.style.background = "transparent");
 
-        star.classList.remove("hovered");
+                item.style.background = "#e5e7eb";
+            });
 
-        if (value <= rating) {
-            star.classList.add("filled");
-        } else {
-            star.classList.remove("filled");
-        }
-    });
-}
-function generateStaticStars(rating) {
-    let starsHTML = "";
-
-    for (let i = 1; i <= 5; i++) {
-        if (i <= rating) {
-            starsHTML += '<span class="static-star filled"></span>';
-        } else {
-            starsHTML += '<span class="static-star"></span>';
-        }
-    }
-
-    return starsHTML;
-}
-function updateDayTabs() {
-    const container = document.getElementById("dayTabs");
-    container.innerHTML = "";
-
-    const isDawid = currentPerson === "osoba1";
-    const count = isDawid ? 5 : 4;
-
-    for (let i = 1; i <= count; i++) {
-        const tab = document.createElement("div");
-        tab.className = "tab";
-        if (i === 1) tab.classList.add("active");
-
-        tab.textContent = DISH_CONFIG[currentPerson][i];
-        tab.onclick = function () {
-            setDay(i, this);
-        };
-
-        container.appendChild(tab);
-    }
-}
-
-function addIngredientField(name = "", grams = "", id = null) {
-    const container = document.getElementById("ingredientsContainer");
-
-    // jeśli id nie podane, generujemy tymczasowe
-    const ingId = id || Date.now() + Math.floor(Math.random() * 1000);
-
-    const row = document.createElement("div");
-    row.className = "ingredient-row";
-    row.dataset.id = ingId; // zapisujemy id w dataset dla późniejszej edycji
-
-    row.innerHTML = `
-        <input type="text" class="ingredient-name" id="ingredient-name-${ingId}" name="ingredient-name-${ingId}" placeholder="Nazwa składnika" value="${name}">
-        <input type="number" class="ingredient-grams" id="ingredient-grams-${ingId}" name="ingredient-grams-${ingId}" placeholder="g" value="${grams}">
-        <button type="button" class="brn ingredient-delete" onclick="this.parentElement.remove()">×</button>
-    `;
-
-    container.appendChild(row);
-}
-
-function renderDishSelection(selected = []) {
-    const container = document.getElementById("dishSelection");
-    container.innerHTML = "";
-
-    const config = DISH_CONFIG[currentPerson];
-    if (!config) return;
-
-    Object.entries(config).forEach(([value, label]) => {
-        const wrapper = document.createElement("label");
-        wrapper.classList.add("dish-pill");
-
-        const input = document.createElement("input");
-        input.type = "checkbox";
-        input.value = value;
-
-        if (selected.includes(Number(value))) {
-            input.checked = true;
-        }
-
-        const span = document.createElement("span");
-        span.textContent = label;
-
-        wrapper.appendChild(input);
-        wrapper.appendChild(span);
-        container.appendChild(wrapper);
-    });
-}
-function updateDishSelectionForModal(person, selected = []) {
-
-    const container = document.getElementById("dishSelection");
-    container.innerHTML = "";
-
-    const config = DISH_CONFIG[person];
-    if (!config) return;
-
-    Object.entries(config).forEach(([value, label]) => {
-
-        const wrapper = document.createElement("label");
-        wrapper.classList.add("dish-pill");
-
-        const input = document.createElement("input");
-        input.type = "checkbox";
-        input.value = value;
-
-        if (selected.includes(Number(value))) {
-            input.checked = true;
-        }
-
-        const span = document.createElement("span");
-        span.textContent = label;
-
-        wrapper.appendChild(input);
-        wrapper.appendChild(span);
-        container.appendChild(wrapper);
-    });
-}
-function loadMeals() {
-    fetch("/api/meals")
-        .then(res => res.json())
-        .then(data => {
-            meals = data;
-            renderMeals();
+            list.appendChild(item);
         });
-}
+    },
 
-function renderMeals() {
-    const grid = document.getElementById("mealsGrid");
-    grid.innerHTML = "";
+    generateStaticStars(rating) {
+        let starsHTML = "";
 
+        for (let i = 1; i <= 5; i++) {
+            if (i <= rating) {
+                starsHTML += '<span class="static-star filled"></span>';
+            } else {
+                starsHTML += '<span class="static-star"></span>';
+            }
+        }
+        return starsHTML;
+    },
 
-    const searchText = document.getElementById("mealFilterInput")?.value.toLowerCase() || "";
+    updateDayTabs() {
+        const container = document.getElementById("dayTabs");
 
-    const filtered = meals.filter(m =>
-        m.person === currentPerson &&
-        Array.isArray(m.dish) &&
-        m.dish.includes(Number(currentDay)) &&
-        m.name.toLowerCase().includes(searchText)
-    );
+        if (!container) return;
+        container.innerHTML = "";
 
-    // 🔥 SORTOWANIE PO NAZWIE (A-Z)
-    filtered.sort((a, b) =>
-        a.name.localeCompare(b.name, 'pl', { sensitivity: 'base' })
-    );
+        const isDawid = DishesState.currentPerson === "osoba1";
+        const count = isDawid ? 5 : 4;
 
-    if (!filtered.length) {
-        grid.innerHTML = "<p>Brak dań</p>";
-        return;
-    }
+        for (let i = 1; i <= count; i++) {
+            const tab = document.createElement("div");
+            tab.className = "tab";
+            if (i === 1) tab.classList.add("active");
 
-    let currentLetter = "";
+            tab.textContent = DISH_CONFIG[DishesState.currentPerson][i];
+            tab.onclick = function () {
+                Dishes.setDay(i, this);
+            };
 
-    filtered.forEach(m => {
+            container.appendChild(tab);
+        }
+    },
 
-        const firstLetter = m.name.charAt(0).toUpperCase();
+    renderMeals() {
+        const grid = document.getElementById("mealsGrid");
 
-        // 🔥 jeśli nowa litera – dodaj separator
-        if (firstLetter !== currentLetter) {
-            currentLetter = firstLetter;
+        if (!grid) return;
+        grid.innerHTML = "";
 
-            const separator = document.createElement("div");
-            separator.className = "letter-separator";
-            separator.innerText = currentLetter;
+        const searchText = document.getElementById("mealFilterInput")?.value.toLowerCase() || "";
 
-            grid.appendChild(separator);
+        const filtered = DishesState.meals.filter(m =>
+            m.person === DishesState.currentPerson &&
+            Array.isArray(m.dish) &&
+            m.dish.includes(Number(DishesState.currentDay)) &&
+            m.name.toLowerCase().includes(searchText)
+        );
+
+        filtered.sort((a, b) =>
+            a.name.localeCompare(b.name, 'pl', { sensitivity: 'base' })
+        );
+
+        if (!filtered.length) {
+            grid.innerHTML = "<p>Brak dań</p>";
+            return;
         }
 
-        const card = document.createElement("div");
-        card.className = "card";
+        let currentLetter = "";
 
-        card.innerHTML = `<strong>${m.name}</strong>
+        filtered.forEach(m => {
+            const firstLetter = m.name.charAt(0).toUpperCase();
+
+            if (firstLetter !== currentLetter) {
+                currentLetter = firstLetter;
+
+                const separator = document.createElement("div");
+                separator.className = "letter-separator";
+                separator.innerText = currentLetter;
+
+                grid.appendChild(separator);
+            }
+
+            const card = document.createElement("div");
+            card.className = "card";
+
+            card.innerHTML = `<strong>${m.name}</strong>
                                 <div class="meal-rating">
-                                    ${generateStaticStars(m.rating || 0)}
+                                    ${DishesUI.generateStaticStars(m.rating || 0)}
                                 </div>`;
 
-        card.onclick = () => openModal(m);
+            card.onclick = () => Dishes.openModal(m);
 
-        grid.appendChild(card);
-    });
+            grid.appendChild(card);
+        });
 
-}
-function animateGrid() {
-    const grid = document.getElementById("mealsGrid");
+    },
 
-    grid.classList.add("grid-fade-out");
+    animateGrid() {
+        const grid = document.getElementById("mealsGrid");
 
-    setTimeout(() => {
-        renderMeals();
-        grid.classList.remove("grid-fade-out");
-        grid.classList.add("grid-fade-in");
+        grid.classList.add("grid-fade-out");
 
         setTimeout(() => {
-            grid.classList.remove("grid-fade-in");
-        }, 200);
+            DishesUI.renderMeals();
+            grid.classList.remove("grid-fade-out");
+            grid.classList.add("grid-fade-in");
 
-    }, 150);
+            setTimeout(() => {
+                grid.classList.remove("grid-fade-in");
+            }, 200);
+
+        }, 150);
+    },
 }
 
-function setPerson(person, el) {
-    currentPerson = person;
+/* =====================================================
+   DISHES LOGIC
+===================================================== */
 
-    document.querySelectorAll("#personTabs .tab")
-        .forEach(t => t.classList.remove("active"));
+const Dishes = {
+    setPerson(person, el) {
+        DishesState.currentPerson = person;
 
-    el.classList.add("active");
+        document.querySelectorAll("#personTabs .tab")
+            .forEach(t => t.classList.remove("active"));
 
-    currentDay = 1;
+        el.classList.add("active");
 
-    updateDayTabs();
+        DishesState.currentDay = 1;
 
-    const firstDayTab = document.querySelector("#dayTabs .tab");
-    if (firstDayTab) {
+        DishesUI.updateDayTabs();
+
+        const firstDayTab = document.querySelector("#dayTabs .tab");
+        if (firstDayTab) {
+            document.querySelectorAll("#dayTabs .tab")
+                .forEach(t => t.classList.remove("active"));
+
+            firstDayTab.classList.add("active");
+        }
+
+        DishesUI.animateGrid();
+        ModalShared.renderDishSelection([]);
+    },
+
+    setDay(day, el) {
+        DishesState.currentDay = day;
+
         document.querySelectorAll("#dayTabs .tab")
             .forEach(t => t.classList.remove("active"));
 
-        firstDayTab.classList.add("active");
-    }
+        el.classList.add("active");
 
-    animateGrid();
-    renderDishSelection([]);
-}
+        DishesUI.animateGrid();
+    },
 
-function setDay(day, el) {
-    currentDay = day;
+    async loadMeals() {
+        await DishesAPI.fetchMeals();
+        if (document.getElementById("mealsGrid")) {
+            DishesUI.renderMeals();
+        }
+    },
 
-    document.querySelectorAll("#dayTabs .tab")
-        .forEach(t => t.classList.remove("active"));
+    openModal(meal) {
+        document.getElementById("mealId").value = meal.id;
+        document.getElementById("mealName").value = meal.name;
+        document.getElementById("mealDescription").value = meal.description;
+        ModalShared.renderPersonSelection(meal.person);
+        ModalShared.renderDishSelection(meal.person, meal.dish || []);
+        if (!meal.rating) {
+            meal.rating = 0;
+        }
 
-    el.classList.add("active");
+        ModalShared.currentRating = meal.rating || 0;
+        ModalShared.renderStars(ModalShared.currentRating);
 
-    animateGrid();
-}
-let selectedProductId = null;
+        const container = document.getElementById("ingredientsContainer");
+        container.innerHTML = "";
 
-// 1️⃣ Otwieranie modal wyboru produktu
-function openProductModal() {
-    fetch("/api/products") // endpoint w Flask, zwraca products.json
-        .then(res => res.json())
-        .then(data => {
-            const list = document.getElementById("productsList");
-            list.innerHTML = "";
+        if (meal.ingredients && Array.isArray(meal.ingredients)) {
+            meal.ingredients.forEach(ing => {
+                ModalShared.addIngredientField(ing.name, ing.grams, ing.id);
+            });
+        }
 
-            data.forEach(p => {
-                const item = document.createElement("div");
-                item.className = "product-item";
-                item.style.padding = "6px";
-                item.style.cursor = "pointer";
-                item.style.borderBottom = "1px solid #e5e7eb";
-                item.innerText = p.nazwa_produktu;
-                item.dataset.id = p.id;
-                item.dataset.name = p.nazwa_produktu;
+        document.getElementById("editModalTitleMeal").textContent = "Edytuj danie";
+        document.getElementById("deleteMealBtn").style.display = "inline-block";
+        document.getElementById("mealModal").classList.add("show");
+    },
 
-                item.onclick = () => {
-                    selectedProductId = p.id;
-                    document.getElementById("productGrams").value = 0;
-                    document.querySelectorAll("#productsList .product-item")
-                        .forEach(el => el.style.background = "transparent");
-                    item.style.background = "#e5e7eb";
-                };
+    openAddForm() {
+        document.getElementById("mealId").value = "";
+        document.getElementById("mealName").value = "";
+        document.getElementById("mealDescription").value = "";
+        ModalShared.renderPersonSelection(DishesState.currentPerson);
+        ModalShared.renderDishSelection(DishesState.currentPerson, []);
 
-                list.appendChild(item);
+        const container = document.getElementById("ingredientsContainer");
+        container.innerHTML = "";
+
+        document.getElementById("editModalTitleMeal").textContent = "Dodaj danie";
+        document.getElementById("deleteMealBtn").style.display = "none";
+        document.getElementById("mealModal").classList.add("show");
+
+        ModalShared.currentRating = 0;
+        ModalShared.renderStars(0);
+    },
+
+    closeProductModal() {
+        document.getElementById("productModal").classList.remove("show");
+        DishesState.selectedProductId = null;
+    },
+
+    bindEvents() {
+
+        const filterInput = document.getElementById("mealFilterInput");
+        const clearBtn = document.getElementById("clearMealFilter");
+        const filterWrapper = document.querySelector(".filter-with-clear");
+        const productSearch = document.getElementById("productSearch");
+
+        if (productSearch) {
+            productSearch.addEventListener("input", () => {
+
+                const query = productSearch.value.toLowerCase();
+
+                const filtered = DishesState.products.filter(p =>
+                    p.nazwa_produktu.toLowerCase().includes(query)
+                );
+
+                DishesUI.renderProductList(filtered);
+            });
+        }
+
+        if (filterInput) {
+            filterInput.addEventListener("input", () => {
+
+                if (filterInput.value.length > 0) {
+                    filterWrapper.classList.add("has-text");
+                } else {
+                    filterWrapper.classList.remove("has-text");
+                }
+
+                DishesUI.animateGrid();
+            });
+        }
+
+        if (clearBtn) {
+            clearBtn.addEventListener("click", () => {
+                filterInput.value = "";
+                filterWrapper.classList.remove("has-text");
+                DishesUI.animateGrid();
+            });
+        }
+
+        // STARS
+        document.querySelectorAll("#mealRating span").forEach(star => {
+
+            star.addEventListener("click", function () {
+                ModalShared.renderStars(Number(this.dataset.value));
             });
 
-            document.getElementById("productModal").classList.add("show");
+            star.addEventListener("mouseenter", function () {
+                ModalShared.renderStars(Number(this.dataset.value));
+            });
+
+            star.addEventListener("mouseleave", function () {
+                ModalShared.renderStars(ModalShared.currentRating);
+            });
         });
-}
 
-// 2️⃣ Zamknięcie modal
-function closeProductModal() {
-    document.getElementById("productModal").classList.remove("show");
-    selectedProductId = null;
-}
+        // DELETE POPUP
+        const deleteNo = document.getElementById("deleteNo");
+        const deleteYes = document.getElementById("deleteYes");
 
-// 3️⃣ Wybranie produktu i dodanie do listy składników
-function selectProduct() {
-    if (!selectedProductId) return alert("Wybierz produkt");
-
-    const grams = Number(document.getElementById("productGrams").value);
-    if (!grams || grams <= 0) return alert("Podaj ilość w gramach");
-
-    // pobranie nazwy wybranego produktu
-    const selectedItem = document.querySelector(`#productsList .product-item[data-id='${selectedProductId}']`);
-    const name = selectedItem.dataset.name;
-
-    addIngredientField(name, grams, selectedProductId); // wykorzystujemy zmodyfikowany addIngredientField z id
-    closeProductModal();
-}
-
-function openModal(meal) {
-    document.getElementById("mealId").value = meal.id;
-    document.getElementById("mealName").value = meal.name;
-    document.getElementById("mealDescription").value = meal.description;
-    renderPersonSelection(meal.person);
-    updateDishSelectionForModal(meal.person, meal.dish || []);
-    if (!meal.rating) {
-        meal.rating = 0;
-    }
-    renderStars(meal.rating);
-
-    const container = document.getElementById("ingredientsContainer");
-    container.innerHTML = "";
-
-    if (meal.ingredients && Array.isArray(meal.ingredients)) {
-        meal.ingredients.forEach(ing => {
-            addIngredientField(ing.name, ing.grams, ing.id);
-        });
-    }
-
-    document.getElementById("editModalTitleMeal").textContent = "Edytuj danie";
-    document.getElementById("deleteMealBtn").style.display = "inline-block";
-    document.getElementById("mealModal").classList.add("show");
-}
-
-function openAddForm() {
-    document.getElementById("mealId").value = "";
-    document.getElementById("mealName").value = "";
-    document.getElementById("mealDescription").value = "";
-    renderPersonSelection(currentPerson);
-    updateDishSelectionForModal(currentPerson, []);
-
-    const container = document.getElementById("ingredientsContainer");
-    container.innerHTML = "";
-    // addIngredientField();
-
-    // renderDishSelection([]);
-
-    document.getElementById("editModalTitleMeal").textContent = "Dodaj danie";
-    document.getElementById("deleteMealBtn").style.display = "none";
-    document.getElementById("mealModal").classList.add("show");
-
-    renderStars(0);
-}
-function renderPersonSelection(selectedPerson = "osoba1") {
-
-    const container = document.getElementById("mealPersonSelection");
-    container.innerHTML = "";
-
-    const persons = {
-        osoba1: "Dawid",
-        osoba2: "Kasia"
-    };
-
-    Object.entries(persons).forEach(([value, label]) => {
-
-        const wrapper = document.createElement("label");
-        wrapper.classList.add("dish-pill");
-
-        const input = document.createElement("input");
-        input.type = "radio";
-        input.name = "mealPersonRadio";
-        input.value = value;
-
-        if (value === selectedPerson) {
-            input.checked = true;
+        if (deleteNo) {
+            deleteNo.addEventListener("click", () => {
+                DishesState.mealToDeleteId = null;
+                document.getElementById("deletePopup").classList.remove("show");
+            });
         }
 
-        input.addEventListener("change", function () {
-            updateDishSelectionForModal(this.value, []);
-        });
+        if (deleteYes) {
+            deleteYes.addEventListener("click", async () => {
+                if (!DishesState.mealToDeleteId) return;
 
-        const span = document.createElement("span");
-        span.textContent = label;
-
-        wrapper.appendChild(input);
-        wrapper.appendChild(span);
-        container.appendChild(wrapper);
-    });
-}
-function closeModal() {
-    const modal = document.getElementById("mealModal");
-
-    modal.classList.add("closing");
-
-    setTimeout(() => {
-        modal.classList.remove("show");
-        modal.classList.remove("closing");
-    }, 200);
-}
-
-function saveMeal() {
-    const id = document.getElementById("mealId").value;
-    const ingredientRows = document.querySelectorAll(".ingredient-row");
-
-    const ingredients = [];
-    let nextIngredientId = 1; // do generowania nowych id dla składników
-
-    ingredientRows.forEach(row => {
-        const name = row.querySelector(".ingredient-name").value.trim();
-        const grams = row.querySelector(".ingredient-grams").value;
-
-        if (name && grams) {
-            // jeśli wiersz ma dataset.id używamy go, w przeciwnym razie generujemy nowe
-            let ingId = row.dataset.id ? Number(row.dataset.id) : nextIngredientId++;
-            ingredients.push({ id: ingId, name, grams: Number(grams) });
-        }
-    });
-
-    // 🔥 pobierz zaznaczone dish
-    const selectedDish = Array.from(
-        document.querySelectorAll("#dishSelection input[type='checkbox']:checked")
-    ).map(cb => Number(cb.value));
-
-    if (selectedDish.length === 0) {
-        return alert("Wybierz przynajmniej jeden posiłek");
-    }
-
-    const selectedPerson = document.querySelector(
-        "#mealPersonSelection input[name='mealPersonRadio']:checked"
-    )?.value;
-
-    const mealData = {
-        name: document.getElementById("mealName").value,
-        description: document.getElementById("mealDescription").value,
-        ingredients: ingredients,
-        person: selectedPerson,
-        dish: selectedDish,
-        rating: currentRating  // ⭐ NOWE
-    };
-
-
-    const method = id ? "PUT" : "POST";
-    const url = id ? `/api/meals/${id}` : "/api/meals";
-
-    fetch(url, {
-        method: method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(mealData)
-    }).then(() => {
-        closeModal();
-        loadMeals();
-    });
-}
-
-
-let mealToDeleteId = null;
-
-/* =========================
-   DELETE POPUP LOGIC
-========================= */
-
-function confirmDeleteMeal() {
-    const id = document.getElementById("mealId").value;
-    if (!id) return;
-
-    mealToDeleteId = id;
-
-    const mealName = document.getElementById("mealName").value;
-
-    const message = document.getElementById("deleteMessage");
-    message.textContent = `Czy na pewno chcesz usunąć danie "${mealName}"?`;
-
-    document.getElementById("deletePopup").classList.add("show");
-}
-function highlightStars(rating) {
-    const stars = document.querySelectorAll("#mealRating span");
-
-    stars.forEach(star => {
-        const value = Number(star.dataset.value);
-
-        if (value <= rating) {
-            star.classList.add("hovered");
-        } else {
-            star.classList.remove("hovered");
-        }
-    });
-}
-// kliknięcie ANULUJ
-document.addEventListener("DOMContentLoaded", function () {
-
-    const deleteNo = document.getElementById("deleteNo");
-    const deleteYes = document.getElementById("deleteYes");
-
-    if (deleteNo) {
-        deleteNo.addEventListener("click", () => {
-            mealToDeleteId = null;
-            document.getElementById("deletePopup").classList.remove("show");
-        });
-    }
-
-    if (deleteYes) {
-        deleteYes.addEventListener("click", () => {
-            if (!mealToDeleteId) return;
-
-            fetch(`/api/meals/${mealToDeleteId}`, { method: "DELETE" })
-                .then(() => {
-                    mealToDeleteId = null;
+                try {
+                    await DishesAPI.deleteMeal(DishesState.mealToDeleteId);
+                    DishesState.mealToDeleteId = null;
                     document.getElementById("deletePopup").classList.remove("show");
-                    closeModal();
-                    loadMeals();
-                });
-        });
+                    Modal.closeModal();
+                    await this.loadMeals();
+                } catch (err) {
+                    console.error(err);
+                    alert("Błąd usuwania");
+                }
+            });
+        }
     }
+}
 
-});
-
-loadMeals();
-document.addEventListener("DOMContentLoaded", function () {
-    const stars = document.querySelectorAll("#mealRating span");
-
-    stars.forEach(star => {
-
-        // klik
-        star.addEventListener("click", function () {
-            const value = Number(this.dataset.value);
-            renderStars(value);
-        });
-
-        // hover
-        star.addEventListener("mouseenter", function () {
-            const value = Number(this.dataset.value);
-            highlightStars(value);
-        });
-
-        star.addEventListener("mouseleave", function () {
-            renderStars(currentRating);
-        });
-    });
-});
-// document.addEventListener("DOMContentLoaded", function () {
-//     document.querySelectorAll("#mealRating span").forEach(star => {
-//         star.addEventListener("click", function () {
-//             const value = Number(this.dataset.value);
-//             renderStars(value);
-//         });
-//     });
-// });
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    const personSelect = document.getElementById("mealPerson");
-
-    if (personSelect) {
-        personSelect.addEventListener("change", function () {
-
-            updateDishSelectionForModal(this.value, []);
-
-        });
-    }
-
-});
-document.addEventListener("DOMContentLoaded", function () {
-    updateDayTabs();
+document.addEventListener("DOMContentLoaded", async () => {
+    Dishes.bindEvents();
+    DishesUI.updateDayTabs();
+    await Dishes.loadMeals();
 });

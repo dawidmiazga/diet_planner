@@ -19,20 +19,20 @@ const $ = id => document.getElementById(id);
 
 const ProductsAPI = {
     async fetchProducts() {
-        ProductsState.products = await API.get("/api/products");
+        ProductsState.products = await App.API.get("/api/products");
         return ProductsState.products;
     },
 
     async addProduct(product) {
-        ProductsState.products = await API.post("/api/products", product);
+        ProductsState.products = await App.API.post("/api/products", product);
     },
 
     async updateProduct(id, product) {
-        ProductsState.products = await API.put(`/api/products/${id}`, product);
+        ProductsState.products = await App.API.put(`/api/products/${id}`, product);
     },
 
     async deleteProduct(id) {
-        await API.delete(`/api/products/${id}`);
+        await App.API.delete(`/api/products/${id}`);
     }
 };
 
@@ -177,22 +177,22 @@ const Products = {
         }
 
         ProductsUI.addAnotherYes.addEventListener("click", () => {
-            Products.closeSuccessPopup();
+            Modal.closeSuccessPopup();
             Products.openAddPopup(); // od razu otwórz formularz dodawania
         });
 
         ProductsUI.addAnotherNo.addEventListener("click", () => {
-            Products.closeSuccessPopup();
+            Modal.closeSuccessPopup();
         });
 
         ProductsUI.deleteNo.addEventListener("click", () => {
             ProductsState.productToDeleteId = null;
-            Products.closeDeletePopup();
+            Modal.closeDeletePopup();
         });
 
         ProductsUI.deleteYes.addEventListener("click", () => this.handleDelete());
 
-        this.closeDeletePopup();
+        Modal.closeDeletePopup();
 
         const filterInput = $("filterNazwa");
         const clearBtn = $("clearProductFilter");
@@ -217,27 +217,8 @@ const Products = {
 
     /************** POPUP METHODS **************/
     openDeletePopup() { $("deletePopup").classList.add("show"); },
-    closeDeletePopup() {
-        const modal = $("deletePopup");
 
-        modal.classList.add("closing");
-
-        setTimeout(() => {
-            modal.classList.remove("show");
-            modal.classList.remove("closing");
-        }, 200);
-    },
-    
-    openSuccessPopup() { $("successPopup").classList.add("show"); }, closeSuccessPopup() {
-        const modal = $("successPopup");
-
-        modal.classList.add("closing");
-
-        setTimeout(() => {
-            modal.classList.remove("show");
-            modal.classList.remove("closing");
-        }, 200);
-    },
+    openSuccessPopup() { $("successPopup").classList.add("show"); },
 
     /************** DATA METHODS **************/
     async loadAndRender() {
@@ -269,7 +250,7 @@ const Products = {
         const newProduct = {
             nazwa_produktu: form.nazwa_produktu.value.trim(),
             nazwa_jednostki: form.nazwa_jednostki.value,
-            jednostka_per_gram: parseInt(form.jednostka_per_gram.value),
+            jednostka_per_gram: parseFloat(form.jednostka_per_gram.value),
             makro: {
                 kcal: parseFloat($("kcal").value) || 0,
                 b: parseFloat($("b").value) || 0,
@@ -292,7 +273,7 @@ const Products = {
         const updatedProduct = {
             nazwa_produktu: $("edit_nazwa").value.trim(),
             nazwa_jednostki: $("edit_jednostka").value,
-            jednostka_per_gram: parseInt($("edit_gramy").value),
+            jednostka_per_gram: parseFloat($("edit_gramy").value),
             czy_w_lodowce: $("edit_lodowka").value,
             dzial_w_sklepie: $("edit_dzial").value,
             makro: {
@@ -311,7 +292,6 @@ const Products = {
             Products.openSuccessPopup();
         }
 
-        showSaveNoticeGlobal();
         Modal.close("editProductModal");
         Products.loadAndRender();
     },
@@ -328,7 +308,7 @@ const Products = {
         await ProductsAPI.deleteProduct(ProductsState.productToDeleteId);
         ProductsState.productToDeleteId = null;
         ProductsState.productToDeleteName = "";
-        this.closeDeletePopup();
+        Modal.closeDeletePopup();
         this.loadAndRender();
     },
 
@@ -366,17 +346,6 @@ const Products = {
         $("modalSubmitBtn").textContent = "Dodaj";
 
         Modal.open("editProductModal");
-    },
-
-    closeEditPopup() {
-        const modal = $("editProductModal");
-
-        modal.classList.add("closing");
-
-        setTimeout(() => {
-            modal.classList.remove("show");
-            modal.classList.remove("closing");
-        }, 200);
     },
 
 };
