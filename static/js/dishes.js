@@ -59,7 +59,7 @@ const DishesUI = {
             item.addEventListener("click", () => {
                 DishesState.selectedProductId = p.id;
 
-                document.querySelectorAll("#productsList .product-item")
+                $$("#productsList .product-item")
                     .forEach(el => el.style.background = "transparent");
 
                 item.style.background = "#e5e7eb";
@@ -185,7 +185,7 @@ const Dishes = {
     setPerson(person, el) {
         DishesState.currentPerson = person;
 
-        document.querySelectorAll("#personTabs .tab")
+        $$("#personTabs .tab")
             .forEach(t => t.classList.remove("active"));
 
         el.classList.add("active");
@@ -196,7 +196,7 @@ const Dishes = {
 
         const firstDayTab = document.querySelector("#dayTabs .tab");
         if (firstDayTab) {
-            document.querySelectorAll("#dayTabs .tab")
+            $$("#dayTabs .tab")
                 .forEach(t => t.classList.remove("active"));
 
             firstDayTab.classList.add("active");
@@ -209,7 +209,7 @@ const Dishes = {
     setDay(day, el) {
         DishesState.currentDay = day;
 
-        document.querySelectorAll("#dayTabs .tab")
+        $$("#dayTabs .tab")
             .forEach(t => t.classList.remove("active"));
 
         el.classList.add("active");
@@ -244,6 +244,7 @@ const Dishes = {
             meal.ingredients.forEach(ing => {
                 ModalShared.addIngredientField(ing.name, ing.grams, ing.id);
             });
+            ModalShared.calculateMacrosFromInputs();
         }
 
         document.getElementById("editModalTitleMeal").textContent = "Edytuj danie";
@@ -261,6 +262,10 @@ const Dishes = {
         const container = document.getElementById("ingredientsContainer");
         container.innerHTML = "";
 
+                // ModalShared.addIngredientField();
+            
+            ModalShared.calculateMacrosFromInputs();
+        
         document.getElementById("editModalTitleMeal").textContent = "Dodaj danie";
         document.getElementById("deleteMealBtn").style.display = "none";
         document.getElementById("mealModal").classList.add("show");
@@ -316,7 +321,7 @@ const Dishes = {
         }
 
         // STARS
-        document.querySelectorAll("#mealRating span").forEach(star => {
+        $$("#mealRating span").forEach(star => {
 
             star.addEventListener("click", function () {
                 ModalShared.renderStars(Number(this.dataset.value));
@@ -364,5 +369,6 @@ const Dishes = {
 document.addEventListener("DOMContentLoaded", async () => {
     Dishes.bindEvents();
     DishesUI.updateDayTabs();
+    DishesState.products = await DishesAPI.fetchProducts();
     await Dishes.loadMeals();
 });

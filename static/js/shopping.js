@@ -13,7 +13,7 @@ const ShoppingState = {
     undoTimeout: null
 };
 
-const $ = id => document.getElementById(id);
+
 
 /* =====================================================
    API
@@ -92,7 +92,7 @@ const ShoppingUI = {
     },
 
     updateSortIcons() {
-        const headers = document.querySelectorAll(".shopping-table th[data-key]");
+        const headers = $$(".shopping-table th[data-key]");
 
         headers.forEach(th => {
             const key = th.getAttribute("data-key");

@@ -29,10 +29,11 @@ const AppState = {
     currentMealOptions: [],
 
     hasUnsavedChanges: false,
-    pendingNavigation: null
-};
+    pendingNavigation: null,
 
-const $ = id => document.getElementById(id);
+    // planner snapshow 
+    originalPlannerData: null,
+};
 
 /* =====================================================
    API
@@ -70,10 +71,16 @@ const Planner = {
     markAsChanged() {
         AppState.hasUnsavedChanges = true;
 
-        const btn = $("savePlannerBtn");
-        if (btn) {
-            btn.style.display = "inline-block";
-            btn.classList.add("unsaved");
+        const btnSave = $("savePlannerBtn");
+        if (btnSave) {
+            btnSave.style.display = "inline-block";
+            btnSave.classList.add("unsaved");
+        }
+
+        const btnDiscard = $("discardPlannerBtn");
+        if (btnDiscard) {
+            btnDiscard.style.display = "inline-block";
+            btnDiscard.classList.add("unsaved");
         }
 
         UI.showUnsavedIndicator();
@@ -234,7 +241,7 @@ const Planner = {
 
     setPerson(person, el) {
         AppState.currentPerson = person;
-        document.querySelectorAll("#personTabs .tab").forEach(t => t.classList.remove("active"));
+        $$("#personTabs .tab").forEach(t => t.classList.remove("active"));
         el.classList.add("active");
         this.renderPlanner();
     },
@@ -335,7 +342,7 @@ const Planner = {
     setMode(edit, el) {
         AppState.isEditMode = edit;
 
-        document.querySelectorAll(".mode-btn")
+        $$(".mode-btn")
             .forEach(btn => btn.classList.remove("active"));
 
         el.classList.add("active");
@@ -355,6 +362,10 @@ const Planner = {
     async manualSave() {
         await savePlanner();
 
+        AppState.originalPlannerData = JSON.parse(
+            JSON.stringify(AppState.plannerData)
+        );
+
         AppState.hasUnsavedChanges = false;
 
         const btn = $("savePlannerBtn");
@@ -365,6 +376,26 @@ const Planner = {
 
         UI.hideUnsavedIndicator();
     },
+
+
+    async discardSave() {
+        AppState.plannerData = JSON.parse(
+            JSON.stringify(AppState.originalPlannerData)
+        );
+
+        AppState.hasUnsavedChanges = false;
+
+        Planner.renderPlanner();
+
+        const btnSave = $("savePlannerBtn");
+        const btnDiscard = $("discardPlannerBtn");
+
+        if (btnSave) btnSave.style.display = "none";
+        if (btnDiscard) btnDiscard.style.display = "none";
+
+        UI.hideUnsavedIndicator();
+    },
+
     checkForChanges() {
         return AppState.hasUnsavedChanges;
     },
@@ -398,16 +429,28 @@ const Planner = {
 ===================================================== */
 
 const DescriptionModal = {
+    calculateMacros() {
+
+        const macros = Macro.calculate(
+            AppState.baseIngredients,
+            AppState.products,
+            AppState.currentPortionMultiplier
+        );
+
+        Macro.render("mealMacros", macros);
+
+    },
+
     openDescriptionModal(meal) {
         AppState.currentPreviewMeal = meal;
-        
+
         const editBtn = $("editMealFromPreviewBtn");
         editBtn.style.display = "inline-flex";
 
-editBtn.onclick = () => {
-    Modal.closeDescriptionModal();
-    MealModal.openMealEditModalFromPlanner(AppState.currentPreviewMeal);
-};
+        editBtn.onclick = () => {
+            Modal.closeDescriptionModal();
+            MealModal.openMealEditModalFromPlanner(AppState.currentPreviewMeal);
+        };
         $("descriptionTitle").textContent = meal.name;
 
         const left = $("mealDescriptionLeft");
@@ -525,7 +568,11 @@ editBtn.onclick = () => {
         });
 
         ingredientsHTML += `</div>`;
-        left.innerHTML = ingredientsHTML;
+        left.innerHTML = `
+            <div id="mealMacros" class="macro-preview"></div>
+            ${ingredientsHTML}
+        `;
+        DescriptionModal.calculateMacros();
     },
 
     changePortion(step) {
@@ -567,6 +614,7 @@ const MealModal = {
             meal.ingredients.forEach(ing => {
                 ModalShared.addIngredientField(ing.name, ing.grams, ing.id);
             });
+            ModalShared.calculateMacrosFromInputs();
         }
 
         $("editModalTitleMeal").textContent = "Edytuj danie";
@@ -705,6 +753,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(([mealsData, plannerSaved, productsData]) => {
             AppState.meals = mealsData;
             AppState.plannerData = plannerSaved;
+            AppState.originalPlannerData = JSON.parse(JSON.stringify(plannerSaved));
             AppState.products = productsData;
             Planner.renderPlanner();
         });
@@ -748,7 +797,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 document.addEventListener("DOMContentLoaded", () => {
 
-    document.querySelectorAll(".nav-link").forEach(link => {
+    $$(".nav-link").forEach(link => {
         link.addEventListener("click", function (e) {
 
             // tylko jeśli jesteśmy na plannerze

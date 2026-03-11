@@ -18346,5 +18346,31 @@
         ],
         "rating": 4,
         "id": 389
+    },
+    {
+        "name": "aaassdddd",
+        "description": "",
+        "ingredients": [
+            {
+                "id": 226,
+                "name": "Awokado",
+                "grams": 111
+            },
+            {
+                "id": 176,
+                "name": "Anty baton Łowicz Daktyle Orzechy laskowe Ananas",
+                "grams": 111
+            }
+        ],
+        "person": "osoba1",
+        "dish": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "rating": 0,
+        "id": 390
     }
 ]

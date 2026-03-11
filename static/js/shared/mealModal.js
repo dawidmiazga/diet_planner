@@ -15,7 +15,7 @@ const DishesStateModal = {
 const ModalShared = {
     async saveMeal() {
         const id = document.getElementById("mealId").value;
-        const ingredientRows = document.querySelectorAll(".ingredient-row");
+        const ingredientRows = $$(".ingredient-row");
 
         const ingredients = [];
         // let nextIngredientId = 1; // do generowania nowych id dla składników
@@ -33,7 +33,7 @@ const ModalShared = {
 
         // pobierz zaznaczone dish
         const selectedDish = Array.from(
-            document.querySelectorAll("#dishSelection input[type='checkbox']:checked")
+            $$("#dishSelection input[type='checkbox']:checked")
         ).map(cb => Number(cb.value));
 
         if (selectedDish.length === 0) {
@@ -139,7 +139,7 @@ const ModalShared = {
     renderStars(rating) {
         this.currentRating = rating;
 
-        const stars = document.querySelectorAll("#mealRating span");
+        const stars = $$("#mealRating span");
 
         stars.forEach(star => {
             const value = Number(star.dataset.value);
@@ -166,10 +166,57 @@ const ModalShared = {
 
         row.innerHTML = `
             <input type="text" class="ingredient-name" id="ingredient-name-${ingId}" name="ingredient-name-${ingId}" placeholder="Nazwa składnika" value="${name}">
-            <input type="number" class="ingredient-grams" id="ingredient-grams-${ingId}" name="ingredient-grams-${ingId}" placeholder="g" value="${grams}">
-            <button type="button" class="brn ingredient-delete" onclick="this.parentElement.remove()">✕</button>
+            <input type="number" class="ingredient-grams"
+                id="ingredient-grams-${ingId}"
+                name="ingredient-grams-${ingId}"
+                placeholder="g"
+                value="${grams}"
+                oninput="ModalShared.calculateMacrosFromInputs()">
+            <button type="button" class="brn ingredient-delete"
+                onclick="this.parentElement.remove(); ModalShared.calculateMacrosFromInputs();">✕</button>
         `;
 
         container.appendChild(row);
+        ModalShared.calculateMacrosFromInputs();
     },
+
+    calculateMacrosFromInputs() {
+
+        const rows = $$(".ingredient-row");
+
+        const ingredients = [];
+
+        rows.forEach(row => {
+
+            const grams = Number(row.querySelector(".ingredient-grams").value);
+            const id = Number(row.dataset.id);
+
+            if (!grams || !id) return;
+
+            ingredients.push({
+                id: id,
+                grams: grams
+            });
+
+        });
+
+        // 🔥 wybierz właściwą listę produktów
+        let products = [];
+
+        if (typeof AppState !== "undefined") {
+            products = AppState.products;
+        } else if (typeof DishesState !== "undefined") {
+            products = DishesState.products;
+        }
+
+        const macros = Macro.calculate(
+            ingredients,
+            products,
+            1
+        );
+
+        Macro.render("mealMacrosEdit", macros);
+
+    }
 }
+

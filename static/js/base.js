@@ -96,7 +96,7 @@ const Base = {
         // ESC zamyka modale
         document.addEventListener("keydown", (e) => {
             if (e.key === "Escape") {
-                document.querySelectorAll(".modal.show").forEach(modal => {
+                $$(".modal.show").forEach(modal => {
                     closeModalElement(modal);
                 });
             }
@@ -138,3 +138,11 @@ function closeModalElement(modal) {
         modal.classList.remove("closing");
     }, 200);
 }
+
+window.$ = function (id) {
+    return document.getElementById(id);
+};
+
+window.$$ = function (selector) {
+    return document.querySelectorAll(selector);
+};
