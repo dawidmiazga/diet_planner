@@ -116,11 +116,14 @@
                 "eaten": false,
                 "meal": 389
             },
-            "3": 103,
+            "3": {
+                "eaten": false,
+                "meal": 103
+            },
             "4": 72,
             "5": {
-                "meal": 22,
-                "eaten": false
+                "eaten": false,
+                "meal": 22
             }
         },
         "2026-03-10": {

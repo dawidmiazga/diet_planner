@@ -416,11 +416,14 @@ const Planner = {
 
         AppState.hasUnsavedChanges = false;
 
-        const btn = $("savePlannerBtn");
-        if (btn) {
-            btn.classList.remove("unsaved");
-            btn.style.display = "none";
+        const btnbtnSave = $("savePlannerBtn");
+        if (btnbtnSave) {
+            btnbtnSave.classList.remove("unsaved");
+            btnbtnSave.style.display = "none";
         }
+
+        const btnDiscard = $("discardPlannerBtn");
+        if (btnDiscard) btnDiscard.style.display = "none";
 
         UI.hideUnsavedIndicator();
     },
