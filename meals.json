@@ -4866,7 +4866,7 @@
             {
                 "id": 49,
                 "name": "Ser mozzarella kulka light",
-                "grams": 75
+                "grams": 60
             },
             {
                 "id": 194,
@@ -4898,7 +4898,8 @@
                 "name": "Tofu naturalne",
                 "grams": 80
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 104,

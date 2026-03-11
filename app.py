@@ -504,7 +504,12 @@ def generate_shopping_list():
                 not end_date or current_date <= end_date
             ):
 
-                for meal_id in meals_for_day.values():
+                for entry in meals_for_day.values():
+                    if isinstance(entry, dict):
+                        meal_id = entry.get("meal")
+                    else:
+                        meal_id = entry
+
                     meal = next((m for m in meals if m.get("id") == meal_id), None)
                     if not meal:
                         continue
