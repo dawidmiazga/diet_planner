@@ -115,10 +115,26 @@ const Planner = {
             const today = new Date().toLocaleDateString('sv-SE');
             const isToday = dateStr === today;
 
-            // komórka daty
-            const dateCell = UI.createCell(
-                d.toLocaleDateString('pl-PL', { weekday: 'short', day: 'numeric', month: 'numeric' })
-            );
+            const macros = this.calculateDayMacros(dateStr);
+
+            const dateCell = document.createElement("div");
+            dateCell.className = "cell date-cell";
+
+            dateCell.innerHTML = `
+                <div class="date-label">
+                    ${d.toLocaleDateString('pl-PL', { weekday: 'short', day: 'numeric', month: 'numeric' })}
+                </div>
+
+                <div class="date-kcal">
+                    ${Math.round(macros.kcal)} kcal
+                </div>
+
+                <div class="date-macros">
+                    <span class="macro-protein">B ${macros.b.toFixed(0)}</span>
+                    <span class="macro-carbs">W ${macros.w.toFixed(0)}</span>
+                    <span class="macro-fat">T ${macros.t.toFixed(0)}</span>
+                </div>
+            `;
 
             if (isToday) dateCell.classList.add("today-row");
 
@@ -357,6 +373,38 @@ const Planner = {
 
         UI.moveIndicator();
         this.renderPlanner();
+    },
+
+    calculateDayMacros(dateStr) {
+
+        const day = AppState.plannerData[AppState.currentPerson][dateStr];
+        if (!day) {
+            return { kcal: 0, b: 0, t: 0, w: 0 };
+        }
+
+        let totals = { kcal: 0, b: 0, t: 0, w: 0 };
+
+        Object.values(day).forEach(entry => {
+
+            const mealId = typeof entry === "object" ? entry.meal : entry;
+
+            const meal = AppState.mealsById[mealId];
+            if (!meal) return;
+
+            const macros = Macro.calculate(
+                meal.ingredients,
+                AppState.products,
+                1
+            );
+
+            totals.kcal += macros.kcal;
+            totals.b += macros.b;
+            totals.t += macros.t;
+            totals.w += macros.w;
+
+        });
+
+        return totals;
     },
 
     async manualSave() {

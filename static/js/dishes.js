@@ -262,10 +262,10 @@ const Dishes = {
         const container = document.getElementById("ingredientsContainer");
         container.innerHTML = "";
 
-                // ModalShared.addIngredientField();
-            
-            ModalShared.calculateMacrosFromInputs();
-        
+        // ModalShared.addIngredientField();
+
+        ModalShared.calculateMacrosFromInputs();
+
         document.getElementById("editModalTitleMeal").textContent = "Dodaj danie";
         document.getElementById("deleteMealBtn").style.display = "none";
         document.getElementById("mealModal").classList.add("show");

@@ -4,12 +4,6 @@
 
 {% block content %}
 
-<div class="tabs" id="personTabs">
-    <div class="tab active" onclick="Dishes.setPerson('osoba1', this)">Dawid</div>
-    <div class="tab" onclick="Dishes.setPerson('osoba2', this)">Kasia</div>
-</div>
-
-<div class="tabs-dishes" id="dayTabs"></div>
 
 <div class="toolbar">
     <div class="toolbar-left">
@@ -21,7 +15,19 @@
         </div>
     </div>
 
-    <div class="toolbar-center">
+    <!-- <div class="toolbar-center"> -->
+
+    <div class="toolbar-center-tabs">
+        <div class="tabs" id="personTabs">
+            <div class="tab active" onclick="Dishes.setPerson('osoba1', this)">Dawid</div>
+            <div class="tab" onclick="Dishes.setPerson('osoba2', this)">Kasia</div>
+        </div>
+
+        <div class="tabs-dishes" id="dayTabs"></div>
+    </div>
+    <!-- </div> -->
+
+    <div class="toolbar-spacer">
         <button class="btn main-btn animate-btn" onclick="Dishes.openAddForm()">
             <span class="plus-icon">
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
@@ -32,8 +38,6 @@
             Dodaj danie
         </button>
     </div>
-
-    <div class="toolbar-spacer"></div>
 </div>
 
 <div class="grid" id="mealsGrid"></div>

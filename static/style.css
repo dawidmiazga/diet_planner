@@ -9,17 +9,54 @@
 }
 
 :root {
-    --primary: rgb(54, 137, 148, 1);
-    --primary-strong: rgb(54, 137, 148, 1);
-    --primary-soft: rgb(54, 137, 148, 0.5);
-    --today-row: rgba(54, 137, 148, 0.08);
-    --danger: #ef4444;
-    --bg: linear-gradient(135deg, #eef2ff, #f8fafc);
-    --card-bg: rgba(255, 255, 255, 0.75);
-    --text: #111827;
-    --muted: rgb(107, 114, 128);
-    --grey-soft: rgba(211, 211, 211, 0.692);
-    --red-soft: rgba(255, 80, 80, 0.6);
+    --color-primary: rgba(54, 137, 148, 1);
+    --color-primary-highlight: rgba(54, 137, 148, 0.08);
+    --color-primary-soft: rgba(54, 137, 148, 0.5);
+    --color-primary-strong: rgba(54, 137, 148, 1);
+
+    --color-accent: rgb(99, 102, 241);
+    --color-accent-soft-005: rgba(99, 102, 241, 0.05);
+    --color-accent-soft-015: rgba(99, 102, 241, 0.15);
+    --color-accent-soft-03: rgba(99, 102, 241, 0.3);
+    --color-accent-soft-07: rgba(99, 102, 241, 0.7);
+
+    --color-red: rgba(239, 68, 68, 1);
+    --color-red-soft: rgba(255, 80, 80, 0.6);
+    --color-red-light: rgba(248, 113, 113, 1);
+    --color-red-bg: rgba(239, 68, 68, 0.08);
+
+    --color-gray-100: rgba(243, 244, 246, 1);
+    --color-gray-200: rgba(229, 231, 235, 1);
+    --color-gray-300: rgba(209, 213, 219, 1);
+    --color-gray-400: rgba(204, 204, 204, 1);
+    --color-gray-500: rgba(107, 114, 128, 1);
+    --color-gray-600: rgba(55, 65, 81, 1);
+    --color-gray-700: rgba(51, 51, 51, 1);
+
+    --white-50: rgba(255, 255, 255, 0.5);
+    --white-60: rgba(255, 255, 255, 0.6);
+    --white-70: rgba(255, 255, 255, 0.7);
+    --white-75: rgba(255, 255, 255, 0.75);
+
+    --shadow-soft: rgba(0, 0, 0, 0.05);
+    --shadow-medium: rgba(0, 0, 0, 0.08);
+    --shadow-strong: rgba(0, 0, 0, 0.2);
+
+    --color-success: rgba(76, 175, 80, 1);
+    --color-success-soft: rgba(34, 197, 94, 0.3);
+    --color-success-bg: rgba(34, 197, 94, 0.08);
+
+    --color-yellow: rgba(234, 179, 8, 1);
+    --color-yellow-bg: rgba(255, 193, 7, 0.15);
+    --color-yellow-hover: rgba(255, 193, 7, 0.25);
+
+    --color-grey-soft: rgba(211, 211, 211, 0.692);
+    --color-grey-muted: rgba(107, 114, 128, 1);
+
+    --bg: linear-gradient(135deg, rgba(238, 242, 255, 1), rgba(248, 250, 252, 1));
+
+    --font-black: rgba(17, 24, 39, 1);
+
     --primary_2: rgb(177, 62, 148);
 
     --z-modal: 1000;
@@ -44,7 +81,7 @@ body {
     background: rgba(255, 255, 255, 0.9);
     padding: 25px 30px;
     border-radius: 16px;
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 12px 25px var(--shadow-medium);
     max-width: 2300px;
     width: 100%;
     margin: 10px auto;
@@ -52,12 +89,12 @@ body {
 }
 
 h1 {
-    color: #333;
+    color: var(--color-gray-700);
     margin-bottom: 15px;
 }
 
 h2 {
-    color: #333;
+    color: var(--color-gray-700);
     font-size: 32px;
     margin-bottom: 40px;
     font-weight: 600;
@@ -95,7 +132,7 @@ h2 {
     align-items: center;
     gap: 10px;
     margin-left: auto;
-    background: #f3f4f6;
+    background: var(--color-gray-100);
     padding: 6px 10px;
     border-radius: 12px;
     font-weight: 600;
@@ -103,7 +140,7 @@ h2 {
 
 .portion-multiplier button {
     border: none;
-    background: #e5e7eb;
+    background: var(--color-gray-200);
     width: 28px;
     height: 28px;
     border-radius: 8px;
@@ -123,7 +160,7 @@ h2 {
 }
 
 .portion-multiplier button:hover {
-    background: #d1d5db;
+    background: var(--color-gray-300);
 }
 
 #portionValue {
@@ -164,7 +201,7 @@ input,
 select {
     padding: 5px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-gray-400);
     font-size: 14px;
 }
 
@@ -185,18 +222,18 @@ select {
     padding: 8px 16px;
     border: none;
     border-radius: 10px;
-    background: var(--primary);
+    background: var(--color-primary);
     color: white;
     cursor: pointer;
     font-size: 14px;
     transition: all 0.25s ease;
     margin-left: 10px;
     margin-right: 10px;
-    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 10px 25px var(--color-accent-soft-03);
 }
 
 .main-btn:hover {
-    background: var(--primary-strong);
+    background: var(--color-primary-strong);
     transform: translateY(-2px);
 }
 
@@ -217,33 +254,33 @@ select {
 
 .modern-input:focus {
     outline: none;
-    border-color: var(--primary);
+    border-color: var(--color-primary);
     background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    box-shadow: 0 0 0 3px var(--color-accent-soft-015);
 }
 
 .modern-date-input {
     padding: 12px 16px;
     border-radius: 14px;
     border: 1px solid rgba(156, 163, 175, 0.4);
-    background: rgba(255, 255, 255, 0.7);
+    background: var(--white-70);
     backdrop-filter: blur(12px);
     font-size: 14px;
     font-family: inherit;
     color: #111827;
     transition: all 0.25s ease;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 20px var(--shadow-soft);
     cursor: pointer;
 }
 
 .modern-date-input:hover {
-    border-color: var(--primary);
+    border-color: var(--color-primary);
 }
 
 .modern-date-input:focus {
     outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-accent-soft-015);
 }
 
 .modern-date-input::-webkit-calendar-picker-indicator {
@@ -268,10 +305,10 @@ select {
     margin: 30px auto 40px auto;
     padding: 10px;
     width: fit-content;
-    background: rgba(255, 255, 255, 0.5);
+    background: var(--white-50);
     backdrop-filter: blur(14px);
     border-radius: 999px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 25px var(--shadow-soft);
 }
 
 .nav-link {
@@ -280,7 +317,7 @@ select {
     padding: 10px 22px;
     border-radius: 999px;
     font-weight: 500;
-    color: #374151;
+    color: var(--color-gray-600);
     transition: all 0.25s ease;
     z-index: 1;
     min-width: 200px;
@@ -302,7 +339,7 @@ select {
     left: 0;
     height: 100%;
     width: 0;
-    background: var(--primary);
+    background: var(--color-primary);
     border-radius: 999px;
     z-index: 0;
     transition: all 0.35s cubic-bezier(0.77, 0, 0.175, 1);
@@ -310,7 +347,7 @@ select {
 }
 
 .main-nav:hover .nav-link.active:not(:hover) {
-    color: var(--primary);
+    color: var(--color-primary);
 }
 
 .nav-link.active::before {
@@ -323,7 +360,7 @@ select {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: var(--primary);
+    background-color: var(--color-primary);
 
     opacity: 0;
     transition: all 0.2s ease;
@@ -361,25 +398,21 @@ select {
 /* ==================== TABS / SEGMENTED ==================== */
 /* ========================================================== */
 
-.tabs {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    /* margin-bottom: 25px; */
-}
-
+.tabs,
 .tabs-dishes {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 25px;
-    margin-top: 25px;
+    padding: 7px;
+    margin-bottom: 15px;
+    border-radius: 999px;
+    border: 1px solid var(--color-primary-soft);
 }
 
 .tab {
     padding: 10px 22px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.6);
+    background: var(--white-60);
     backdrop-filter: blur(10px);
     cursor: pointer;
     font-weight: 500;
@@ -392,9 +425,17 @@ select {
 }
 
 .tab.active {
-    background: var(--primary);
+    background: var(--color-primary);
     color: white;
-    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
+    box-shadow: 0 8px 20px var(--color-accent-soft-03);
+}
+
+.toolbar-center-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
 }
 
 /* ===================== GRID / KARTY ===================== */
@@ -420,19 +461,19 @@ select {
 }
 
 .card {
-    background: var(--card-bg);
+    background: var(--white-75);
     backdrop-filter: blur(14px);
     padding: 24px;
     border-radius: 22px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 10px 35px var(--shadow-soft);
+    border: 1px solid var(--white-60);
 }
 
 .card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 20px 45px var(--shadow-medium);
 }
 
 .card strong {
@@ -440,7 +481,7 @@ select {
 }
 
 .card p {
-    color: var(--muted);
+    color: var(--color-grey-muted);
     margin-top: 10px;
     line-height: 1.4;
 }
@@ -456,8 +497,8 @@ select {
     font-weight: 600;
     margin: 10px 0 5px 5px;
     padding-bottom: 6px;
-    border-bottom: 2px solid rgba(99, 102, 241, 0.3);
-    color: var(--primary);
+    border-bottom: 2px solid var(--color-accent-soft-03);
+    color: var(--color-primary);
 }
 
 /* ==================== MODAL ==================== */
@@ -492,7 +533,7 @@ select {
     max-width: 95vw;
     max-height: 90vh;
     overflow: auto;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 40px var(--shadow-strong);
     animation: fadeIn 0.2s ease;
     transition: all 0.25s ease;
     opacity: 0;
@@ -580,7 +621,7 @@ select {
     padding: 10px;
     margin: 6px 0 18px 0;
     border-radius: 12px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--color-gray-200);
     transition: 0.2s;
     height: auto;
     flex: 0 0 auto;
@@ -591,7 +632,7 @@ select {
     padding: 10px;
     margin: 6px 0 18px 0;
     border-radius: 12px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--color-gray-200);
     height: auto;
     flex: 0 0 auto;
 } */
@@ -599,8 +640,8 @@ select {
 .modal-content input:focus,
 .modal-content textarea:focus {
     outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-accent-soft-015);
 }
 
 .modal-content .ingredient-row .ingredient-name {
@@ -701,7 +742,7 @@ select {
 }
 
 .meal-left {
-    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    border-right: 1px solid var(--shadow-medium);
     padding-right: 30px;
 }
 
@@ -794,7 +835,7 @@ select {
     align-items: center;
     justify-content: center;
 
-    background: rgba(255, 255, 255, 0.6);
+    background: var(--white-60);
     backdrop-filter: blur(10px);
     box-shadow:
         0 8px 20px rgba(0, 0, 0, 0.15),
@@ -829,7 +870,7 @@ select {
 .macro-section {
     grid-column: 1 / -1;
     /* zajmuje całą szerokość */
-    background: rgba(99, 102, 241, 0.05);
+    background: var(--color-accent-soft-005);
     padding: 20px;
     border-radius: 16px;
     margin-top: 10px;
@@ -838,7 +879,7 @@ select {
 .macro-title {
     font-weight: 600;
     margin-bottom: 15px;
-    color: var(--primary);
+    color: var(--color-primary);
 }
 
 .macro-grid {
@@ -885,7 +926,7 @@ select {
 }
 
 .macro-item.carbs span {
-    color: #eab308;
+    color: var(--color-yellow);
 }
 
 .macro-item.fat span {
@@ -902,7 +943,7 @@ select {
 #mealDescriptionModal .modal-header {
     position: sticky;
     top: 0;
-    background: var(--card-bg);
+    background: var(--white-75);
     z-index: 10;
     padding: 10px 24px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
@@ -936,7 +977,7 @@ select {
 }
 
 #mealPersonSelection .dish-pill input:checked + span {
-    background: rgba(99, 102, 241, 0.15);
+    background: var(--color-accent-soft2);
     color: white;
     box-shadow: 0 4px 14px rgba(0,0,0,0.15);
 } */
@@ -961,7 +1002,7 @@ select {
     border-radius: 10px;
     width: fit-content;
     max-width: 90vw;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 25px var(--shadow-strong);
     text-align: center;
     word-break: break-word;
 }
@@ -1066,13 +1107,13 @@ select {
     align-items: baseline;
     padding: 10px 14px;
     border-radius: 12px;
-    background: rgba(99, 102, 241, 0.05);
+    background: var(--color-accent-soft-005);
     transition: all 0.2s ease;
     cursor: pointer;
 }
 
 .ingredient-display-row:hover {
-    background: rgba(99, 102, 241, 0.1);
+    background: var(--color-accent-soft-015);
 }
 
 .ingredient-display-row.checked {
@@ -1097,13 +1138,13 @@ select {
     width: 10px;
     border-radius: 8px;
     margin-bottom: 10px !important;
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-gray-400);
 }
 
 .ingredient-grams {
     width: 10px;
     border-radius: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-gray-400);
     text-align: center;
     margin-bottom: 10px !important;
 }
@@ -1113,7 +1154,7 @@ select {
     height: 25px;
     border-radius: 50%;
     border: none;
-    background: #f87171;
+    background: var(--color-red-light);
     color: white;
     font-size: 11px;
     display: flex;
@@ -1128,12 +1169,12 @@ select {
 
 .ingredient-display-name {
     font-weight: 500;
-    color: var(--text);
+    color: var(--font-black);
 }
 
 .ingredient-display-value {
     font-weight: 600;
-    color: var(--primary);
+    color: var(--color-primary);
     white-space: nowrap;
 }
 
@@ -1158,13 +1199,13 @@ select {
 }
 
 #ingredientsContainer::-webkit-scrollbar-thumb {
-    background: rgba(99, 102, 241, 0.4);
+    background: var(--color-accent-soft-03);
     border-radius: 10px;
     transition: background 0.2s ease;
 }
 
 #ingredientsContainer::-webkit-scrollbar-thumb:hover {
-    background: rgba(99, 102, 241, 0.7);
+    background: var(--color-accent-soft-07);
 }
 
 /* ===== Nagłówek Składniki + Mnożnik ===== */
@@ -1175,7 +1216,7 @@ select {
     align-items: center;
 }
 
-.ingredients-header label{
+.ingredients-header label {
     margin-left: 10px;
 }
 
@@ -1219,13 +1260,13 @@ select {
     align-items: flex-start;
     padding: 12px 16px;
     border-radius: 12px;
-    background: rgba(99, 102, 241, 0.05);
+    background: var(--color-accent-soft-005);
     transition: all 0.2s ease;
     cursor: pointer;
 }
 
 .step-display-row:hover {
-    background: rgba(99, 102, 241, 0.1);
+    background: var(--color-accent-soft-015);
 }
 
 .step-display-row.checked {
@@ -1238,7 +1279,7 @@ select {
 
 .step-number {
     font-weight: 700;
-    color: var(--primary);
+    color: var(--color-primary);
     min-width: 28px;
 }
 
@@ -1260,11 +1301,11 @@ select {
 .planner-grid .cell {
     padding: 20px;
     border-radius: 16px;
-    background: var(--card-bg);
+    background: var(--white-75);
     backdrop-filter: blur(10px);
     text-align: center;
     cursor: pointer;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 20px var(--shadow-soft);
     transition: transform 0.2s, box-shadow 0.2s;
     font-weight: 500;
 
@@ -1281,7 +1322,7 @@ select {
 }
 
 .planner-grid .header {
-    background: var(--primary);
+    background: var(--color-primary);
     color: white;
 }
 
@@ -1300,7 +1341,7 @@ select {
     top: 50%;
     right: 8px;
     transform: translateY(-50%);
-    background: #f87171;
+    background: var(--color-red-light);
     border: none;
     border-radius: 50%;
     width: 20px;
@@ -1327,7 +1368,7 @@ select {
     top: 50%;
     left: 8px;
     transform: translateY(-50%);
-    background: #e5e7eb;
+    background: var(--color-gray-200);
     border: none;
     border-radius: 50%;
     width: 20px;
@@ -1341,7 +1382,7 @@ select {
 }
 
 .note-btn:hover {
-    background: #d1d5db;
+    background: var(--color-gray-300);
 }
 
 .planner-grid .cell.preview-mode {
@@ -1354,7 +1395,43 @@ select {
 }
 
 .planner-grid .today-row {
-    background: var(--today-row);
+    background: var(--color-primary-highlight);
+}
+
+.date-cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+}
+
+.date-label {
+    font-weight: 600;
+}
+
+.date-kcal {
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    margin-top: 5px;
+}
+
+.date-macros {
+    font-size: 11px;
+    display: flex;
+    gap: 6px;
+}
+
+.macro-protein {
+    color: #3b82f6;
+}
+
+.macro-carbs {
+    color: #eab308;
+}
+
+.macro-fat {
+    color: #ef4444;
 }
 
 /* ==================== SHOPPING / ZAKUPY ==================== */
@@ -1379,7 +1456,7 @@ select {
 /* usuwa globalny border z input */
 .shopping-input:focus {
     outline: none;
-    background: rgba(54, 137, 148, 0.06);
+    background: var(--color-primary-highlight);
     border-radius: 6px;
 }
 
@@ -1391,21 +1468,21 @@ select {
 
 .shopping-table td {
     padding: 10px;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid var(--color-gray-200);
     text-align: left;
 }
 
 .shopping-table th {
     padding: 10px;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid var(--color-gray-200);
     text-align: left;
-    background: #f3f4f6;
+    background: var(--color-gray-100);
     cursor: pointer;
     user-select: none;
 }
 
 .shopping-table th:hover {
-    background: #e5e7eb;
+    background: var(--color-gray-200);
 }
 
 .remove-btn {
@@ -1435,11 +1512,11 @@ select {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 5px 18px;
+    padding: 11px 18px;
     border-radius: 14px;
-    border: 1px solid rgba(99, 102, 241, 0.3);
-    background: rgba(99, 102, 241, 0.08);
-    color: var(--primary);
+    border: 1px solid var(--color-accent-soft-03);
+    background: var(--color-accent-soft-005);
+    color: var(--color-primary);
     font-weight: 600;
     font-size: 14px;
     cursor: pointer;
@@ -1449,9 +1526,9 @@ select {
 }
 
 .animate-btn:hover {
-    background: var(--primary-soft);
+    background: var(--color-primary-soft);
     color: white;
-    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 8px 20px var(--color-accent-soft-03);
     transform: translateY(-2px);
 }
 
@@ -1474,9 +1551,9 @@ select {
     gap: 10px;
     padding: 5px 18px;
     border-radius: 14px;
-    border: 1px solid rgba(99, 102, 241, 0.3);
-    background: var(--red-soft);
-    color: var(--primary);
+    border: 1px solid var(--color-accent-soft-03);
+    background: var(--color-red-soft);
+    color: var(--color-primary);
     font-weight: 600;
     font-size: 14px;
     cursor: pointer;
@@ -1486,9 +1563,9 @@ select {
 }
 
 .discard-changes:hover {
-    background: var(--primary-soft);
+    background: var(--color-primary-soft);
     color: white;
-    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 8px 20px var(--color-accent-soft-03);
     transform: translateY(-2px);
 }
 
@@ -1517,8 +1594,8 @@ select {
     gap: 10px;
     padding: 10px 18px;
     border-radius: 14px;
-    border: 1px solid rgba(34, 197, 94, 0.3);
-    background: rgba(34, 197, 94, 0.08);
+    border: 1px solid var(--color-success-soft);
+    background: var(--color-success-bg);
     color: #16a34a;
     font-weight: 600;
     font-size: 14px;
@@ -1545,7 +1622,7 @@ select {
 .undo-btn:hover {
     background: #16a34a;
     color: white;
-    box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+    box-shadow: 0 8px 20px var(--color-success-soft);
     transform: translateY(-2px);
 }
 
@@ -1601,12 +1678,12 @@ select {
     position: fixed;
     top: 20px;
     right: 20px;
-    background: #4caf50;
+    background: var(--color-success);
     color: white;
     padding: 8px 16px;
     border-radius: 12px;
     font-size: 1rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px var(--shadow-strong);
     opacity: 0;
     transform: translateY(-10px);
     transition: opacity 0.3s, transform 0.3s;
@@ -1619,7 +1696,7 @@ select {
 }
 
 .save-notice-global.success {
-    background: #4caf50;
+    background: var(--color-success);
 }
 
 .save-notice-global.error {
@@ -1639,7 +1716,7 @@ select {
 .date-picker-wrapper label {
     font-weight: 600;
     font-size: 14px;
-    color: #374151;
+    color: var(--color-gray-600);
 }
 
 .flatpickr-calendar {
@@ -1651,12 +1728,12 @@ select {
 }
 
 .flatpickr-day.selected {
-    background: var(--primary) !important;
-    border-color: var(--primary) !important;
+    background: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
 }
 
 .flatpickr-day:hover {
-    background: rgba(99, 102, 241, 0.2);
+    background: var(--color-accent-soft-015);
 }
 
 .flatpickr-months {
@@ -1668,7 +1745,7 @@ select {
 }
 
 .flatpickr-weekday {
-    color: var(--primary);
+    color: var(--color-primary);
     font-weight: 600;
 }
 
@@ -1722,7 +1799,7 @@ select {
 }
 
 .clear-filter-btn:hover {
-    color: #333;
+    color: var(--color-gray-700);
 }
 
 .filter-with-clear.has-text .clear-filter-btn {
@@ -1772,7 +1849,7 @@ select {
 .mode-toggle {
     position: relative;
     display: inline-flex;
-    background: #f3f4f6;
+    background: var(--color-gray-100);
     border-radius: 999px;
     padding: 4px;
 }
@@ -1787,7 +1864,7 @@ select {
     cursor: pointer;
     z-index: 1;
     transition: 0.25s;
-    color: #6b7280;
+    color: var(--color-gray-500);
     margin-left: 5px;
     margin-right: 5px;
 }
@@ -1797,7 +1874,7 @@ select {
 }
 
 .mode-btn:hover:not(.mode-btn.active) {
-    background: var(--grey-soft);
+    background: var(--color-grey-soft);
     color: white;
 }
 
@@ -1809,7 +1886,7 @@ select {
     background: white;
     border-radius: 999px;
     transition: 0.3s cubic-bezier(.77, 0, .175, 1);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 8px var(--shadow-medium);
 }
 
 /* ==================== SWITCH (TRYB EDYCJI) ==================== */
@@ -1846,7 +1923,7 @@ select {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: var(--color-gray-400);
     transition: 0.4s;
     border-radius: 34px;
 }
@@ -1951,7 +2028,7 @@ input:checked+.slider:before {
 /* przycisk czyszczenia */
 .clear-rating-btn {
     border: none;
-    background: rgba(239, 68, 68, 0.08);
+    background: var(--color-red-bg);
     color: #ef4444;
     width: 26px;
     height: 26px;
@@ -1992,7 +2069,7 @@ input:checked+.slider:before {
 }
 
 .meal-tiles::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: var(--shadow-strong);
     border-radius: 3px;
 }
 
@@ -2066,16 +2143,16 @@ input:checked+.slider:before {
     width: 100%;
     padding: 8px 12px;
     border-radius: 12px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-gray-400);
     font-size: 14px;
     margin-top: 10px;
-    box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 2px 2px 6px var(--shadow-soft);
     transition: all 0.2s;
 }
 
 .meal-search-input:focus {
     outline: none;
-    border-color: var(--primary);
+    border-color: var(--color-primary);
     box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -2089,7 +2166,7 @@ input:checked+.slider:before {
     -webkit-appearance: none;
     width: 18px;
     height: 18px;
-    border: 2px solid #d1d5db;
+    border: 2px solid var(--color-gray-300);
     border-radius: 6px;
     margin-right: 8px;
     cursor: pointer;
@@ -2104,12 +2181,12 @@ input:checked+.slider:before {
 }
 
 .meal-checkbox:hover {
-    border-color: var(--primary);
+    border-color: var(--color-primary);
 }
 
 .meal-checkbox:checked {
-    background: var(--primary);
-    border-color: var(--primary);
+    background: var(--color-primary);
+    border-color: var(--color-primary);
 }
 
 .meal-checkbox:checked::after {
@@ -2188,7 +2265,7 @@ input:checked+.slider:before {
 }
 
 .cancel-btn {
-    background: var(--red-soft);
+    background: var(--color-red-soft);
     border: 1px solid rgba(255, 80, 80, 0.4);
     color: white;
     padding: 6px 10px;
@@ -2209,9 +2286,9 @@ input:checked+.slider:before {
 }
 
 .yellow-btn {
-    background: rgba(255, 193, 7, 0.15);
+    background: var(--color-yellow-bg);
     border: 1px solid rgba(255, 193, 7, 0.6);
-    color: #eab308;
+    color: var(--color-yellow);
     padding: 6px 10px;
     border-radius: 6px;
     cursor: pointer;
@@ -2220,14 +2297,14 @@ input:checked+.slider:before {
 }
 
 .yellow-btn:hover {
-    background: rgba(255, 193, 7, 0.25);
+    background: var(--color-yellow-hover);
 }
 
 
 /* .edit-btn {
-    background: rgba(255, 193, 7, 0.15);
+    background: var(--color-yellow-bg);
     border: 1px solid rgba(255, 193, 7, 0.6);
-    color: #eab308;
+    color: var(--color-yellow);
     padding: 6px 10px;
     border-radius: 6px;
     cursor: pointer;
@@ -2236,7 +2313,7 @@ input:checked+.slider:before {
 }
 
 .edit-btn:hover {
-    background: rgba(255, 193, 7, 0.25);
+    background: var(--color-yellow-hover);
 } */
 
 /* ========================= FORMS ======================== */
@@ -2262,7 +2339,7 @@ form select {
     width: 100%;
     padding: 6px 8px;
     border-radius: 6px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-gray-400);
     font-size: 14px;
 }
 
@@ -2276,13 +2353,13 @@ form select {
 
 .date-form label {
     font-weight: 500;
-    color: #333;
+    color: var(--color-gray-700);
 }
 
 .date-form input[type="date"] {
     padding: 6px 10px;
     border-radius: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-gray-400);
     font-size: 14px;
 }
 
@@ -2322,16 +2399,16 @@ form select {
 }
 
 .dzial-row td {
-    background: #f3f4f6;
+    background: var(--color-gray-100);
     padding-top: 15px;
 }
 
 .product-item:hover {
-    background: #f3f4f6;
+    background: var(--color-gray-100);
 }
 
 .product-item.selected {
-    background: var(--primary);
+    background: var(--color-primary);
     color: white;
 }
 
@@ -2356,18 +2433,18 @@ form select {
 .dish-pill span {
     padding: 6px 14px;
     border-radius: 999px;
-    background: var(--grey-soft);
+    background: var(--color-grey-soft);
     transition: 0.2s;
     font-weight: 500;
 }
 
 .dish-pill span:hover {
-    background: var(--primary-soft);
+    background: var(--color-primary-soft);
     color: white;
 }
 
 .dish-pill input:checked+span {
-    background: var(--primary);
+    background: var(--color-primary);
     color: white;
 }
 
@@ -2403,7 +2480,7 @@ form select {
     padding: 8px 16px;
     border-radius: 12px;
     font-size: 1rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px var(--shadow-strong);
 
     opacity: 0;
     transform: translateY(-10px);
