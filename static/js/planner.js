@@ -598,10 +598,10 @@ const DescriptionModal = {
             ) {
 
                 let iloscJednostek = scaledGrams / product.jednostka_per_gram;
-
+                // console.log(iloscJednostek)
                 iloscJednostek = Number.isInteger(iloscJednostek)
                     ? iloscJednostek
-                    : iloscJednostek.toFixed(1);
+                    : iloscJednostek.toFixed(2);
 
                 extraUnitPart = ` (${iloscJednostek} ${product.nazwa_jednostki})`;
             }

@@ -219,7 +219,7 @@
                 "grams": 300
             }
         ],
-        "rating": 4
+        "rating": 5
     },
     {
         "id": 16,
@@ -1799,7 +1799,7 @@
             {
                 "id": 220,
                 "name": "Baton orzechowy (gorzka czekolada, banany) Dobra Kaloria",
-                "grams": 60
+                "grams": 70
             },
             {
                 "id": 251,
@@ -3278,19 +3278,20 @@
             {
                 "id": 52,
                 "name": "Serek śmietankowy",
-                "grams": 50
+                "grams": 30
             },
             {
                 "id": 258,
                 "name": "Ogórek świeży",
-                "grams": 75
+                "grams": 37.5
             },
             {
                 "id": 73,
                 "name": "Ser gouda",
                 "grams": 75
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 74,
@@ -5694,14 +5695,15 @@
             {
                 "id": 258,
                 "name": "Ogórek świeży",
-                "grams": 75
+                "grams": 37.5
             },
             {
                 "id": 37,
                 "name": "Hummus",
-                "grams": 80
+                "grams": 40
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 117,
