@@ -35,6 +35,7 @@ JEDNOSTKI = [
     "szczypta",
     "ząbek",
     "garść",
+    "kostka",
 ]
 
 DZIALY = [

@@ -420,7 +420,8 @@
                 "name": "Erytrol",
                 "grams": 5
             }
-        ]
+        ],
+        "rating": 4
     },
     {
         "id": 20,
@@ -1625,7 +1626,8 @@
                 "name": "Nasiona chia",
                 "grams": 7.5
             }
-        ]
+        ],
+        "rating": 3
     },
     {
         "id": 43,
@@ -3291,7 +3293,7 @@
                 "grams": 75
             }
         ],
-        "rating": 0
+        "rating": 5
     },
     {
         "id": 74,
@@ -4892,7 +4894,7 @@
             {
                 "id": 132,
                 "name": "Makaron spaghetti pełnoziarnisty",
-                "grams": 70
+                "grams": 80
             },
             {
                 "id": 6,
@@ -5356,7 +5358,7 @@
     },
     {
         "id": 111,
-        "name": "Żółte curry z cukinią oraz kurczakiem",
+        "name": "Żółte curry z cukinią oraz tofu",
         "description": "Ryż gotujemy według instrukcji na opakowaniu produktu.\nKurczaka kroimy w kostkę o boku ok.\n 1,5 cm.\n Posypujemy solą oraz pieprzem wedle uznania.\nCebulę, czosnek oraz pora drobno siekamy.\n Cukinię kroimy w niewielkie kawałki.\nNa dużej patelni rozgrzewamy oliwę na średnim ogniu.\n Dodajemy kurczaka i smażymy bez przykrycia, mieszając, przez około 6–8 minut, aż kurczak się zarumieni.\n Następnie przekładamy na talerz.\nRozgrzewamy tę samą patelnię na średnim ogniu.\n Smażymy cebulę oraz czosnek bez przykrycia, mieszając, przez około 2–3 minuty, do zeszklenia.\n Dodajemy curry i smażymy przez około 30 sekund, mieszając.\nDodajemy cukinię oraz pora.\n Dolewamy około 50 ml ciepłej wody i dusimy na małym ogniu, pod częściowym przykryciem, przez około 8–10 minut, aż warzywa będą miękkie.\nDodajemy kurczaka oraz mleczko kokosowe, mieszamy.\n Dusimy bez przykrycia na małym ogniu przez kolejne 3–5 minut, aż sos lekko zgęstnieje, a wszystkie składniki dobrze się połączą.\n Jeśli sos będzie zbyt płynny, zwiększamy ogień i gotujemy chwilę do odparowania nadmiaru płynu.\n Jeśli natomiast zbyt gęsty, dolewamy stopniowo gorącej wody.\nGotowe danie przekładamy na talerz i podajemy z ryżem.\n",
         "person": "osoba1",
         "dish": [
@@ -5366,7 +5368,7 @@
             {
                 "id": 86,
                 "name": "Oliwa z oliwek",
-                "grams": 10
+                "grams": 5
             },
             {
                 "id": 334,
@@ -5381,29 +5383,30 @@
             {
                 "id": 234,
                 "name": "Cukinia",
-                "grams": 100
+                "grams": 50
             },
             {
                 "id": 140,
                 "name": "Ryż basmati",
-                "grams": 150
-            },
-            {
-                "id": 24,
-                "name": "Mięso z piersi kurczaka",
-                "grams": 225
+                "grams": 75
             },
             {
                 "id": 313,
                 "name": "Curry przyprawa",
-                "grams": 1.5
+                "grams": 1
             },
             {
                 "id": 16,
                 "name": "Mleczko kokosowe 12%",
-                "grams": 100
+                "grams": 50
+            },
+            {
+                "id": 6,
+                "name": "Tofu naturalne",
+                "grams": 90
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 112,
@@ -5703,7 +5706,7 @@
                 "grams": 40
             }
         ],
-        "rating": 0
+        "rating": 4
     },
     {
         "id": 117,
@@ -5909,7 +5912,8 @@
                 "name": "Cynamon mielony",
                 "grams": 2
             }
-        ]
+        ],
+        "rating": 5
     },
     {
         "id": 121,
