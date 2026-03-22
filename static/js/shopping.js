@@ -7,7 +7,9 @@ const ShoppingState = {
     shoppingEndDate: null,
     plannerData: {},
     shoppingData: [],
-    currentSort: { key: "name", asc: true },
+    sortStack: [
+        { key: "name", asc: true }
+    ],
     lastRemovedProductId: null,
     lastRemovedProductName: null,
     undoTimeout: null
@@ -97,10 +99,12 @@ const ShoppingUI = {
         headers.forEach(th => {
             const key = th.getAttribute("data-key");
             const icon = th.querySelector(".sort-icon");
+            const mainSort = ShoppingState.sortStack[0];
+
             if (!icon) return;
 
-            if (key === ShoppingState.currentSort.key) {
-                icon.textContent = ShoppingState.currentSort.asc ? "▲" : "▼";
+            if (mainSort && key === mainSort.key) {
+                icon.textContent = mainSort.asc ? "▲" : "▼";
             } else {
                 icon.textContent = "▲▼";
             }
@@ -123,45 +127,79 @@ const Shopping = {
         const data = await ShoppingAPI.fetchShopping(startVal, endVal);
 
         ShoppingState.shoppingData = data.filter(item => !item.checked);
-
-        this.sortTable(ShoppingState.currentSort.key, false);
+        this.applySort();
     },
 
-    sortTable(key, toggle = true) {
+    sortTable(key) {
 
-        const sort = ShoppingState.currentSort;
+        let stack = ShoppingState.sortStack;
 
-        if (toggle) {
-            if (sort.key === key) {
-                sort.asc = !sort.asc;
-            } else {
-                sort.key = key;
-                sort.asc = true;
-            }
+        const existing = stack.find(s => s.key === key);
+
+        if (existing) {
+            // jeśli klikasz ten sam → zmień kierunek
+            existing.asc = !existing.asc;
+
+            // przenieś na początek (najważniejszy)
+            stack = [existing, ...stack.filter(s => s.key !== key)];
         } else {
-            sort.key = key;
+            // nowy sort → dodaj na początek
+            stack.unshift({ key, asc: true });
         }
+
+        ShoppingState.sortStack = stack;
+
+        this.applySort();
+    },
+
+    applySort() {
+
+        const stack = ShoppingState.sortStack;
 
         ShoppingState.shoppingData.sort((a, b) => {
 
-            let valA, valB;
+            for (let sort of stack) {
 
-            if (key === "ilosc") {
-                valA = Number(a.grams);
-                valB = Number(b.grams);
-            } else {
-                valA = (a[key] || "").toString().toLowerCase();
-                valB = (b[key] || "").toString().toLowerCase();
+                let valA, valB;
+                const key = sort.key;
+
+                if (key === "ilosc") {
+                    valA = Number(a.grams);
+                    valB = Number(b.grams);
+
+                } else if (key === "czy_w_lodowce") {
+
+                    const map = {
+                        "tak": 1,
+                        "tak/nie": 2,
+                        "nie": 3
+                    };
+
+                    const normalize = v => (v || "").toLowerCase().trim();
+
+                    valA = map[normalize(a[key])] ?? 999;
+                    valB = map[normalize(b[key])] ?? 999;
+
+                } else {
+                    valA = (a[key] || "").toString().toLowerCase();
+                    valB = (b[key] || "").toString().toLowerCase();
+                }
+
+                if (valA < valB) return sort.asc ? -1 : 1;
+                if (valA > valB) return sort.asc ? 1 : -1;
             }
 
-            if (valA < valB) return sort.asc ? -1 : 1;
-            if (valA > valB) return sort.asc ? 1 : -1;
-            return 0;
+            // 🔥 ostateczna stabilność
+            return a.id - b.id;
         });
 
         ShoppingUI.renderTable();
         ShoppingUI.updateSortIcons();
-        this.saveState();
+
+        localStorage.setItem(
+            "shoppingSortState",
+            JSON.stringify(ShoppingState.sortStack)
+        );
     },
 
     async markBought(id) {
@@ -213,14 +251,35 @@ const Shopping = {
             "shoppingTableState",
             JSON.stringify(ShoppingState.shoppingData)
         );
+
+        localStorage.setItem(
+            "shoppingSortState",
+            JSON.stringify(ShoppingState.sortStack)
+        );
     },
 
     loadState() {
         const saved = localStorage.getItem("shoppingTableState");
+        const savedSort = localStorage.getItem("shoppingSortState");
+
         if (saved) {
             ShoppingState.shoppingData = JSON.parse(saved);
-            this.sortTable(ShoppingState.currentSort.key, false);
         }
+
+        if (savedSort) {
+            const parsed = JSON.parse(savedSort);
+
+            // 🔥 naprawa kompatybilności
+            if (Array.isArray(parsed)) {
+                ShoppingState.sortStack = parsed;
+            } else if (parsed && parsed.key) {
+                // stary format → konwertuj
+                ShoppingState.sortStack = [parsed];
+            } else {
+                ShoppingState.sortStack = [{ key: "name", asc: true }];
+            }
+        }
+
     },
 
     updateUndoButton() {
@@ -269,20 +328,21 @@ const Shopping = {
     },
     async copyNameAndQuantity() {
 
-        if (!ShoppingState.shoppingData.length) {
+        const rows = document.querySelectorAll("#shoppingBody tr");
+
+        if (!rows.length) {
             alert("Brak produktów do skopiowania.");
             return;
         }
 
-        const textToCopy = ShoppingState.shoppingData.map(item => {
+        const textToCopy = Array.from(rows).map(row => {
 
-            let iloscText = item.grams + " g";
+            const inputs = row.querySelectorAll("input");
 
-            if (item.sztuki && item.jednostka) {
-                iloscText += " (" + item.sztuki + " " + item.jednostka + ")";
-            }
+            const name = inputs[0].value;
+            const ilosc = inputs[1].value;
 
-            return item.name + " - " + iloscText;
+            return name + " - " + ilosc;
 
         }).join("\n");
 

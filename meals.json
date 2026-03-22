@@ -458,9 +458,10 @@
             {
                 "id": 260,
                 "name": "Papryka czerwona",
-                "grams": 170
+                "grams": 85
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 21,
@@ -2376,12 +2377,12 @@
             {
                 "id": 260,
                 "name": "Papryka czerwona",
-                "grams": 170
+                "grams": 85
             },
             {
                 "id": 304,
                 "name": "Szynka z kurczaka",
-                "grams": 40
+                "grams": 50
             },
             {
                 "id": 73,
@@ -2398,7 +2399,8 @@
                 "name": "Ketchup",
                 "grams": 20
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 58,
@@ -3265,7 +3267,7 @@
             {
                 "id": 262,
                 "name": "Pomidor",
-                "grams": 160
+                "grams": 80
             },
             {
                 "id": 334,
