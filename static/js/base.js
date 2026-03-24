@@ -23,7 +23,8 @@ const DISH_CONFIG = {
         1: "Śniadanie",
         2: "Obiad",
         3: "Kolacja",
-        4: "Przekąska"
+        4: "Przekąska",
+        5: "II Śniadanie"
     }
 };
 

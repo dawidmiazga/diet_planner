@@ -398,7 +398,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                 ShoppingState.shoppingStartDate,
                 ShoppingState.shoppingEndDate
             );
-            Shopping.loadShopping();
+
+            Shopping.resetList()
+            // await ShoppingAPI.resetList();
+            // Shopping.loadShopping();
         }
     });
 
@@ -412,7 +415,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                 ShoppingState.shoppingStartDate,
                 ShoppingState.shoppingEndDate
             );
-            Shopping.loadShopping();
+            
+            Shopping.resetList()
+            // await ShoppingAPI.resetList();
+            // Shopping.loadShopping();
         }
     });
 

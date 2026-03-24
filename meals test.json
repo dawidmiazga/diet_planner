@@ -268,8 +268,7 @@
                 "name": "Rukola",
                 "grams": 10
             }
-        ],
-        "rating": 5
+        ]
     },
     {
         "id": 17,
@@ -367,8 +366,7 @@
                 "name": "Serek śmietankowy",
                 "grams": 30
             }
-        ],
-        "rating": 5
+        ]
     },
     {
         "id": 19,
@@ -448,6 +446,11 @@
                 "grams": 80
             },
             {
+                "id": 276,
+                "name": "Szpinak",
+                "grams": 30
+            },
+            {
                 "id": 48,
                 "name": "Ser mozzarella kulka",
                 "grams": 120
@@ -456,14 +459,9 @@
                 "id": 260,
                 "name": "Papryka czerwona",
                 "grams": 85
-            },
-            {
-                "id": 272,
-                "name": "Sałata",
-                "grams": 20
             }
         ],
-        "rating": 5
+        "rating": 0
     },
     {
         "id": 21,
@@ -710,8 +708,7 @@
                 "name": "Mleko roślinne niesłodzone",
                 "grams": 250
             }
-        ],
-        "rating": 3
+        ]
     },
     {
         "id": 26,
@@ -1370,7 +1367,7 @@
     {
         "id": 38,
         "name": "Bowl z serem kozim",
-        "description": "Ryż gotujemy wg instrukcji na opakowaniu.\nPo ugotowaniu pozostawiamy do ostygnięcia.\nFasolkę gotujemy w osolonej wodzie, aż będzie miękka.\nSzpinak kroimy na mniejsze kawałki.\nW niewielkiej miseczce mieszamy wszystkie składniki sosu (oliwa, sok z cytryny, miód, musztarda, sól oraz pieprz).\nW misce umieszczamy komosę ryżową, fasolkę szparagową, ser kozi, posiekane orzechy oraz szpinak.\nPolewamy sosem.\n",
+        "description": "Komosę ryżową gotujemy wg instrukcji na opakowaniu.\n Po ugotowaniu pozostawiamy do ostygnięcia.\nFasolkę gotujemy w osolonej wodzie, aż będzie miękka.\nSzpinak kroimy na mniejsze kawałki.\nW niewielkiej miseczce mieszamy wszystkie składniki sosu (oliwa, sok z cytryny, miód, musztarda, sól oraz pieprz).\nW misce umieszczamy komosę ryżową, fasolkę szparagową, ser kozi, posiekane orzechy oraz szpinak.\n Polewamy sosem.\n",
         "person": "osoba1",
         "dish": [
             1,
@@ -1415,9 +1412,14 @@
                 "grams": 12
             },
             {
+                "id": 128,
+                "name": "Komosa ryżowa",
+                "grams": 60
+            },
+            {
                 "id": 289,
                 "name": "Fasola szparagowa, świeża lub mrożona",
-                "grams": 100
+                "grams": 74
             },
             {
                 "id": 71,
@@ -1428,14 +1430,8 @@
                 "id": 201,
                 "name": "Musztarda",
                 "grams": 10
-            },
-            {
-                "id": 141,
-                "name": "Ryż biały",
-                "grams": 140
             }
-        ],
-        "rating": 4
+        ]
     },
     {
         "id": 39,
@@ -2517,8 +2513,7 @@
                 "name": "Ksylitol",
                 "grams": 7.5
             }
-        ],
-        "rating": 4
+        ]
     },
     {
         "id": 60,
@@ -4909,7 +4904,7 @@
                 "grams": 80
             }
         ],
-        "rating": 5
+        "rating": 0
     },
     {
         "id": 104,
@@ -6092,7 +6087,7 @@
     {
         "id": 124,
         "name": "Nocna owsianka pistacjowa",
-        "description": "W miseczce lub zamykanym słoiczku umieszczamy płatki owsiane, jogurt skyr, pastę pistacjową oraz mleko.\nCałość dokładnie mieszamy, w razie potrzeby dolewamy wodę i umieszczamy w lodówce na całą noc.\nOwsiankę możemy przygotować szybciej i zjeść od razu, gotując płatki do miękkości na podanej ilości mleka z dodatkiem wody (ilość wody zależna od preferowanej gęstości owsianki) lub zalać ciepłym mlekiem i odstawić na chwilę, aż zmiękną, następnie mieszamy płatki z pozostałymi składnikami.\nW tym przypadku nie musimy pozostawiać owsianki na noc.\nGotową owsiankę przed podaniem dekorujemy cynamonem, orzechami pistacjowymi oraz owocami.\n",
+        "description": "W miseczce lub zamykanym słoiczku umieszczamy płatki owsiane, jogurt skyr, pastę pistacjową oraz mleko.\n Opcjonalnie dodajemy erytrol.\n Całość dokładnie mieszamy, w razie potrzeby dolewamy wodę i umieszczamy w lodówce na całą noc.\n Owsiankę możemy przygotować szybciej i zjeść od razu, gotując płatki do miękkości na podanej ilości mleka z dodatkiem wody (ilość wody zależna od preferowanej gęstości owsianki) lub zalać ciepłym mlekiem i odstawić na chwilę, aż zmiękną, następnie mieszamy płatki z pozostałymi składnikami.\n W tym przypadku nie musimy pozostawiać owsianki na noc.\nGotową owsiankę przed podaniem dekorujemy cynamonem, orzechami pistacjowymi oraz czerwonymi porzeczkami.\n",
         "person": "osoba1",
         "dish": [
             1,
@@ -6117,6 +6112,11 @@
                 "grams": 150
             },
             {
+                "id": 120,
+                "name": "Erytrol",
+                "grams": 10
+            },
+            {
                 "id": 315,
                 "name": "Cynamon mielony",
                 "grams": 2
@@ -6127,17 +6127,16 @@
                 "grams": 15
             },
             {
-                "id": 212,
-                "name": "Masło orzechowe",
+                "id": 211,
+                "name": "Pasta pistacjowa 100%",
                 "grams": 20
             },
             {
-                "id": 284,
-                "name": "Borówki mrożone",
-                "grams": 50
+                "id": 296,
+                "name": "Porzeczki czerwone, świeże lub mrożone",
+                "grams": 100
             }
-        ],
-        "rating": 4
+        ]
     },
     {
         "id": 125,
@@ -7317,7 +7316,8 @@
         "description": "Płatki owsiane zalewamy ciepłym napojem i pozostawiamy do namoczenia na 10-15 min.\nDo namoczonych płatków owsianych dodajemy jogurt skyr sojowy i dokładnie mieszamy.\nDodajemy mango oraz wiórki kokosowe",
         "person": "osoba2",
         "dish": [
-            1
+            1,
+            5
         ],
         "ingredients": [
             {
@@ -7345,7 +7345,8 @@
                 "name": "Napój sojowy",
                 "grams": 125
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 148,
@@ -7440,7 +7441,8 @@
         "description": "Mieszamy płatki owsiane, pokruszone orzechy włoskie oraz syrop klonowy.\nSkładniki rozkładamy na papierze do pieczenia.\n Pieczemy w temperaturze 180 stopni, tryb góra-dół przez około 10 minut (do zezłocenia), mieszając co chwilę.\n Po upieczeniu studzimy.\n Kruszymy, gdy będzie zimna.\n Możemy również przygotować granolę bez użycia piekarnika.\n Składniki granoli dodajemy na suchą, dobrze rozgrzaną patelnię o nieprzywierającej powłoce.\n Całość smażymy, stale mieszając, aż do zezłocenia granoli.\nDo miski nakładamy jogurt skyr sojowy granolę, posiekaną gorzką czekoladę oraz pokrojone owoce.\n",
         "person": "osoba2",
         "dish": [
-            1
+            1,
+            5
         ],
         "ingredients": [
             {
@@ -7473,7 +7475,8 @@
                 "name": "Syrop klonowy",
                 "grams": 10
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 151,
@@ -7664,7 +7667,8 @@
         "description": "Płatki owsiane zalewamy wrzątkiem do linii płatków, pozostawiamy na 3 minuty.\nDo namoczonych płatków owsianych dodajemy jogurt skyr sojowy i dokładnie mieszamy.\n Jeżeli owsianka jest zbyt gęsta możemy dodać odrobinę wody, do ulubionej konsystencji.\nDodajemy kaki oraz orzechy.\n",
         "person": "osoba2",
         "dish": [
-            1
+            1,
+            5
         ],
         "ingredients": [
             {
@@ -7687,7 +7691,8 @@
                 "name": "Kaki",
                 "grams": 125
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 155,
@@ -7822,7 +7827,8 @@
         "description": "W rondelku mieszamy płatki owsiane oraz mleko i podgrzewamy przez 5 minut.\n Jeśli owsianka jest zbyt gęsta, dolewamy trochę wody, aby uzyskać preferowaną konsystencję.\n Jeśli natomiast jest zbyt rzadka, gotujemy ją nieco dłużej, aby nadmiar płynu odparował.\nNastępnie dodajemy gorzką czekoladę i mieszamy, aż się rozpuści.\nZestawiamy z ognia i mieszamy owsiankę z płatkami migdałów oraz jogurtem skyr sojowym.\nPrzekładamy owsiankę do miski i dodajemy pokrojone śliwki.\nMożesz też przygotować owsiankę bez gotowania płatków owsianych, z pokruszonymi kawałkami gorzkiej czekolady oraz płatkami migdałów.\n",
         "person": "osoba2",
         "dish": [
-            1
+            1,
+            5
         ],
         "ingredients": [
             {
@@ -7855,7 +7861,8 @@
                 "name": "Śliwki, świeże lub mrożone",
                 "grams": 60
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 158,
@@ -8432,7 +8439,8 @@
         "description": "Zagotowujemy napój.\n Dodajemy płatki owsiane i gotujemy do miękkości, co jakiś czas mieszając.\n Delikatnie studzimy.\nBanana kroimy na drobniejsze kawałki.\n Do owsianki dodajemy banana i mieszamy.\nPosypujemy malinami oraz orzechami włoskimi.\nMieszamy z jogurtem skyr sojowym.\n Smacznego!",
         "person": "osoba2",
         "dish": [
-            1
+            1,
+            5
         ],
         "ingredients": [
             {
@@ -8465,7 +8473,8 @@
                 "name": "Alpro sojowe wysokobiałkowe",
                 "grams": 105
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 170,
@@ -12324,7 +12333,8 @@
         "description": "Do rondelka wsypujemy płatki owsiane oraz nasiona chia, wlewamy mleko i gotujemy na wolnym ogniu, aż płatki owsiane będą miękkie, a owsianka zgęstnieje.\nDo miękkich płatki owsiane dodajemy erytrol, kakao oraz masło orzechowe i dokładnie mieszamy.\nPrzygotowujemy mus: maliny dusimy w niewielkiej ilości wody.\n Gdy maliny się rozgotują, miksujemy.\nGotową owsiankę przekładamy do miseczki.\n Posypujemy malinami lub musem z malin.\n",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -12362,7 +12372,8 @@
                 "name": "Nasiona chia",
                 "grams": 2.5
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 238,
@@ -12370,7 +12381,8 @@
         "description": "Płatki owsiane, syrop klonowy, żurawinę oraz orzechy włoskie, całość mieszamy.\nGranolę pieczemy w piekarniku rozgrzanym do 180 stopni przez 10-15 minut i studzimy.\nGranolę podajemy z jogurtem skyr sojowym.\n Smacznego!",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -12398,7 +12410,8 @@
                 "name": "Żurawina suszona",
                 "grams": 10
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 239,
@@ -12406,7 +12419,8 @@
         "description": "Domową granolę robimy z płatków owsianych, wiórków kokosowych oraz syropu klonowego.\n Wszystkie składniki ze sobą mieszamy, rozkładamy na papierze do pieczenia i pieczemy w temp 180 stopni przez około 10-15 minut mieszając co kilka minut.\nPo upieczeniu studzimy i kruszymy jak już granola wystygnie.\nKroimy ananasa i siekamy gorzką czekoladę.\nDo miseczki nakładamy jogurt skyr sojowy, dodajemy granolę, pokrojone owoce i posypujemy gorzką czekoladą.\n Smacznego!",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -12439,7 +12453,8 @@
                 "name": "Ananas świeży lub mrożony",
                 "grams": 50
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 240,
@@ -12447,7 +12462,8 @@
         "description": "Mieszamy płatki owsiane posiekane orzechy włoskie oraz syrop klonowy.\n Rozkładamy na papierze do pieczenia i pieczemy w temperaturze 180 stopni przez 10-20 minut, mieszając co chwilę.\n Po upieczeniu studzimy i kruszymy.\nDo miski nakładamy jogurt skyr sojowy, domową granolę, wiórki kokosowe, posiekane morele oraz ananasa.\n Mieszamy.\n",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -12485,7 +12501,8 @@
                 "name": "Morele suszone",
                 "grams": 28
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 241,
@@ -12580,7 +12597,8 @@
         "description": "Płatki owsiane zalewamy wrzątkiem do linii płatków, pozostawiamy na kilka minut do namięknięcia.\n Po tym czasie mieszamy z jogurtem skyr sojowym.\n Jeśli konsystencja jest zbyt gęsta po dodaniu jogurtu skyr sojowego, dolewamy stopniowo letnią wodę, aby uzyskać preferowaną gęstość dania.\nBanana kroimy na mniejsze kawałki i dodajemy go do płatków owsianych razem z borówkami.\nWierzch owsianki posypujemy płatkami migdałów.\n",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -12608,7 +12626,8 @@
                 "name": "Jogurt skyr sojowy",
                 "grams": 140
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 244,
@@ -12662,7 +12681,8 @@
         "description": "Do miseczki wsypujemy płatki owsiane oraz nasiona chia.\n Zalewamy mlekiem i mieszamy.\nDodajemy owoce, masło orzechowe oraz jogurt skyr sojowy.\n Jeśli konsystencja owsianki jest zbyt gęsta, możemy dolać odrobinę zimnej wody do uzyskania preferowanej konsystencji.\n Ponownie dokładnie mieszamy.\nCałość wkładamy do lodówki na kilka godzin, najlepiej na całą noc, aby owsianka dobrze się schodziła, a płatki zmiękły.\n",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -12695,7 +12715,8 @@
                 "name": "Jogurt skyr sojowy",
                 "grams": 200
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 246,
@@ -12703,7 +12724,8 @@
         "description": "Do miseczki wsypujemy płatki owsiane oraz nasiona chia.\nZalewamy mlekiem i mieszamy.\nDodajemy cynamon, borówki, erytrol, jogurt skyr sojowy oraz orzechy włoskie, mieszamy.\n W przypadku użycia mrożonych owoców warto je wcześniej rozmrozić.\n W razie potrzeby dolewamy odrobinę chłodnej wody, aby uzyskać preferowaną konsystencję.\nCałość wkładamy do lodówki na kilka godzin, najlepiej na całą noc.\n Przed podaniem próbujemy, możemy jeszcze dosłodzić erytrolem wedle uznania.\n",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -12746,7 +12768,8 @@
                 "name": "Jogurt skyr sojowy",
                 "grams": 135
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 247,
@@ -12754,7 +12777,8 @@
         "description": "Banana oraz jogurt skyr sojowy blendujemy jako bazę do naszej owsianki.\nNa patelni prażymy płatki owsiane oraz płatki migdałów.\n Składniki prażymy na rozgrzanej patelni, na średnim ogniu przez ok.\n 3-5 minut stale mieszając.\nNa koniec prażenia dodajemy olej oraz syrop z agawy, prażymy jeszcze około 1 minuty.\n Dzięki temu nasza granola będzie chrupiąca i aromatyczna.\n Gotową granolę z jogurtem podajemy z malinami.\n Smacznego!",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -12792,7 +12816,8 @@
                 "name": "Syrop z agawy",
                 "grams": 15
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 248,
@@ -12877,7 +12902,8 @@
         "description": "Do garnka wlewamy mleko, dodajemy płatki owsiane, erytrol oraz kakao.\n Całość mieszamy i podgrzewamy, aż do momentu zagotowania.\nPo zagotowaniu odstawiamy na bok, mieszamy z jogurtem skyr sojowym i przekładamy do miseczki.\nGotowe danie posypujemy siekanymi orzechami włoskimi i owocami.\n Smacznego!",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -12915,7 +12941,8 @@
                 "name": "Jogurt skyr sojowy",
                 "grams": 135
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 252,
@@ -12923,7 +12950,8 @@
         "description": "Płatki owsiane zalewamy ciepłym mlekiem i pozostawiamy do namoczenia na 10 min.\nDo namoczonych płatków owsianych dodajemy jogurt skyr sojowy i dokładnie mieszamy.\nDodajemy banana oraz masło orzechowe.\n",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -12951,7 +12979,8 @@
                 "name": "Napój sojowy",
                 "grams": 125
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 253,
@@ -12959,7 +12988,8 @@
         "description": "Piekarnik nagrzewamy do 180 stopni, góra-dół.\nW misce mieszamy suche składniki płatki owsiane, proszek do pieczenia, cynamon, imbir mielony oraz sól.\nW drugiej misce mieszamy mokre składniki: jajko, mleko, syrop klonowy oraz ekstrakt waniliowy.\nGruszki obieramy i kroimy w drobną kostkę.\nMieszamy suche i mokre składniki, dodajemy gruszkę i delikatnie mieszamy.\nFormę do zapiekania lub kokilki przecieramy ręcznikiem papierowym nasączonym olejem.\nMasę przekładamy do formy i pieczemy około 35 minut.\nPodajemy ze skyrem.\n",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -13022,7 +13052,8 @@
                 "name": "Imbir mielony",
                 "grams": 2
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 254,
@@ -13030,7 +13061,8 @@
         "description": "Piekarnik rozgrzewamy do 180 stopni, góra-dół.\nW misce mieszamy płatki owsiane, proszek do pieczenia, cynamon, gałkę muszkatołową oraz sól.\nW drugiej misce mieszamy jajko, mleko, syrop klonowy oraz ekstrakt waniliowy.\nDo składników suchych dodajemy mokre i dokładnie mieszamy.\nJabłko obieramy i kroimy w niewielką kostkę.\n Dodajemy do masy i mieszamy.\nFormę do zapiekania (kokilki) przecieramy ręcznikiem papierowym nasączonym olejem.\nMasę przekładamy do formy i pieczemy około 25-30 minut.\nPodajemy ze skyrem.\n",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -13093,7 +13125,8 @@
                 "name": "Gałka muszkatołowa",
                 "grams": 1
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 255,
@@ -13183,7 +13216,8 @@
         "description": "Płatki owsiane górskie3 x łyżka (30 g)Truskawki, świeże lub mrożone75 gMasło orzechowe2 x łyżeczka (20 g)Jogurt skyr sojowy7.\n5 x łyżka (145 g)Mleko roślinne niesłodzone0.\n5 x szklanka (125 g)Płatki owsiane dodajemy do mleka i gotujemy, aż będą miękkie.\n Dodajemy jogurt skyr sojowy.\nUgotowaną owsiankę przekładamy do miski, na wierzch układamy truskawki i dodajemy masło orzechowe.\n Smacznego!",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -13211,7 +13245,8 @@
                 "name": "Jogurt skyr sojowy",
                 "grams": 145
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 258,
@@ -13219,7 +13254,8 @@
         "description": "Do rondelka wlewamy wodę, kroimy gruszkę, następnie dusimy ją przez 2-3 minuty.\nDo rondelka dodajemy płatki owsiane oraz mleko, podgrzewamy przez 5 minut.\n Jeśli owsianka jest zbyt gęsta, dolewamy trochę wody, aby uzyskać preferowaną konsystencję.\n Jeśli natomiast jest zbyt rzadka, gotujemy ją nieco dłużej, aby nadmiar płynu odparował.\nZestawiamy z ognia i mieszamy owsiankę z jogurtem skyr sojowym i cynamonem (opcjonalnie w ilości według własnego uznania).\nPrzekładamy owsiankę do miski, dodajemy migdały i duszone owoce.\nMożesz też przygotować owsiankę bez gotowania płatków – wsyp płatki owsiane do miski z mlekiem, odczekaj 2 minuty.\n Dodaj jogurt skyr sojowy, gruszkę oraz migdały.\n",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -13257,7 +13293,8 @@
                 "name": "Jogurt skyr sojowy",
                 "grams": 145
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 259,
@@ -13265,7 +13302,8 @@
         "description": "Banana kroimy w plasterki i układamy na spodzie miseczki.\nPłatki owsiane mieszamy z jogurtem skyr sojowym oraz erytrolem.\n Jeśli jest za gęste, możemy dodać wodę, aż uzyskamy pożądaną konsystencję.\n Całość przekładamy do miseczki.\n (płatki przed podaniem do jogurtu możemy ugotować w wodzie do miękkości lub zalać gorącą wodą i pozostawić na parę minut, aż zmiękną).\nGorzką czekoladę rozpuszczamy w kąpieli wodnej i polewamy owsiankę lub nierozpuszczoną układamy na wierzchu dania.\nNa koniec dodajemy masło orzechowe oraz orzechy nerkowca.\n Smacznego!",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -13303,7 +13341,8 @@
                 "name": "Jogurt skyr sojowy",
                 "grams": 135
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 260,
@@ -13521,7 +13560,8 @@
         "description": "W rondelku łączymy ze sobą płatki owsiane oraz napój.\n Podgrzewamy przez kilka minut, cały czas mieszając, aż płatki zmiękną.\n Jeśli masa jest zbyt gęsta, dolewamy odrobinę mleka lub wody, aby uzyskać odpowiednią konsystencję.\n W przypadku zbyt rzadkiej konsystencji, gotujemy chwilę dłużej, aż płatki zgęstnieją.\n Następnie dodajemy gorzką czekoladę oraz masło orzechowe i mieszamy do momentu połączenia się składników.\nDodajemy szczyptę soli.\nOwsiankę przekładamy do miski, dodajemy jogurt skyr sojowy oraz orzechy arachidowe.\nMożesz też przygotować owsiankę bez gotowania płatków owsianych - wsyp płatki owsiane do miski z napojem i odczekaj 2 minuty.\n",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -13559,7 +13599,8 @@
                 "name": "Napój sojowy",
                 "grams": 75
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 266,
@@ -13613,7 +13654,8 @@
         "description": "Domową granolę robimy z: płatków owsianych, syropu z agawy oraz orzechów włoskich.\n Wszystkie składniki ze sobą mieszamy, rozkładamy na papierze do pieczenia i pieczemy w temp.\n 180 stopni, tryb góra - dół przez ok.\n 10-15 minut, mieszając co kilka minut.\n Po upieczeniu studzimy, jak będzie zimna - kruszymy.\nDo miseczki dodajemy jogurt skyr sojowy oraz żurawinę i przygotowaną wcześniej granolę.\n Całość mieszamy.\n Smacznego!",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -13641,7 +13683,8 @@
                 "name": "Żurawina suszona",
                 "grams": 10
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 268,
@@ -13756,7 +13799,8 @@
         "description": "Płatki gotujemy na mleku do miękkości.\nGdy płatki delikatnie przestygną, dodajemy jogurt skyr sojowy oraz kakao, dokładnie mieszamy.\n Całość dosładzamy erytrolem wedle uznania.\nDo płatków dodajemy pokrojone suszone owoce i posiekaną czekoladę.\n Czekoladę możemy również rozpuścić w kąpieli wodnej i polać nią owsiankę.\n",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -13794,7 +13838,8 @@
                 "name": "Śliwki suszone",
                 "grams": 15
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 271,
@@ -13848,7 +13893,8 @@
         "description": "Płatki gotujemy na wodzie (możemy pominąć ten etap).\nUgotowane płatki mieszamy z jogurtem.\n Przekładamy do miseczki.\nOrzechy siekamy, owoce obieramy i kroimy na mniejsze kawałki.\n Układamy wszytko na owsiance.\nPodajemy gorzką czekoladą.\n",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -13881,7 +13927,8 @@
                 "name": "Pomarańcza",
                 "grams": 120
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 273,
@@ -13925,7 +13972,8 @@
         "description": "Mleko przelewamy do rondelka.\n Następnie do mleka dodajemy skórkę z pomarańczy, kurkumę, cynamon, imbir mielony oraz erytrol wedle uznania.\nPłatki gotujemy w mleku do miękkości, co jakiś czas mieszając.\n Jeśli masa jest zbyt gęsta, dolewamy odrobinę mleka lub wody, aby uzyskać odpowiednią konsystencję.\n W przypadku zbyt rzadkiej konsystencji, gotujemy chwilę dłużej, aż płatki zgęstnieją.\n Płatki możemy zalać gorącym mlekiem i pozostawić, aż zmiękną.\n Gdy wystygną mieszamy je z jogurtem skyr sojowym.\nPłatki migdałów prażymy na suchej, rozgrzanej patelni na złoty kolor.\nGotowe płatki podajemy z owocami i płatkami migdałów .\n",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -13978,7 +14026,8 @@
                 "name": "Skórka z pomarańczy",
                 "grams": 1.5
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 276,
@@ -14133,7 +14182,8 @@
         "description": "Płatki owsiane zalewamy wrzątkiem do linii płatków, pozostawiamy na 3 minuty.\nDo namoczonych płatków owsianych dodajemy jogurt skyr sojowy i dokładnie mieszamy.\n Jeżeli owsianka jest zbyt gęsta możemy dodać odrobinę wody, do ulubionej konsystencji.\nDodajemy banana oraz orzechy.\n",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -14156,7 +14206,8 @@
                 "name": "Jogurt skyr sojowy",
                 "grams": 145
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 280,
@@ -14225,7 +14276,8 @@
         "description": "Mieszamy płatki owsiane, pokruszone orzechy nerkowca, syrop klonowy oraz cynamon.\nSkładniki rozkładamy na papierze do pieczenia.\n Pieczemy w temperaturze 180 stopni, tryb góra-dół przez około 10 minut (do zezłocenia), mieszając co chwilę.\n Po upieczeniu studzimy.\n Kruszymy, gdy będzie zimna.\n Możemy również przygotować granolę bez użycia piekarnika.\n Składniki granoli dodajemy na suchą, dobrze rozgrzaną patelnię o nieprzywierającej powłoce.\n Całość smażymy, stale mieszając, aż do zezłocenia granoli.\nDo miski nakładamy jogurt skyr sojowy granolę, posiekaną gorzką czekoladę oraz pokrojone owoce.\n",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -14263,7 +14315,8 @@
                 "name": "Cynamon",
                 "grams": 1
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 282,
@@ -15898,7 +15951,8 @@
         "description": "Składniki na ciasto (banana, jajko, mąkę owsianą, erytrol oraz proszek do pieczenia blendujemy i odstawiamy na 5-10 minut.\n Następnie mieszamy z borówkami oraz gorzką czekoladą.\n Jeśli masa po tym czasie jest dosyć gęsta, można dolać odrobinę wody w celu poprawienia konsystencji ciasta.\nPlacuszki smażymy na dobrze rozgrzanym oleju.\n Niewielkie porcje ciasta nakładamy przy pomocy łyżki, zachowując odległość między nimi.\n Zmniejszamy moc palnika i smażymy do ścięcia smażonej powierzchni.\n Przy pomocy płaskiej szpatułki odwracamy placuszki na drugą stronę i smażymy do zarumienienia.\n",
         "person": "osoba2",
         "dish": [
-            1
+            1,
+            5
         ],
         "ingredients": [
             {
@@ -15941,7 +15995,8 @@
                 "name": "Mąka owsiana pełnoziarnista",
                 "grams": 36
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 333,
@@ -16939,7 +16994,8 @@
         "description": "Domową granolę robimy z płatków owsianych, syropu klonowego oraz orzechów włoskich.\nWszystkie składniki ze sobą mieszamy, rozkładamy na papierze do pieczenia i pieczemy w temperaturze 180*C , tryb góra - dół, przez około 10-15 minut mieszając co kilka minut.\n Jeśli po tym czasie granola jest zbyt mało zarumieniona, wydłużamy czas pieczenia.\nPo upieczeniu studzimy i jak już będzie zimna kruszymy.\nKroimy owoce w kostkę i przyprawiamy cynamonem.\nDo miseczki nakładamy jogurt skyr sojowy, przygotowaną granolę, owoce, następnie całość mieszamy.\n Smacznego!",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -16977,7 +17033,8 @@
                 "name": "Syrop klonowy",
                 "grams": 10
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 351,
@@ -16985,7 +17042,8 @@
         "description": "Płatki owsiane zalewamy ciepłym mlekiem i pozostawiamy na ok.\n 10 minut.\nMango kroimy w kostkę, marakuję wyjmujemy ze skórki.\nDo płatków owsianych dodajemy jogurt skyr sojowy, następnie układamy pokrojone owoce.\nOwsiankę posypujemy wiórkami kokosowymi.\n",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -17018,7 +17076,8 @@
                 "name": "Marakuja",
                 "grams": 30
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 352,
@@ -17226,7 +17285,8 @@
         "description": "Płatki owsiane oraz erytrol gotujemy na mleku.\n Możemy również zalać płatki ciepłym mlekiem i odstawić na 10 minut.\nPłatki owsiane przekładamy do miski.\n Do przestudzonej owsianki dodajemy jogurt skyr sojowy, dokładnie mieszamy.\nDo owsianki dodajemy masło orzechowe oraz figi.\n",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -17259,7 +17319,8 @@
                 "name": "Figi świeże",
                 "grams": 60
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 358,
@@ -17267,7 +17328,8 @@
         "description": "Blendujemy napój, wiórki kokosowe oraz ekstrakt waniliowy.\n Przekładamy do rondelka, solimy i podgrzewamy.\nDodajemy płatki owsiane oraz erytrol i całość mieszamy.\nWszystko gotujemy przez 4 minuty, co chwilę mieszając.\n Odstawiamy na 2 minuty, dodajemy jogurt skyr sojowy.\nPodajemy z tartą lub posiekaną gorzką czekoladą.\n Smacznego!",
         "person": "osoba2",
         "dish": [
-            3
+            3,
+            5
         ],
         "ingredients": [
             {
@@ -17310,7 +17372,8 @@
                 "name": "Napój sojowy",
                 "grams": 125
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 359,
@@ -17830,7 +17893,8 @@
         "description": "Płatki owsiane zalewamy wrzątkiem do linii płatków, pozostawiamy na 3 minuty.\nDo namoczonych płatków owsianych dodajemy jogurt skyr sojowy i dokładnie mieszamy.\n Jeżeli owsianka jest zbyt gęsta możemy dodać odrobinę wody, do ulubionej konsystencji.\nDodajemy banana oraz orzechy włoskie.\n",
         "person": "osoba2",
         "dish": [
-            1
+            1,
+            5
         ],
         "ingredients": [
             {
@@ -17853,7 +17917,8 @@
                 "name": "Jogurt skyr sojowy",
                 "grams": 145
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 372,
@@ -17912,7 +17977,8 @@
         "description": "Pokrojone owoce, płatki owsiane oraz nasiona chia wkładamy do słoika.\n Zalewamy mlekiem.\n Wstawiamy do lodówki na całą noc.\n Owsiankę możemy przygotować szybciej i zjeść od razu, gotując płatki owsiane do miękkości w mleku lub zalać ciepłym mlekiem i odstawić na chwilę, aż zmiękną.\n Następnie wymieszać z dodatkami.\nRano mieszamy z jogurtem skyr sojowym.\n Dosładzamy erytrolem wedle uznania.\nPosypujemy orzechami pistacjowymi.\n",
         "person": "osoba2",
         "dish": [
-            1
+            1,
+            5
         ],
         "ingredients": [
             {
@@ -17950,7 +18016,8 @@
                 "name": "Jogurt skyr sojowy",
                 "grams": 135
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 374,
@@ -18328,5 +18395,59 @@
         ],
         "rating": 0,
         "id": 388
+    },
+    {
+        "name": "a",
+        "description": "",
+        "ingredients": [
+            {
+                "id": 227,
+                "name": "Banan",
+                "grams": 3
+            },
+            {
+                "id": 66,
+                "name": "Alpro sojowe wysokobiałkowe",
+                "grams": 211111
+            },
+            {
+                "id": 225,
+                "name": "Arbuz",
+                "grams": 5551
+            }
+        ],
+        "person": "osoba1",
+        "dish": [
+            1,
+            4
+        ],
+        "rating": 4,
+        "id": 389
+    },
+    {
+        "name": "aaassdddd",
+        "description": "",
+        "ingredients": [
+            {
+                "id": 226,
+                "name": "Awokado",
+                "grams": 111
+            },
+            {
+                "id": 176,
+                "name": "Anty baton Łowicz Daktyle Orzechy laskowe Ananas",
+                "grams": 111
+            }
+        ],
+        "person": "osoba1",
+        "dish": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "rating": 0,
+        "id": 390
     }
 ]

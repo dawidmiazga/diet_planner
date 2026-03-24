@@ -89,7 +89,7 @@ const DishesUI = {
         container.innerHTML = "";
 
         const isDawid = DishesState.currentPerson === "osoba1";
-        const count = isDawid ? 5 : 4;
+        const count = isDawid ? 5 : 5;
 
         for (let i = 1; i <= count; i++) {
             const tab = document.createElement("div");

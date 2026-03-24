@@ -1333,7 +1333,7 @@
         "id": 96,
         "nazwa_produktu": "Bułka grahamka",
         "nazwa_jednostki": "sztuka",
-        "jednostka_per_gram": 100,
+        "jednostka_per_gram": 70,
         "dzial_w_sklepie": "Piekarnia / pieczywo",
         "czy_w_lodowce": "Nie",
         "makro": {
@@ -4842,19 +4842,5 @@
             "t": 3,
             "w": 60
         }
-    },
-    {
-        "nazwa_produktu": "aaaaa",
-        "nazwa_jednostki": "gram",
-        "jednostka_per_gram": null,
-        "czy_w_lodowce": "Nie",
-        "dzial_w_sklepie": "Mięso / chłodnia",
-        "makro": {
-            "kcal": 1,
-            "b": 2,
-            "t": 3,
-            "w": 4
-        },
-        "id": 347
     }
 ]

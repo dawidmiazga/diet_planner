@@ -93,7 +93,7 @@ const Planner = {
         const grid = $("plannerGrid");
         grid.innerHTML = "";
 
-        const maxDishes = AppState.currentPerson === "osoba1" ? AppState.config.defaultDaysToRender : 4;
+        const maxDishes = AppState.currentPerson === "osoba1" ? AppState.config.defaultDaysToRender : 5;
         grid.style.gridTemplateColumns = `150px repeat(${maxDishes}, 1fr)`;
 
         // nagłówki kolumn
@@ -502,7 +502,17 @@ const DescriptionModal = {
             Modal.closeDescriptionModal();
             MealModal.openMealEditModalFromPlanner(AppState.currentPreviewMeal);
         };
-        $("descriptionTitle").textContent = meal.name;
+        // $("descriptionTitle").textContent = meal.name;
+        console.log(meal.rating)
+        console.log(meal.name)
+        $("descriptionTitle").innerHTML = `
+            <div class="meal-tile-content">
+                <div class="meal-rating">
+                    ${UI.generateStaticStars(meal.rating || 0)}
+                </div>
+                <div class="meal-name">${meal.name}</div>
+            </div>
+        `;        
 
         const left = $("mealDescriptionLeft");
         const right = $("mealDescriptionRight");
