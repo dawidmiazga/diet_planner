@@ -1518,7 +1518,8 @@
                 "name": "Ogórek małosolny",
                 "grams": 100
             }
-        ]
+        ],
+        "rating": 4
     },
     {
         "id": 41,
@@ -1814,7 +1815,7 @@
                 "grams": 150
             }
         ],
-        "rating": 0
+        "rating": 5
     },
     {
         "id": 47,
@@ -1831,7 +1832,7 @@
             {
                 "id": 104,
                 "name": "Chleb żytni razowy",
-                "grams": 120
+                "grams": 90
             },
             {
                 "id": 86,
@@ -1866,7 +1867,7 @@
             {
                 "id": 234,
                 "name": "Cukinia",
-                "grams": 200
+                "grams": 100
             },
             {
                 "id": 341,
@@ -1878,7 +1879,8 @@
                 "name": "Papryka słodka",
                 "grams": 1.5
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 48,
@@ -3548,60 +3550,6 @@
                 "id": 93,
                 "name": "Orzechy pistacjowe niesolone",
                 "grams": 25
-            }
-        ]
-    },
-    {
-        "id": 80,
-        "name": "Kanapki z burratą i pomidorkami",
-        "description": "Piekarnik nagrzewamy do 200 stopni.\nPomidorki koktajlowe myjemy.\n Czosnek obieramy.\nWkładamy do naczynia żaroodpornego z oliwą.\n Przyprawiamy solą oraz pieprzem.\n Pieczemy, aż pomidorki zrobią się miękkie i pomarszczone (ok.\n 15-20 min).\n Zamiast pieczenia, pomidorki koktajlowe oraz czosnek możemy podsmażyć na oliwie, aż będą miękkie.\nNa kromkach pieczywa rozkładamy burratę.\n Nakładamy pomidorki koktajlowe oraz czosnek.\nJogurt skyr jemy do posiłku.\n",
-        "person": "osoba1",
-        "dish": [
-            1,
-            2,
-            4,
-            5
-        ],
-        "ingredients": [
-            {
-                "id": 104,
-                "name": "Chleb żytni razowy",
-                "grams": 120
-            },
-            {
-                "id": 41,
-                "name": "Jogurt skyr",
-                "grams": 75
-            },
-            {
-                "id": 32,
-                "name": "Burrata",
-                "grams": 80
-            },
-            {
-                "id": 86,
-                "name": "Oliwa z oliwek",
-                "grams": 5
-            },
-            {
-                "id": 334,
-                "name": "Pieprz czarny",
-                "grams": 0.25
-            },
-            {
-                "id": 237,
-                "name": "Czosnek świeży",
-                "grams": 6
-            },
-            {
-                "id": 156,
-                "name": "Sól",
-                "grams": 0.25
-            },
-            {
-                "id": 263,
-                "name": "Pomidorki koktajlowe",
-                "grams": 100
             }
         ]
     },
@@ -5314,7 +5262,7 @@
             {
                 "id": 86,
                 "name": "Oliwa z oliwek",
-                "grams": 15
+                "grams": 5
             },
             {
                 "id": 334,
@@ -5342,26 +5290,22 @@
                 "grams": 200
             },
             {
-                "id": 275,
-                "name": "Natka pietruszki posiekana",
-                "grams": 5
-            },
-            {
                 "id": 75,
                 "name": "Parmezan starty",
                 "grams": 15
             },
             {
-                "id": 24,
-                "name": "Mięso z piersi kurczaka",
-                "grams": 175
-            },
-            {
                 "id": 132,
                 "name": "Makaron spaghetti pełnoziarnisty",
-                "grams": 100
+                "grams": 90
+            },
+            {
+                "id": 6,
+                "name": "Tofu naturalne",
+                "grams": 90
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 111,
@@ -6530,7 +6474,8 @@
                 "name": "Truskawki mrożone",
                 "grams": 150
             }
-        ]
+        ],
+        "rating": 3
     },
     {
         "id": 132,
@@ -8432,7 +8377,8 @@
         "description": "Zagotowujemy napój.\n Dodajemy płatki owsiane i gotujemy do miękkości, co jakiś czas mieszając.\n Delikatnie studzimy.\nBanana kroimy na drobniejsze kawałki.\n Do owsianki dodajemy banana i mieszamy.\nPosypujemy malinami oraz orzechami włoskimi.\nMieszamy z jogurtem skyr sojowym.\n Smacznego!",
         "person": "osoba2",
         "dish": [
-            1
+            1,
+            5
         ],
         "ingredients": [
             {
@@ -8465,7 +8411,8 @@
                 "name": "Alpro sojowe wysokobiałkowe",
                 "grams": 105
             }
-        ]
+        ],
+        "rating": 0
     },
     {
         "id": 170,

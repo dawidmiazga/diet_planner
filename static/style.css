@@ -1,6 +1,5 @@
 /* ==================== RESET / GLOBAL ==================== */
 /* ======================================================== */
-
 *,
 *::before,
 *::after {
@@ -70,7 +69,6 @@
 }
 
 body {
-    /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
     background: #f0f2f5;
     display: flex;
     justify-content: center;
@@ -124,7 +122,7 @@ h2 {
     }
 }
 
-/* ==================== MULTIPLAYER ==================== */
+/* =============================== MULTIPLAYER ============================== */
 /* ========================================================================== */
 
 .portion-multiplier {
@@ -167,7 +165,6 @@ h2 {
     min-width: 35px;
     text-align: center;
 }
-
 
 /* ==================== TYPOGRAFIA / PODSTAWOWE ELEMENTY ==================== */
 /* ========================================================================== */
@@ -330,7 +327,6 @@ select {
 .nav-link.active {
     color: white;
     min-width: 200px;
-    /* background: var(--primary-strong); */
 }
 
 .nav-highlight {
@@ -383,7 +379,6 @@ select {
     }
 }
 
-
 .page-content {
     opacity: 0;
     transform: translateY(10px);
@@ -404,7 +399,6 @@ select {
     justify-content: center;
     gap: 10px;
     padding: 7px;
-    margin-bottom: 15px;
     border-radius: 999px;
     border: 1px solid var(--color-primary-soft);
 }
@@ -418,10 +412,14 @@ select {
     font-weight: 500;
     transition: all 0.25s ease;
     border: 1px solid rgba(255, 255, 255, 0.4);
+    color: var(--color-gray-600);
+    font-size: 14px;    
 }
 
 .tab:hover {
     transform: translateY(-2px);
+    background-color: var(--color-primary-soft);
+    color: white;
 }
 
 .tab.active {
@@ -492,7 +490,6 @@ select {
 
 .letter-separator {
     grid-column: 1 / -1;
-    /* 🔥 zajmuje całą szerokość grid */
     font-size: 22px;
     font-weight: 600;
     margin: 10px 0 5px 5px;
@@ -516,13 +513,10 @@ select {
     justify-content: center;
     align-items: center;
     z-index: var(--z-modal);
-    /* backdrop-filter: blur(4px);
-    transition: background 0.3s ease; */
 }
 
 .modal.show {
     display: flex;
-    /* wyświetl modal po dodaniu klasy "show" */
 }
 
 .modal-content {
@@ -627,16 +621,6 @@ select {
     flex: 0 0 auto;
 }
 
-/* .modal-content select {
-    width: 100%;
-    padding: 10px;
-    margin: 6px 0 18px 0;
-    border-radius: 12px;
-    border: 1px solid var(--color-gray-200);
-    height: auto;
-    flex: 0 0 auto;
-} */
-
 .modal-content input:focus,
 .modal-content textarea:focus {
     outline: none;
@@ -652,13 +636,13 @@ select {
     flex: 0.5;
 }
 
-/* ===== GWIAZDKI RATING ===== */
+/* =============== GWIAZDKI RATING =============== */
+/* =============================================== */
 
 .modal-title-with-stars {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    /* tekst lewo, gwiazdki prawo */
     margin-bottom: 10px;
     gap: 20px;
 }
@@ -693,11 +677,8 @@ select {
     transform: scale(1.1);
 }
 
-/* .star-rating span.hovered {
-    background: gold;
-} */
-
-/* ===== GWIAZDKI W KAFELKU ===== */
+/* ============== GWIAZDKI W KAFELKU ============= */
+/* =============================================== */
 
 .meal-rating {
     display: flex;
@@ -751,13 +732,13 @@ select {
     flex-direction: column;
 }
 
-/* usuń duży odstęp tylko w tym modalu */
 .meal-left input,
 .meal-left textarea {
     margin-bottom: 12px;
 }
 
 /* ===== PRODUCT MODAL – dla edycji/dodania nowego produktu ===== */
+/* ============================================================== */
 
 .modal-product-form {
     width: 600px;
@@ -768,7 +749,6 @@ select {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px 30px;
     align-items: start;
-    /* 🔥 bardzo ważne */
 }
 
 .modal-product-form .full-width {
@@ -783,7 +763,6 @@ select {
 .modal-product-form .form-field label {
     display: flex;
     align-items: flex-end;
-    /* min-height: 42px;         */
     margin-bottom: 6px;
     font-weight: 500;
     line-height: 1.2;
@@ -819,6 +798,7 @@ select {
 }
 
 /* ==================== FANCY CLOSE BUTTON ==================== */
+/* ============================================================ */
 
 .fancy-close-btn {
     position: absolute;
@@ -865,11 +845,11 @@ select {
     transform: rotate(180deg);
 }
 
-/* ===== SEKCJA MAKRO ===== */
+/* ================ SEKCJA MAKRO ================= */
+/* =============================================== */
 
 .macro-section {
     grid-column: 1 / -1;
-    /* zajmuje całą szerokość */
     background: var(--color-accent-soft-005);
     padding: 20px;
     border-radius: 16px;
@@ -933,7 +913,9 @@ select {
     color: #ef4444;
 }
 
-/* ===== STICKY HEADER W MODALU PRZEPISU ===== */
+/* ======= STICKY HEADER W MODALU PRZEPISU ======= */
+/* =============================================== */
+
 #mealDescriptionModal .modal-content {
     max-height: 90vh;
     display: flex;
@@ -971,125 +953,6 @@ select {
 #deletePopup {
     z-index: var(--z-deletePopup);
 }
-
-/* #mealPersonSelection .dish-pill input[type="radio"] {
-    display: none;
-}
-
-#mealPersonSelection .dish-pill input:checked + span {
-    background: var(--color-accent-soft2);
-    color: white;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
-} */
-
-/* ==================== POPUP (DRUGI SYSTEM MODALA) ==================== */
-/* ===================================================================== */
-/* 
-.popup {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: var(--z-popup);
-}
-
-.popup form,
-.popup-content {
-    background: #fff;
-    padding: 20px 30px;
-    border-radius: 10px;
-    width: fit-content;
-    max-width: 90vw;
-    box-shadow: 0 10px 25px var(--shadow-strong);
-    text-align: center;
-    word-break: break-word;
-}
-
-.popup form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.popup label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.popup input[type="text"],
-.popup input[type="number"],
-.popup textarea,
-.popup select {
-    padding: 5px;
-    margin-bottom: 10px;
-    width: 300px;
-}
-
-.popup input[type="submit"],
-.popup button[type="button"] {
-    padding: 5px 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-.popup button[type="buttonCancel"] {
-    padding: 5px 10px;
-    background-color: #bb0d2a;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-.popup-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.popup-content button[type="ButtonNo"] {
-    padding: 5px 10px;
-    background-color: #bb0d2a;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    width: 80px;
-}
-
-.popup-content button[type="ButtonYes"] {
-    padding: 5px 10px;
-    background-color: #0d8d47;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    width: 80px;
-}
-
-.button-container {
-    display: inline-flex;
-    gap: 10px;
-}
-
-.button-container button {
-    padding: 6px 12px;
-    border: none;
-    border-radius: 5px;
-    background: #007bff;
-    color: #fff;
-    cursor: pointer;
-    font-size: 13px;
-}
-
-.button-container button:hover[type="submit"] {
-    background: #647468;
-}
-
-.button-container button:hover[type="buttonCancel"] {
-    background: #647468;
-} */
 
 /* ==================== SKŁADNIKI (INGREDIENTS) ==================== */
 /* ================================================================= */
@@ -1208,7 +1071,8 @@ select {
     background: var(--color-accent-soft-07);
 }
 
-/* ===== Nagłówek Składniki + Mnożnik ===== */
+/* ======== Nagłówek Składniki + Mnożnik ========= */
+/* =============================================== */
 
 .ingredients-header {
     display: flex;
@@ -1231,11 +1095,6 @@ select {
     margin: 0;
     font-size: 16px;
 }
-
-/* .small-btn {
-    padding: 6px 12px;
-    font-size: 13px;
-} */
 
 @media (max-width: 900px) {
     .meal-modal-grid {
@@ -1288,7 +1147,7 @@ select {
     line-height: 1.5;
 }
 
-/* ==================== PLANER ==================== */
+/* ======================== PLANER ======================== */
 /* ======================================================== */
 
 .planner-grid {
@@ -1308,7 +1167,7 @@ select {
     box-shadow: 0 8px 20px var(--shadow-soft);
     transition: transform 0.2s, box-shadow 0.2s;
     font-weight: 500;
-
+    color: var(--color-gray-600);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1325,11 +1184,6 @@ select {
     background: var(--color-primary);
     color: white;
 }
-
-/* .planner-grid .header-osoba2 {
-    background: var(--primary_2);
-    color: white;
-} */
 
 .planner-grid .cell:hover {
     transform: translateY(-5px);
@@ -1434,12 +1288,41 @@ select {
     color: #ef4444;
 }
 
+.cell.drag-over {
+    outline: 2px dashed var(--color-primary);
+    background: var(--color-primary-highlight);
+}
+
+.cell.dragging {
+    opacity: 0.5;
+}
+
+/* ======================= CONTEXT MENU ====================== */
+/* =========================================================== */
+
+.context-menu {
+    position: absolute;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    padding: 5px 0;
+    z-index: 9999;
+}
+
+.context-item {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.context-item:hover {
+    background: #f3f4f6;
+}
+
 /* ==================== SHOPPING / ZAKUPY ==================== */
 /* =========================================================== */
 
 .shopping-cell {
     padding: 0 10px;
-    /* wyrównanie jak inne td */
 }
 
 .shopping-input {
@@ -1449,11 +1332,9 @@ select {
     font: inherit;
     color: inherit;
     padding: 10px 0;
-    /* żeby zgadzała się wysokość wiersza */
     margin: 0;
 }
 
-/* usuwa globalny border z input */
 .shopping-input:focus {
     outline: none;
     background: var(--color-primary-highlight);
@@ -1505,7 +1386,6 @@ select {
     display: flex;
     justify-content: flex-end;
     gap: 14px;
-    /* margin-bottom: 20px; */
 }
 
 .animate-btn {
@@ -1607,12 +1487,6 @@ select {
     transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* .undo-btn {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-} */
-
 .undo-btn.hidden {
     opacity: 0;
     transform: translateY(-6px);
@@ -1640,7 +1514,9 @@ select {
     transform: rotate(-180deg);
 }
 
-/* Pasek postępu w tle */
+/* ============= Pasek postępu w tle ============= */
+/* =============================================== */
+
 .undo-progress {
     position: absolute;
     left: 0;
@@ -1652,7 +1528,6 @@ select {
     transform: scaleX(1);
 }
 
-/* animacja 5 sekund */
 .undo-progress.animate {
     animation: undoCountdown 5s linear forwards;
 }
@@ -1751,6 +1626,7 @@ select {
 
 /* ==================== TOOLBAR / FILTRY ==================== */
 /* ========================================================== */
+
 .toolbar {
     display: flex;
     align-items: center;
@@ -1975,8 +1851,6 @@ input:checked+.slider:before {
     }
 }
 
-/* ==================== MEAL TILES (KAFELKI) ==================== */
-/* ============================================================== */
 /* ==================== RATING FILTER (MODAL PLANERA) ==================== */
 /* ======================================================================= */
 
@@ -2050,11 +1924,13 @@ input:checked+.slider:before {
     transform: rotate(90deg);
 }
 
+/* ======================== MEAL TILES (KAFELKI) ========================= */
+/* ======================================================================= */
+
 .meal-tiles {
     padding: 10px;
     display: flex;
     flex-direction: column;
-    /* 🔥 jedno pod drugim */
     gap: 10px;
     margin-top: 10px;
     max-height: 420px;
@@ -2170,7 +2046,6 @@ input:checked+.slider:before {
     border-radius: 6px;
     margin-right: 8px;
     cursor: pointer;
-    /* position: relative; */
     transition: all 0.15s ease;
 
     position: absolute;
@@ -2203,6 +2078,7 @@ input:checked+.slider:before {
 
 /* ==================== OPIS DANIA (DWIE KOLUMNY) ==================== */
 /* =================================================================== */
+
 .meal-description-layout {
     display: flex;
     gap: 20px;
@@ -2241,6 +2117,7 @@ input:checked+.slider:before {
 
 /* ==================== BUTTONY =========================== */
 /* ======================================================== */
+
 .button-delete {
     padding: 6px 12px;
     border: none;
@@ -2299,22 +2176,6 @@ input:checked+.slider:before {
 .yellow-btn:hover {
     background: var(--color-yellow-hover);
 }
-
-
-/* .edit-btn {
-    background: var(--color-yellow-bg);
-    border: 1px solid rgba(255, 193, 7, 0.6);
-    color: var(--color-yellow);
-    padding: 6px 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-right: 6px;
-    transition: 0.2s;
-}
-
-.edit-btn:hover {
-    background: var(--color-yellow-hover);
-} */
 
 /* ========================= FORMS ======================== */
 /* ======================================================== */
@@ -2412,7 +2273,8 @@ form select {
     color: white;
 }
 
-/* ===== DISH CHECKBOXES W JEDNEJ LINII ===== */
+/* ==================== DISH CHECKBOXES W JEDNEJ LINII =================== */
+/* ======================================================================= */
 
 .dish-selection {
     display: flex;
@@ -2447,10 +2309,6 @@ form select {
     background: var(--color-primary);
     color: white;
 }
-
-
-
-
 
 #savePlannerBtn.unsaved {
     animation: pulseSave 1.2s infinite;

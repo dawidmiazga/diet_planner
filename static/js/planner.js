@@ -35,6 +35,10 @@ const AppState = {
     originalPlannerData: null,
 };
 
+let DragState = {
+    from: null
+};
+
 /* =====================================================
    API
 ===================================================== */
@@ -85,6 +89,7 @@ const Planner = {
 
         UI.showUnsavedIndicator();
     },
+
     renderPlanner() {
         const startDateInput = $("startDate").value;
         if (!startDateInput) return;
@@ -119,6 +124,12 @@ const Planner = {
 
             const dateCell = document.createElement("div");
             dateCell.className = "cell date-cell";
+
+            dateCell.addEventListener("contextmenu", (e) => {
+                e.preventDefault();
+
+                Planner.openCopyDayMenu(e, dateStr);
+            });
 
             dateCell.innerHTML = `
                 <div class="date-label">
@@ -156,10 +167,57 @@ const Planner = {
                 const meal = AppState.mealsById[mealId];
                 const cell = UI.createCell("", "cell");
 
+                cell.dataset.date = dateStr;
+                cell.dataset.dish = dish;
+
+                cell.addEventListener("dragover", (e) => {
+                    if (!AppState.isEditMode) return;
+                    e.preventDefault();
+                    cell.classList.add("drag-over");
+                });
+
+                cell.addEventListener("dragleave", () => {
+                    cell.classList.remove("drag-over");
+                });
+
+                cell.addEventListener("drop", (e) => {
+                    e.preventDefault();
+                    cell.classList.remove("drag-over");
+
+                    if (!AppState.isEditMode) return;
+                    if (!DragState.from) return;
+
+                    const to = {
+                        date: cell.dataset.date,
+                        dish: parseInt(cell.dataset.dish)
+                    };
+
+                    if (DragState.from.date === to.date && DragState.from.dish === to.dish) {
+                        return;
+                    }
+
+                    Planner.swapMeals(DragState.from, to);
+                    DragState.from = null;
+                });
+
                 if (isToday) cell.classList.add("today-row");
 
                 if (meal) {
+                    if (meal && AppState.isEditMode) {
+                        cell.setAttribute("draggable", true);
 
+                        cell.addEventListener("dragstart", () => {
+                            DragState.from = {
+                                date: dateStr,
+                                dish: dish
+                            };
+                            cell.classList.add("dragging");
+                        });
+
+                        cell.addEventListener("dragend", () => {
+                            cell.classList.remove("dragging");
+                        });
+                    }
                     if (!AppState.isEditMode) {
 
                         const checkbox = document.createElement("input");
@@ -221,6 +279,73 @@ const Planner = {
             }
         }
     },
+
+    openCopyDayMenu(e, dateStr) {
+
+        // usuń stare menu jeśli istnieje
+        const oldMenu = document.getElementById("dayContextMenu");
+        if (oldMenu) oldMenu.remove();
+
+        const menu = document.createElement("div");
+        menu.id = "dayContextMenu";
+        menu.className = "context-menu";
+
+        menu.innerHTML = `
+        <div class="context-item">📋 Kopiuj dzień</div>
+    `;
+
+        menu.style.top = e.pageY + "px";
+        menu.style.left = e.pageX + "px";
+
+        document.body.appendChild(menu);
+
+        // klik w opcję
+        menu.onclick = () => {
+            menu.remove();
+            Planner.openCopyDayModal(dateStr);
+        };
+
+        // klik gdziekolwiek zamyka menu
+        document.addEventListener("click", () => menu.remove(), { once: true });
+    },
+
+    openCopyDayModal(dateStr) {
+
+    $("copyFromDate").value = dateStr;
+
+    flatpickr("#copyToDate", {
+        locale: flatpickr.l10ns.pl,
+        dateFormat: "Y-m-d",
+        defaultDate: dateStr
+    });
+
+    $("copyDayModal").classList.add("show");
+},
+
+confirmCopyDay() {
+
+    const fromDate = $("copyFromDate").value;
+    const toDate = $("copyToDate").value;
+
+    if (!fromDate || !toDate) return;
+
+    const sourceDay = AppState.plannerData[AppState.currentPerson][fromDate];
+
+    if (!sourceDay) {
+        alert("Brak danych do skopiowania");
+        return;
+    }
+
+    // głęboka kopia
+    const copiedDay = JSON.parse(JSON.stringify(sourceDay));
+
+    AppState.plannerData[AppState.currentPerson][toDate] = copiedDay;
+
+    closeModalElement($("copyDayModal"));
+
+    this.renderPlanner();
+    this.markAsChanged();
+},
 
     savePlannerMeal(mealId) {
         const dish = parseInt($("cellDish").value);
@@ -358,8 +483,13 @@ const Planner = {
     setMode(edit, el) {
         AppState.isEditMode = edit;
 
-        $$(".mode-btn")
-            .forEach(btn => btn.classList.remove("active"));
+        // AppState.currentPerson = person;
+        // $$("#plannerMode .tab").forEach(t => t.classList.remove("active"));
+        // el.classList.add("active");
+        // this.renderPlanner();
+
+        $$("#plannerMode .tab")
+            .forEach(t => t.classList.remove("active"));
 
         el.classList.add("active");
 
@@ -472,6 +602,37 @@ const Planner = {
 
         Planner.markAsChanged();
         // Planner.renderPlanner(); // 🔥 odśwież UI
+    },
+
+    getMealEntry(dateStr, dish) {
+        return AppState.plannerData[AppState.currentPerson][dateStr]?.[dish] || null;
+    },
+
+    setMealEntry(dateStr, dish, entry) {
+        if (!AppState.plannerData[AppState.currentPerson][dateStr]) {
+            AppState.plannerData[AppState.currentPerson][dateStr] = {};
+        }
+
+        if (entry === null) {
+            delete AppState.plannerData[AppState.currentPerson][dateStr][dish];
+
+            if (Object.keys(AppState.plannerData[AppState.currentPerson][dateStr]).length === 0) {
+                delete AppState.plannerData[AppState.currentPerson][dateStr];
+            }
+        } else {
+            AppState.plannerData[AppState.currentPerson][dateStr][dish] = entry;
+        }
+    },
+
+    swapMeals(from, to) {
+        const entryA = this.getMealEntry(from.date, from.dish);
+        const entryB = this.getMealEntry(to.date, to.dish);
+
+        this.setMealEntry(from.date, from.dish, entryB);
+        this.setMealEntry(to.date, to.dish, entryA);
+
+        this.renderPlanner();
+        this.markAsChanged();
     }
 }
 
@@ -512,7 +673,7 @@ const DescriptionModal = {
                 </div>
                 <div class="meal-name">${meal.name}</div>
             </div>
-        `;        
+        `;
 
         const left = $("mealDescriptionLeft");
         const right = $("mealDescriptionRight");

@@ -22,7 +22,7 @@ const Modal = {
             modal.classList.remove("closing");
         }, 200);
     },
-    
+
     // Zamknięcie modalu produktu
     closeProductModal() {
         const modal = document.getElementById("productModal");
@@ -35,7 +35,7 @@ const Modal = {
             DishesState.selectedProductId = null;
         }, 200);
     },
-    
+
     closeDescriptionModal() {
         const editBtn = $("editMealFromPreviewBtn");
         editBtn.style.display = "none";
@@ -66,7 +66,7 @@ const Modal = {
     async openProductModal() {
         try {
             const data = await DishesAPI.fetchProducts();
-            
+
             data.sort((a, b) =>
                 a.nazwa_produktu.localeCompare(
                     b.nazwa_produktu,
@@ -74,6 +74,13 @@ const Modal = {
                     { sensitivity: 'base' }
                 )
             );
+
+            const searchInput = $("productSearch");
+            searchInput.value = "";
+
+            setTimeout(() => {
+                searchInput.focus();
+            }, 220);
 
             DishesState.products = data;
 

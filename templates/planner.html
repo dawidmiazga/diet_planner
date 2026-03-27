@@ -28,17 +28,18 @@
             onclick="Planner.manualSave()">
             💾 Zapisz
         </button>
-        <div class="mode-toggle">
 
-            <div class="mode-indicator"></div>
+        <div class="tabs" id="plannerMode">
 
-            <button class="mode-btn active" data-mode="preview" onclick="Planner.setMode(false, this)">
+            <!-- <div class="mode-indicator"></div> -->
+
+            <div class="tab active" onclick="Planner.setMode(false, this)">
                 Podgląd
-            </button>
+            </div>
 
-            <button class="mode-btn" data-mode="edit" onclick="Planner.setMode(true, this)">
+            <div class="tab" onclick="Planner.setMode(true, this)">
                 Edycja
-            </button>
+            </div>
         </div>
     </div>
 </div>

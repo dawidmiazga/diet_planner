@@ -82,7 +82,7 @@ const Base = {
 
     initPageAnimation() {
 
-        const content = document.getElementById("pageContent");
+        const content = $("pageContent");
 
         if (!content) return;
 
@@ -117,8 +117,8 @@ const Base = {
 ===================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-    BaseState.nav = document.getElementById("mainNav");
-    BaseState.highlight = document.getElementById("navHighlight");
+    BaseState.nav = $("mainNav");
+    BaseState.highlight = $("navHighlight");
 
     Base.initNavHighlight();
     Base.initPageAnimation();

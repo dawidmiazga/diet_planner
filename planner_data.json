@@ -445,6 +445,82 @@
                 "eaten": true,
                 "meal": 59
             }
+        },
+        "2026-03-30": {
+            "1": {
+                "eaten": false,
+                "meal": 18
+            },
+            "2": {
+                "meal": 78,
+                "eaten": false
+            },
+            "3": {
+                "meal": 108,
+                "eaten": false
+            },
+            "4": {
+                "meal": 89,
+                "eaten": false
+            },
+            "5": {
+                "meal": 22,
+                "eaten": false
+            }
+        },
+        "2026-03-28": {
+            "1": {
+                "meal": 41,
+                "eaten": false
+            },
+            "3": {
+                "meal": 103,
+                "eaten": false
+            },
+            "4": {
+                "meal": 77,
+                "eaten": false
+            },
+            "5": {
+                "meal": 74,
+                "eaten": false
+            }
+        },
+        "2026-03-29": {
+            "1": {
+                "meal": 41,
+                "eaten": false
+            },
+            "4": {
+                "meal": 56,
+                "eaten": false
+            },
+            "5": {
+                "meal": 46,
+                "eaten": false
+            }
+        },
+        "2026-03-31": {
+            "1": {
+                "meal": 47,
+                "eaten": false
+            },
+            "2": {
+                "meal": 45,
+                "eaten": false
+            },
+            "3": {
+                "meal": 110,
+                "eaten": false
+            },
+            "4": {
+                "meal": 76,
+                "eaten": false
+            },
+            "5": {
+                "meal": 15,
+                "eaten": false
+            }
         }
     },
     "osoba2": {
@@ -759,6 +835,68 @@
             "4": {
                 "eaten": false,
                 "meal": 380
+            }
+        },
+        "2026-03-27": {
+            "3": {
+                "eaten": false,
+                "meal": 265
+            }
+        },
+        "2026-03-28": {
+            "1": {
+                "eaten": false,
+                "meal": 171
+            },
+            "3": {
+                "eaten": false,
+                "meal": 265
+            },
+            "4": {
+                "eaten": false,
+                "meal": 303
+            }
+        },
+        "2026-03-29": {
+            "2": {
+                "eaten": false,
+                "meal": 221
+            },
+            "3": {
+                "eaten": false,
+                "meal": 243
+            },
+            "4": {
+                "eaten": false,
+                "meal": 303
+            }
+        },
+        "2026-03-30": {
+            "1": {
+                "eaten": false,
+                "meal": 159
+            },
+            "3": {
+                "eaten": false,
+                "meal": 243
+            },
+            "4": {
+                "eaten": false,
+                "meal": 306
+            }
+        },
+        "2026-03-31": {
+            "1": {
+                "eaten": false,
+                "meal": 159
+            },
+            "3": {
+                "eaten": false,
+                "meal": 279
+            },
+            "4": {
+                "eaten": false,
+                "meal": 306
             }
         }
     }
