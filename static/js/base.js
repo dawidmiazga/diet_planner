@@ -16,8 +16,8 @@ const DISH_CONFIG = {
         1: "Śniadanie",
         2: "II Śniadanie",
         3: "Obiad",
-        4: "Kolacja",
-        5: "Przekąska"
+        4: "Podwieczorek",
+        5: "Kolacja"
     },
     osoba2: {
         1: "Śniadanie",

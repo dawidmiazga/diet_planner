@@ -534,11 +534,6 @@
         ],
         "ingredients": [
             {
-                "id": 41,
-                "name": "Jogurt skyr",
-                "grams": 0
-            },
-            {
                 "id": 172,
                 "name": "Wafle ryżowe",
                 "grams": 50
@@ -553,7 +548,8 @@
                 "name": "Jogurt skyr waniliowy piątnica",
                 "grams": 150
             }
-        ]
+        ],
+        "rating": 5
     },
     {
         "id": 23,
@@ -1524,7 +1520,7 @@
     {
         "id": 41,
         "name": "Kanapki z pastą z jajka i serka wiejskiego",
-        "description": "Jajko gotujemy na twardo w osolonej wodzie przez ok.\n 7 minut (czas liczony od zagotowania wody).\n Następnie studzimy, obieramy i kroimy w kostkę.\nSerek wiejski odsączamy na sitku.\n Jajka i serek rozgniatamy widelcem.\n Dodajemy przyprawy mieszamy.\n Możemy doprawić solą oraz pieprzem według własnego smaku.\nOgórka myjemy i kroimy w talarki lub kostkę.\nPieczywo smarujemy masłem, następnie układamy roszponkę, pastę z serka wiejskiego oraz ogórka.\n",
+        "description": "Jajko gotujemy na twardo w osolonej wodzie przez ok. 7 minut (czas liczony od zagotowania wody).\nNastępnie studzimy, obieramy i kroimy w kostkę.\nSerek wiejski odsączamy na sitku.\nJajka i serek rozgniatamy widelcem.\nDodajemy przyprawy mieszamy.\nMożemy doprawić solą oraz pieprzem według własnego smaku.\nOgórka myjemy i kroimy w talarki lub kostkę.\nPieczywo smarujemy masłem, następnie układamy roszponkę, pastę z serka wiejskiego oraz ogórka.\n",
         "person": "osoba1",
         "dish": [
             1,
@@ -1573,7 +1569,8 @@
                 "name": "Roszponka",
                 "grams": 25
             }
-        ]
+        ],
+        "rating": 3
     },
     {
         "id": 42,
@@ -2361,7 +2358,8 @@
                 "name": "Orzechy pistacjowe niesolone",
                 "grams": 25
             }
-        ]
+        ],
+        "rating": 4
     },
     {
         "id": 57,
@@ -3337,16 +3335,12 @@
                 "grams": 30
             },
             {
-                "id": 158,
-                "name": "Wanilia ekstrakt",
-                "grams": 0.5
-            },
-            {
                 "id": 95,
                 "name": "Płatki migdałów",
                 "grams": 15
             }
-        ]
+        ],
+        "rating": 5
     },
     {
         "id": 75,
@@ -3507,7 +3501,8 @@
                 "name": "Pesto zielone",
                 "grams": 25
             }
-        ]
+        ],
+        "rating": 5
     },
     {
         "id": 79,
@@ -3963,11 +3958,12 @@
                 "grams": 120
             },
             {
-                "id": 87,
-                "name": "Mieszanka orzechów",
-                "grams": 10
+                "id": 89,
+                "name": "Orzechy arachidowe",
+                "grams": 15
             }
-        ]
+        ],
+        "rating": 5
     },
     {
         "id": 90,
@@ -5167,7 +5163,8 @@
                 "name": "Cebula dymka",
                 "grams": 20
             }
-        ]
+        ],
+        "rating": 4
     },
     {
         "id": 109,
@@ -5252,8 +5249,8 @@
     },
     {
         "id": 110,
-        "name": "Spaghetti z kurczakiem oraz pomidorkami koktajlowymi",
-        "description": "Makaron gotujemy według instrukcji na opakowaniu produktu.\n Zostawiamy kilka łyżek wody z gotowania makaronu na potem.\nCebulę, czosnek oraz natkę pietruszki drobno siekamy.\n Mięso kroimy w małą kostkę o boku ok.\n 1,5-2 cm.\n Pomidorki koktajlowe kroimy na mniejsze kawałki.\nNa dużej patelni rozgrzewamy oliwę na średnim ogniu.\n Wrzucamy cebulę oraz czosnek, smażymy przez około 2 minuty do zeszklenia.\nNastępnie dodajemy mięso.\n Posypujemy solą oraz pieprzem wedle uznania.\n Smażymy bez przykrycia na średnim ogniu przez około 6–8 minut, aż mięso się zetnie i lekko zrumieni z każdej strony.\nNa patelnię dodajemy pomidorki koktajlowe i smażymy jeszcze 2–3 minuty, do zmięknięcia warzyw.\nDodajemy makaron, mieszamy wszystko dokładnie.\n W razie potrzeby dolewamy odrobinę wody z gotowania makaronu, żeby danie nie było zbyt suche.\nZdejmujemy z ognia, posypujemy natką pietruszki oraz startym parmezanem.\n Podajemy od razu.\n",
+        "name": "Spaghetti z tofu oraz pomidorkami koktajlowymi",
+        "description": "Makaron gotujemy według instrukcji na opakowaniu produktu.\n Zostawiamy kilka łyżek wody z gotowania makaronu na potem.\nCebulę, czosnek oraz natkę pietruszki drobno siekamy.\n Mięso kroimy w małą kostkę o boku ok. 1,5-2 cm.\n Pomidorki koktajlowe kroimy na mniejsze kawałki.\nNa dużej patelni rozgrzewamy oliwę na średnim ogniu.\n Wrzucamy cebulę oraz czosnek, smażymy przez około 2 minuty do zeszklenia.\nNastępnie dodajemy mięso.\n Posypujemy solą oraz pieprzem wedle uznania.\n Smażymy bez przykrycia na średnim ogniu przez około 6–8 minut, aż mięso się zetnie i lekko zrumieni z każdej strony.\nNa patelnię dodajemy pomidorki koktajlowe i smażymy jeszcze 2–3 minuty, do zmięknięcia warzyw.\nDodajemy makaron, mieszamy wszystko dokładnie.\n W razie potrzeby dolewamy odrobinę wody z gotowania makaronu, żeby danie nie było zbyt suche.\nZdejmujemy z ognia, posypujemy natką pietruszki oraz startym parmezanem.\n Podajemy od razu.\n",
         "person": "osoba1",
         "dish": [
             3

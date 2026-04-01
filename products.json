@@ -3096,8 +3096,8 @@
     {
         "id": 222,
         "nazwa_produktu": "Czekolada gorzka 70%",
-        "nazwa_jednostki": "gram",
-        "jednostka_per_gram": 1,
+        "nazwa_jednostki": "kostka",
+        "jednostka_per_gram": 5,
         "dzial_w_sklepie": "Słodycze / zdrowe przekąski",
         "czy_w_lodowce": "Nie",
         "makro": {
@@ -3110,8 +3110,8 @@
     {
         "id": 223,
         "nazwa_produktu": "Czekolada mleczna",
-        "nazwa_jednostki": "gram",
-        "jednostka_per_gram": 1,
+        "nazwa_jednostki": "kostka",
+        "jednostka_per_gram": 5,
         "dzial_w_sklepie": "Słodycze / zdrowe przekąski",
         "czy_w_lodowce": "Nie",
         "makro": {

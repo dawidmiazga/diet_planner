@@ -311,41 +311,40 @@ const Planner = {
 
     openCopyDayModal(dateStr) {
 
-    $("copyFromDate").value = dateStr;
+        $("copyFromDate").value = dateStr;
 
-    flatpickr("#copyToDate", {
-        locale: flatpickr.l10ns.pl,
-        dateFormat: "Y-m-d",
-        defaultDate: dateStr
-    });
+        flatpickr("#copyToDate", {
+            locale: flatpickr.l10ns.pl,
+            dateFormat: "Y-m-d",
+            defaultDate: dateStr
+        });
 
-    $("copyDayModal").classList.add("show");
-},
+        $("copyDayModal").classList.add("show");
+    },
 
-confirmCopyDay() {
+    confirmCopyDay() {
 
-    const fromDate = $("copyFromDate").value;
-    const toDate = $("copyToDate").value;
+        const fromDate = $("copyFromDate").value;
+        const toDate = $("copyToDate").value;
 
-    if (!fromDate || !toDate) return;
+        if (!fromDate || !toDate) return;
 
-    const sourceDay = AppState.plannerData[AppState.currentPerson][fromDate];
+        const sourceDay = AppState.plannerData[AppState.currentPerson][fromDate];
 
-    if (!sourceDay) {
-        alert("Brak danych do skopiowania");
-        return;
-    }
+        if (!sourceDay) {
+            alert("Brak danych do skopiowania");
+            return;
+        }
 
-    // głęboka kopia
-    const copiedDay = JSON.parse(JSON.stringify(sourceDay));
+        const copiedDay = JSON.parse(JSON.stringify(sourceDay));
 
-    AppState.plannerData[AppState.currentPerson][toDate] = copiedDay;
+        AppState.plannerData[AppState.currentPerson][toDate] = copiedDay;
 
-    closeModalElement($("copyDayModal"));
+        closeModalElement($("copyDayModal"));
 
-    this.renderPlanner();
-    this.markAsChanged();
-},
+        this.renderPlanner();
+        this.markAsChanged();
+    },
 
     savePlannerMeal(mealId) {
         const dish = parseInt($("cellDish").value);

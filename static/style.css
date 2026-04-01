@@ -331,9 +331,9 @@ select {
 
 .nav-highlight {
     position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
+    /* top: 0;
+    left: 0; */
+    height: 70%;
     width: 0;
     background: var(--color-primary);
     border-radius: 999px;
@@ -406,12 +406,13 @@ select {
 .tab {
     padding: 10px 22px;
     border-radius: 999px;
-    background: var(--white-60);
+    /* background: var(--white-60); */
+    background: transparent;    
     backdrop-filter: blur(10px);
     cursor: pointer;
     font-weight: 500;
     transition: all 0.25s ease;
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    /* border: 1px solid rgba(255, 255, 255, 0.4); */
     color: var(--color-gray-600);
     font-size: 14px;    
 }
@@ -1392,7 +1393,7 @@ select {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 11px 18px;
+    padding: 8px 18px;
     border-radius: 14px;
     border: 1px solid var(--color-accent-soft-03);
     background: var(--color-accent-soft-005);
