@@ -77,9 +77,10 @@ const Modal = {
 
             const searchInput = $("productSearch");
             searchInput.value = "";
+            const gramsInput = $("productGrams");
 
             setTimeout(() => {
-                searchInput.focus();
+                gramsInput.focus();
             }, 220);
 
             DishesState.products = data;
@@ -101,7 +102,7 @@ const Modal = {
         const grams = Number(document.getElementById("productGrams").value);
         if (!grams || grams <= 0) return alert("Podaj ilość w gramach");
 
-        const selectedItem = document.querySelector(`#productsList .product-item[data-id='${DishesState.selectedProductId}']`);
+        const selectedItem = document.querySelector(`#productsList .listbox-tile[data-id='${DishesState.selectedProductId}']`);
         const name = selectedItem.dataset.name;
 
         ModalShared.addIngredientField(name, grams, DishesState.selectedProductId);

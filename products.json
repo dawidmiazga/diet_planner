@@ -4842,5 +4842,61 @@
             "t": 3,
             "w": 60
         }
+    },
+    {
+        "nazwa_produktu": "Żabka - Penne cezar z kurczakiem",
+        "nazwa_jednostki": "opakowanie",
+        "jednostka_per_gram": 400,
+        "czy_w_lodowce": "Tak",
+        "dzial_w_sklepie": "Produkty spożywcze / dział dań gotowych",
+        "makro": {
+            "kcal": 182,
+            "b": 8.1,
+            "t": 6.7,
+            "w": 22
+        },
+        "id": 347
+    },
+    {
+        "nazwa_produktu": "Żabka - High protein pieczony kurczak z kaszą gryczaną i warzywami",
+        "nazwa_jednostki": "opakowanie",
+        "jednostka_per_gram": 400,
+        "czy_w_lodowce": "Tak",
+        "dzial_w_sklepie": "Produkty spożywcze / dział dań gotowych",
+        "makro": {
+            "kcal": 82,
+            "b": 6.6,
+            "t": 2,
+            "w": 8.1
+        },
+        "id": 348
+    },
+    {
+        "nazwa_produktu": "Żabka - High protein filet z kurczaka z warzywami i puree",
+        "nazwa_jednostki": "opakowanie",
+        "jednostka_per_gram": 400,
+        "czy_w_lodowce": "Tak",
+        "dzial_w_sklepie": "Produkty spożywcze / dział dań gotowych",
+        "makro": {
+            "kcal": 87,
+            "b": 9,
+            "t": 2.1,
+            "w": 6.9
+        },
+        "id": 349
+    },
+    {
+        "nazwa_produktu": "Żabka - Pappardelle z łososiem",
+        "nazwa_jednostki": "opakowanie",
+        "jednostka_per_gram": 400,
+        "czy_w_lodowce": "Tak",
+        "dzial_w_sklepie": "Produkty spożywcze / dział dań gotowych",
+        "makro": {
+            "kcal": 167,
+            "b": 5.2,
+            "t": 8.1,
+            "w": 18
+        },
+        "id": 350
     }
 ]

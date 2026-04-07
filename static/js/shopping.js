@@ -64,10 +64,16 @@ const ShoppingUI = {
 
         ShoppingState.shoppingData.forEach(item => {
 
-            let iloscText = item.grams + " g";
+            let iloscText;
 
-            if (item.sztuki && item.jednostka) {
-                iloscText += " (" + item.sztuki + " " + item.jednostka + ")";
+            if (item.ilosc_saved) {
+                iloscText = item.ilosc_saved;
+            } else {
+                iloscText = item.grams + " g";
+
+                if (item.sztuki && item.jednostka) {
+                    iloscText += " (" + item.sztuki + " " + item.jednostka + ")";
+                }
             }
 
             let lodowkaText = "—";
@@ -78,13 +84,28 @@ const ShoppingUI = {
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td>
-                    <button class="btn remove-btn" onclick="Shopping.markBought(${item.id})">✕</button>
+                    ${typeof item.id === "string" && item.id.startsWith("custom_")
+                    ? `<button class="btn remove-btn" onclick="Shopping.deleteCustom('${item.id}')">🗑</button>`
+                    : `<button class="btn remove-btn" onclick="Shopping.markBought(${item.id})">✕</button>`
+                }
                 </td>
                 <td class="shopping-cell">
-                    <input type="text" class="shopping-input" value="${item.name}" data-id="${item.id}">
+                    <input 
+                        type="text" 
+                        class="shopping-input" 
+                        value="${item.name}" 
+                        data-id="${item.id}"
+                        onchange="Shopping.updateName(this)"
+                    >
                 </td>
                 <td class="shopping-cell">
-                    <input type="text" class="shopping-input" value="${iloscText}" data-id="${item.id}">
+                    <input 
+                        type="text" 
+                        class="shopping-input quantity-input" 
+                        value="${iloscText}" 
+                        data-id="${item.id}"
+                        onchange="Shopping.updateQuantity(this)"
+                    >
                 </td>
                 <td>${item.dzial_w_sklepie}</td>
                 <td>${lodowkaText}</td>
@@ -202,6 +223,62 @@ const Shopping = {
         );
     },
 
+    async deleteCustom(id) {
+
+        await App.API.post("/api/shopping_delete_custom/" + id);
+
+        await this.loadShopping();
+    },
+
+    async updateName(input) {
+
+        const id = input.dataset.id;
+        const value = input.value;
+
+        // 🔥 tylko custom
+        if (typeof id === "string" && id.startsWith("custom_")) {
+
+            await App.API.post("/api/shopping_update_custom/" + id, {
+                name: value
+            });
+
+        } else {
+
+            // 🔥 zwykłe produkty → tylko lokalnie (opcjonalnie)
+            const item = ShoppingState.shoppingData.find(p => p.id == id);
+            if (item) item.name = value;
+
+        }
+
+        this.saveState();
+    },
+
+    async updateQuantity(input) {
+
+        const id = input.dataset.id;
+        const value = input.value;
+
+        if (typeof id === "string" && id.startsWith("custom_")) {
+
+            await App.API.post("/api/shopping_update_custom/" + id, {
+                ilosc: value
+            });
+
+        } else {
+
+            await App.API.post("/api/shopping_set_quantity/" + id, {
+                ilosc: value
+            });
+        }
+
+        const item = ShoppingState.shoppingData.find(p => p.id == id);
+        if (item) {
+            item.ilosc_saved = value;
+        }
+
+        this.saveState();
+    },
+
     async markBought(id) {
 
         const product = ShoppingState.shoppingData.find(p => p.id === id);
@@ -215,6 +292,33 @@ const Shopping = {
         await ShoppingAPI.markBought(id);
         await this.loadShopping();
         this.saveState();
+    },
+
+    openAddModal() {
+        $("addProductModal").classList.add("show");
+    },
+
+    async addCustomProduct() {
+
+        const name = $("newProductName").value.trim();
+        const ilosc = $("newProductQuantity").value.trim();
+
+        if (!name) {
+            alert("Podaj nazwę produktu");
+            return;
+        }
+
+        await App.API.post("/api/shopping_add_custom", {
+            name,
+            ilosc
+        });
+
+        $("newProductName").value = "";
+        $("newProductQuantity").value = "";
+
+        closeModalElement($("addProductModal"));
+
+        await this.loadShopping();
     },
 
     async undoLastRemoval() {
@@ -415,7 +519,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 ShoppingState.shoppingStartDate,
                 ShoppingState.shoppingEndDate
             );
-            
+
             Shopping.resetList()
             // await ShoppingAPI.resetList();
             // Shopping.loadShopping();

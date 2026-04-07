@@ -18272,5 +18272,73 @@
         ],
         "rating": 0,
         "id": 388
+    },
+    {
+        "name": "Żabka - High protein filet z kurczaka z warzywami i puree",
+        "description": "",
+        "ingredients": [
+            {
+                "id": 349,
+                "name": "Żabka - High protein filet z kurczaka z warzywami i puree",
+                "grams": 400
+            }
+        ],
+        "person": "osoba1",
+        "dish": [
+            3
+        ],
+        "rating": 0,
+        "id": 389
+    },
+    {
+        "name": "Żabka - High protein pieczony kurczak z kaszą gryczaną i warzywami",
+        "description": "",
+        "ingredients": [
+            {
+                "id": 348,
+                "name": "Żabka - High protein pieczony kurczak z kaszą gryczaną i warzywami",
+                "grams": 400
+            }
+        ],
+        "person": "osoba1",
+        "dish": [
+            3
+        ],
+        "rating": 0,
+        "id": 390
+    },
+    {
+        "name": "Żabka - Pappardelle z łososiem",
+        "description": "",
+        "ingredients": [
+            {
+                "id": 350,
+                "name": "Żabka - Pappardelle z łososiem",
+                "grams": 400
+            }
+        ],
+        "person": "osoba1",
+        "dish": [
+            3
+        ],
+        "rating": 0,
+        "id": 391
+    },
+    {
+        "name": "Żabka - Penne cezar z kurczakiem",
+        "description": "",
+        "ingredients": [
+            {
+                "id": 347,
+                "name": "Żabka - Penne cezar z kurczakiem",
+                "grams": 400
+            }
+        ],
+        "person": "osoba1",
+        "dish": [
+            3
+        ],
+        "rating": 0,
+        "id": 392
     }
 ]

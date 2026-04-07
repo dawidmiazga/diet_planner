@@ -291,8 +291,8 @@ const Planner = {
         menu.className = "context-menu";
 
         menu.innerHTML = `
-        <div class="context-item">📋 Kopiuj dzień</div>
-    `;
+            <div class="context-item">📋 Kopiuj dzień</div>
+        `;
 
         menu.style.top = e.pageY + "px";
         menu.style.left = e.pageX + "px";
@@ -456,14 +456,14 @@ const Planner = {
         } else {
             filteredOptions.forEach(m => {
                 const tile = document.createElement("div");
-                tile.className = "meal-tile";
+                tile.className = "listbox-tile";
 
                 if (m.id === AppState.currentSelectedMealId) {
                     tile.classList.add("selected");
                 }
 
                 tile.innerHTML = `
-                    <div class="meal-tile-content">
+                    <div class="listbox-tile-content">
                         <div class="meal-rating">
                             ${UI.generateStaticStars(m.rating || 0)}
                         </div>
@@ -666,7 +666,7 @@ const DescriptionModal = {
         console.log(meal.rating)
         console.log(meal.name)
         $("descriptionTitle").innerHTML = `
-            <div class="meal-tile-content">
+            <div class="listbox-tile-content">
                 <div class="meal-rating">
                     ${UI.generateStaticStars(meal.rating || 0)}
                 </div>

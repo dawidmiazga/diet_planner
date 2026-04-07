@@ -441,22 +441,109 @@ def produkty_page():
     return render_template("produkty.html", dzialy=DZIALY, jednostki=JEDNOSTKI)
 
 
-@app.route("/api/shopping_check/<int:product_id>", methods=["POST"])
+@app.route("/api/shopping_check/<product_id>", methods=["POST"])
 def check_product(product_id):
     state = load_shopping_state()
-    state[str(product_id)] = True
+    entry = state.get(str(product_id), {})
+    entry["checked"] = True
+    state[str(product_id)] = entry
+
     save_shopping_state(state)
     return jsonify({"status": "ok"})
 
 
-@app.route("/api/shopping_uncheck/<int:product_id>", methods=["POST"])
+@app.route("/api/shopping_uncheck/<product_id>", methods=["POST"])
 def uncheck_product(product_id):
     state = load_shopping_state()
 
     if str(product_id) in state:
-        state[str(product_id)] = False
+        entry = state.get(str(product_id), {})
+        entry["checked"] = False
+        state[str(product_id)] = entry
 
     save_shopping_state(state)
+    return jsonify({"status": "ok"})
+
+
+@app.route("/api/shopping_set_quantity/<int:product_id>", methods=["POST"])
+def set_quantity(product_id):
+    data = request.json
+    ilosc = data.get("ilosc")
+
+    state = load_shopping_state()
+
+    entry = state.get(str(product_id), {})
+    entry["ilosc"] = ilosc
+
+    state[str(product_id)] = entry
+
+    save_shopping_state(state)
+
+    return jsonify({"status": "ok"})
+
+
+@app.route("/api/shopping_add_custom", methods=["POST"])
+def add_custom_product():
+    data = request.json
+    name = data.get("name")
+    ilosc = data.get("ilosc")
+
+    state = load_shopping_state()
+
+    # 🔥 generujemy ID
+    custom_ids = [k for k in state.keys() if k.startswith("custom_")]
+
+    if custom_ids:
+        max_id = max(int(k.split("_")[1]) for k in custom_ids)
+    else:
+        max_id = 0
+
+    new_id = f"custom_{max_id + 1}"
+
+    state[new_id] = {"name": name, "ilosc": ilosc, "checked": False, "custom": True}
+
+    save_shopping_state(state)
+
+    return jsonify({"status": "ok"})
+
+
+@app.route("/api/shopping_delete_custom/<product_id>", methods=["POST"])
+def delete_custom_product(product_id):
+
+    state = load_shopping_state()
+
+    if product_id in state:
+        entry = state[product_id]
+
+        if isinstance(entry, dict) and entry.get("custom"):
+            del state[product_id]
+            save_shopping_state(state)
+
+    return jsonify({"status": "ok"})
+
+
+@app.route("/api/shopping_update_custom/<product_id>", methods=["POST"])
+def update_custom_product(product_id):
+
+    data = request.json
+    name = data.get("name")
+    ilosc = data.get("ilosc")
+
+    state = load_shopping_state()
+
+    entry = state.get(product_id)
+
+    if isinstance(entry, dict) and entry.get("custom"):
+
+        if name is not None:
+            entry["name"] = name
+
+        if ilosc is not None:
+            entry["ilosc"] = ilosc
+
+        state[product_id] = entry
+        save_shopping_state(state)
+
     return jsonify({"status": "ok"})
 
 
@@ -534,6 +621,9 @@ def generate_shopping_list():
         if jednostka_per_gram > 0:
             ilosc_sztuk = round(total_grams / jednostka_per_gram, 2)
 
+        # 🔥 KLUCZOWE — MUSI BYĆ TUTAJ
+        entry = shopping_state.get(str(pid), {})
+
         shopping_list.append(
             {
                 "id": pid,
@@ -543,12 +633,33 @@ def generate_shopping_list():
                 "jednostka": nazwa_jednostki,
                 "dzial_w_sklepie": product.get("dzial_w_sklepie", ""),
                 "czy_w_lodowce": product.get("czy_w_lodowce", ""),
-                "checked": shopping_state.get(str(pid), False),
+                "checked": entry.get("checked", False),
+                "ilosc_saved": entry.get("ilosc", None),
             }
         )
 
     # sortowanie po dziale
     shopping_list.sort(key=lambda x: x["dzial_w_sklepie"])
+
+    # 🔥 DODAJ CUSTOM PRODUKTY
+    for key, entry in shopping_state.items():
+
+        if isinstance(entry, dict) and entry.get("custom"):
+
+            shopping_list.append(
+                {
+                    "id": key,
+                    "name": entry.get("name", ""),
+                    "grams": 0,
+                    "sztuki": None,
+                    "jednostka": "",
+                    "dzial_w_sklepie": "Inne",
+                    "czy_w_lodowce": "",
+                    "checked": entry.get("checked", False),
+                    "ilosc_saved": entry.get("ilosc", ""),
+                }
+            )
+
     return jsonify(shopping_list)
 
 

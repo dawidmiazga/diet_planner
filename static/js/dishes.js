@@ -51,7 +51,7 @@ const DishesUI = {
 
         products.forEach(p => {
             const item = document.createElement("div");
-            item.className = "product-item";
+            item.className = "listbox-tile";
             item.innerText = p.nazwa_produktu;
             item.dataset.id = p.id;
             item.dataset.name = p.nazwa_produktu;
@@ -59,10 +59,10 @@ const DishesUI = {
             item.addEventListener("click", () => {
                 DishesState.selectedProductId = p.id;
 
-                $$("#productsList .product-item")
-                    .forEach(el => el.style.background = "transparent");
+                $$("#productsList .listbox-tile")
+                    .forEach(el => el.classList.remove("selected"));
 
-                item.style.background = "#e5e7eb";
+                item.classList.add("selected");
             });
 
             list.appendChild(item);
@@ -276,6 +276,8 @@ const Dishes = {
 
     closeProductModal() {
         document.getElementById("productModal").classList.remove("show");
+        $$('#productsList .listbox-tile')
+            .forEach(el => el.classList.remove("selected"));
         DishesState.selectedProductId = null;
     },
 

@@ -29,7 +29,7 @@
 
     <!-- Modal wyboru składnika z products.json -->
     <div class="modal" id="productModal">
-        <div class="modal-content">
+        <div class="modal-content small">
             <div class="modal-header fancy-header">
                 <h3>Wybierz składnik</h3>
             </div>
@@ -38,16 +38,17 @@
                 <span class="close-icon">✕</span>
             </button>
 
+            <label for="productGrams">Ilość (gram):</label>
+            <input type="number" id="productGrams" placeholder="0" min="0">
+
             <input type="text" id="productSearch" placeholder="Szukaj produktu..."
                 style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 12px; border: 1px solid #e5e7eb;">
 
-            <div id="productsList" style="max-height: 300px; overflow-y: auto;"></div>
- 
-            <label>Ilość (gram):</label>
-            <input type="number" id="productGrams" placeholder="g" value="0" min="0">
+            <div id="productsList" class="listbox-tiles"></div>
+
 
             <div class="modal-buttons">
-                <button type="button" class="btn save-btn" onclick="Modal.selectProduct()">Dodaj</button>
+                <button type="button" class="btn green-btn" onclick="Modal.selectProduct()">Dodaj</button>
             </div>
         </div>
     </div>
@@ -130,7 +131,7 @@
                 </div>
 
                 <div class="modal-buttons">
-                    <button type="submit" class="btn save-btn" id="modalSubmitBtn">Zapisz</button>
+                    <button type="submit" class="btn green-btn" id="modalSubmitBtn">Zapisz</button>
                     <button type="button" class="btn red-btn" onclick="Modal.closeEditPopup()">Anuluj</button>
                 </div>
             </form>
@@ -138,7 +139,7 @@
     </div>
 
     <div class="modal" id="deletePopup">
-        <div class="modal-content modal-delete-product">
+        <div class="modal-content small">
             <div class="modal-header fancy-header">
                 <h3>Usunąć produkt?</h3>
             </div>
@@ -157,7 +158,7 @@
     </div>
 
     <div class="modal" id="successPopup">
-        <div class="modal-content">
+        <div class="modal-content small">
             <div class="modal-header fancy-header">
                 <h3>Produkt dodany!</h3>
             </div>
@@ -169,8 +170,8 @@
             <p>Czy chcesz dodać nowy produkt?</p>
 
             <div class="modal-buttons">
-                <button id="addAnotherYes" class="main-btn">Tak</button>
-                <button id="addAnotherNo" class="red-btn">Nie</button>
+                <button id="addAnotherYes" class="btn green-btn">Tak</button>
+                <button id="addAnotherNo" class="btn red-btn">Nie</button>
             </div>
         </div>
     </div>
@@ -196,7 +197,7 @@
                 <button id="clearRatingFilter" type="button" class="clear-rating-btn">✕</button>
             </div>
 
-            <div id="mealTiles" class="meal-tiles"></div>
+            <div id="mealTiles" class="listbox-tiles"></div>
         </div>
     </div>
 
@@ -278,8 +279,9 @@
             </div>
 
             <div class="modal-buttons">
-                <button type="button" class="btn save-btn" onclick="ModalShared.saveMeal()">Zapisz</button>
-                <button type="button" class="btn red-btn" id="deleteMealBtn" onclick="Modal.confirmDeleteMeal()">Usuń</button>
+                <button type="button" class="btn green-btn" onclick="ModalShared.saveMeal()">Zapisz</button>
+                <button type="button" class="btn red-btn" id="deleteMealBtn"
+                    onclick="Modal.confirmDeleteMeal()">Usuń</button>
             </div>
         </div>
     </div>
@@ -297,7 +299,7 @@
             </p>
 
             <div class="modal-buttons">
-                <button type="button" class="btn save-btn" id="saveAndLeaveBtn">
+                <button type="button" class="btn green-btn" id="saveAndLeaveBtn">
                     💾 Zapisz i przejdź
                 </button>
 
@@ -313,23 +315,39 @@
     </div>
 
     <div class="modal" id="copyDayModal">
-    <div class="modal-content">
-        <div class="modal-header fancy-header">
-            <h3>Kopiuj dzień</h3>
-        </div>
+        <div class="modal-content">
+            <div class="modal-header fancy-header">
+                <h3>Kopiuj dzień</h3>
+            </div>
 
-        <input type="hidden" id="copyFromDate">
+            <input type="hidden" id="copyFromDate">
 
-        <label>Wybierz datę docelową:</label>
-        <input type="text" id="copyToDate" class="modern-input">
+            <label>Wybierz datę docelową:</label>
+            <input type="text" id="copyToDate" class="modern-input">
 
-        <div class="modal-buttons">
-            <button type="button" class="btn save-btn" onclick="Planner.confirmCopyDay()">OK</button>
-            <button type="button" class="btn cancel-btn" onclick="closeModalElement($('copyDayModal'))">Anuluj</button>
+            <div class="modal-buttons">
+                <button type="button" class="btn green-btn" onclick="Planner.confirmCopyDay()">OK</button>
+                <button type="button" class="btn cancel-btn"
+                    onclick="closeModalElement($('copyDayModal'))">Anuluj</button>
+            </div>
         </div>
     </div>
-</div>
-    
+
+    <div id="addProductModal" class="modal">
+        <div class="modal-content small">
+            <h3>Dodaj produkt</h3>
+
+            <input id="newProductName" placeholder="Nazwa produktu">
+            <input id="newProductQuantity" placeholder="Ilość (np. 2 sztuki)">
+
+            <div class="modal-buttons">
+                <button type="button" class="btn green-btn" onclick="Shopping.addCustomProduct()">Dodaj</button>
+                <button type="button" class="btn red-btn"
+                    onclick="closeModalElement($('addProductModal'))">Anuluj</button>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pl.js"></script>
     <script src="{{ url_for('static', filename='js/base.js') }}"></script>
