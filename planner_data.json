@@ -584,11 +584,11 @@
                 "meal": 18
             },
             "2": {
-                "eaten": false,
+                "eaten": true,
                 "meal": 16
             },
             "3": {
-                "eaten": false,
+                "eaten": true,
                 "meal": 103
             },
             "4": {
@@ -596,96 +596,160 @@
                 "meal": 71
             },
             "5": {
-                "eaten": false,
+                "eaten": true,
                 "meal": 22
             }
         },
         "2026-04-08": {
             "1": {
-                "eaten": false,
+                "eaten": true,
                 "meal": 18
             },
             "2": {
-                "eaten": false,
+                "eaten": true,
                 "meal": 16
             },
             "3": {
-                "eaten": false,
+                "eaten": true,
                 "meal": 108
             },
             "4": {
-                "eaten": false,
+                "eaten": true,
                 "meal": 77
-            },
-            "5": {
-                "eaten": false,
-                "meal": 32
-            }
-        },
-        "2026-04-09": {
-            "1": {
-                "eaten": false,
-                "meal": 40
-            },
-            "2": {
-                "eaten": false,
-                "meal": 45
-            },
-            "3": {
-                "eaten": false,
-                "meal": 108
-            },
-            "4": {
-                "eaten": false,
-                "meal": 32
             },
             "5": {
                 "eaten": false,
                 "meal": 22
             }
         },
-        "2026-04-10": {
+        "2026-04-09": {
             "1": {
-                "eaten": false,
+                "eaten": true,
                 "meal": 40
             },
             "2": {
-                "eaten": false,
+                "eaten": true,
                 "meal": 45
             },
             "3": {
-                "eaten": false,
+                "eaten": true,
                 "meal": 103
             },
             "4": {
-                "eaten": false,
-                "meal": 53
+                "eaten": true,
+                "meal": 32
             },
             "5": {
                 "eaten": false,
                 "meal": 133
             }
         },
-        "2026-04-11": {
+        "2026-04-10": {
             "1": {
-                "eaten": false,
-                "meal": 18
+                "eaten": true,
+                "meal": 40
             },
             "2": {
                 "eaten": false,
-                "meal": 47
+                "meal": 45
             },
             "3": {
                 "eaten": false,
-                "meal": 103
+                "meal": 108
             },
             "4": {
                 "eaten": false,
-                "meal": 49
+                "meal": 53
+            },
+            "5": {
+                "eaten": true,
+                "meal": 32
+            }
+        },
+        "2026-04-13": {
+            "1": {
+                "meal": 18,
+                "eaten": false
+            },
+            "2": {
+                "meal": 16,
+                "eaten": false
+            },
+            "3": {
+                "meal": 103,
+                "eaten": false
+            },
+            "4": {
+                "meal": 72,
+                "eaten": false
+            },
+            "5": {
+                "meal": 53,
+                "eaten": false
+            }
+        },
+        "2026-04-14": {
+            "1": {
+                "meal": 18,
+                "eaten": false
+            },
+            "2": {
+                "meal": 47,
+                "eaten": false
+            },
+            "3": {
+                "meal": 103,
+                "eaten": false
+            },
+            "4": {
+                "meal": 52,
+                "eaten": false
+            },
+            "5": {
+                "meal": 22,
+                "eaten": false
+            }
+        },
+        "2026-04-12": {
+            "1": {
+                "meal": 16,
+                "eaten": false
+            },
+            "4": {
+                "meal": 77,
+                "eaten": false
             },
             "5": {
                 "eaten": false,
-                "meal": 46
+                "meal": 49
+            }
+        },
+        "2026-04-15": {
+            "1": {
+                "meal": 45,
+                "eaten": false
+            },
+            "2": {
+                "meal": 17,
+                "eaten": false
+            },
+            "3": {
+                "meal": 103,
+                "eaten": false
+            },
+            "4": {
+                "meal": 68,
+                "eaten": false
+            },
+            "5": {
+                "meal": 75,
+                "eaten": false
+            }
+        },
+        "2026-04-11": {
+            "3": {
+                "meal": 108,
+                "eaten": false
             }
         }
     },
@@ -1173,20 +1237,76 @@
         },
         "2026-04-11": {
             "1": {
-                "eaten": false,
-                "meal": 333
-            },
-            "2": {
-                "eaten": false,
-                "meal": 224
+                "meal": 184,
+                "eaten": false
             },
             "3": {
                 "eaten": false,
                 "meal": 252
+            }
+        },
+        "2026-04-12": {
+            "1": {
+                "meal": 184,
+                "eaten": false
+            },
+            "2": {
+                "meal": 236,
+                "eaten": false
+            },
+            "3": {
+                "meal": 270,
+                "eaten": false
             },
             "4": {
-                "eaten": false,
-                "meal": 323
+                "meal": 326,
+                "eaten": false
+            }
+        },
+        "2026-04-13": {
+            "1": {
+                "meal": 184,
+                "eaten": false
+            },
+            "2": {
+                "meal": 236,
+                "eaten": false
+            },
+            "3": {
+                "meal": 270,
+                "eaten": false
+            },
+            "4": {
+                "meal": 326,
+                "eaten": false
+            }
+        },
+        "2026-04-14": {
+            "1": {
+                "meal": 160,
+                "eaten": false
+            },
+            "3": {
+                "meal": 253,
+                "eaten": false
+            },
+            "4": {
+                "meal": 323,
+                "eaten": false
+            }
+        },
+        "2026-04-15": {
+            "1": {
+                "meal": 160,
+                "eaten": false
+            },
+            "2": {
+                "meal": 211,
+                "eaten": false
+            },
+            "4": {
+                "meal": 324,
+                "eaten": false
             }
         }
     }
