@@ -3203,8 +3203,8 @@
     },
     {
         "id": 72,
-        "name": "Owsianka w stylu batona Lion",
-        "description": "Płatki owsiane gotujemy w mleku, aż będą miękkie.\n Możemy również zalać płatki zimnym mlekiem i odstawić na kilka minut.\nDodajemy ekstrakt waniliowy.\nDo gotowych płatków owsianych dodajemy odżywkę białkową, dokładnie mieszamy i przekładamy do miseczki.\nPosypujemy płatkami Lion, orzechami arachidowymi i pokrojonym bananem.\n",
+        "name": "Owsianka w stylu kangusow",
+        "description": "Płatki owsiane gotujemy w mleku, aż będą miękkie.\n Możemy również zalać płatki zimnym mlekiem i odstawić na kilka minut.\nDodajemy ekstrakt waniliowy.\nDo gotowych płatków owsianych dodajemy odżywkę białkową, dokładnie mieszamy i przekładamy do miseczki.\nPosypujemy gryka, syropem klonowym, orzechami arachidowymi i pokrojonym bananem.\n",
         "person": "osoba1",
         "dish": [
             1,
@@ -3239,16 +3239,22 @@
                 "grams": 1.5
             },
             {
-                "id": 155,
-                "name": "Płatki Lion",
-                "grams": 15
-            },
-            {
                 "id": 89,
                 "name": "Orzechy arachidowe",
                 "grams": 30
+            },
+            {
+                "id": 351,
+                "name": "Gryka ekspandowana",
+                "grams": 20
+            },
+            {
+                "id": 170,
+                "name": "Syrop klonowy",
+                "grams": 10
             }
-        ]
+        ],
+        "rating": 5
     },
     {
         "id": 73,
