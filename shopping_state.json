@@ -1,20 +1,41 @@
 {
-    "87": {
+    "268": {
         "checked": true
     },
-    "89": {
+    "139": {
         "checked": true
     },
-    "166": {
+    "82": {
+        "checked": true
+    },
+    "132": {
+        "checked": true
+    },
+    "94": {
+        "checked": true
+    },
+    "175": {
         "checked": true
     },
     "212": {
         "checked": true
     },
-    "351": {
+    "86": {
         "checked": true
     },
-    "94": {
+    "140": {
+        "checked": true
+    },
+    "172": {
+        "checked": true
+    },
+    "88": {
+        "checked": true
+    },
+    "170": {
+        "checked": true
+    },
+    "136": {
         "checked": true
     },
     "84": {
@@ -23,109 +44,200 @@
     "310": {
         "checked": true
     },
-    "279": {
+    "120": {
         "checked": true
     },
-    "222": {
+    "146": {
         "checked": true
     },
-    "196": {
+    "119": {
         "checked": true
     },
     "158": {
         "checked": true
     },
-    "86": {
-        "checked": true
-    },
-    "315": {
-        "checked": true
-    },
-    "317": {
-        "checked": true
-    },
-    "313": {
+    "308": {
         "checked": true
     },
     "156": {
         "checked": true
     },
-    "327": {
-        "checked": true
-    },
-    "329": {
-        "checked": true
-    },
     "334": {
         "checked": true
     },
-    "323": {
-        "checked": true
-    },
-    "148": {
-        "checked": true
-    },
-    "319": {
-        "checked": true
-    },
-    "322": {
-        "checked": true
-    },
-    "46": {
-        "checked": true
-    },
-    "244": {
+    "121": {
         "checked": true
     },
     "59": {
         "checked": true
     },
-    "12": {
+    "251": {
+        "checked": true
+    },
+    "185": {
+        "checked": true
+    },
+    "181": {
         "checked": true
     },
     "194": {
         "checked": true
     },
-    "42": {
-        "ilosc": "150 gram"
+    "12": {
+        "checked": true
+    },
+    "284": {
+        "checked": true
+    },
+    "45": {
+        "checked": true
+    },
+    "113": {
+        "checked": true
+    },
+    "104": {
+        "checked": true
+    },
+    "326": {
+        "checked": true
+    },
+    "329": {
+        "checked": true
+    },
+    "315": {
+        "checked": true
+    },
+    "148": {
+        "checked": true
+    },
+    "327": {
+        "checked": true
+    },
+    "196": {
+        "checked": true
+    },
+    "277": {
+        "checked": true
+    },
+    "317": {
+        "checked": true
+    },
+    "309": {
+        "checked": true
+    },
+    "319": {
+        "checked": true
+    },
+    "345": {
+        "checked": true
+    },
+    "307": {
+        "checked": true
+    },
+    "46": {
+        "checked": true
+    },
+    "324": {
+        "checked": true
+    },
+    "335": {
+        "checked": true
+    },
+    "166": {
+        "checked": true
+    },
+    "259": {
+        "checked": true
+    },
+    "226": {
+        "checked": true
+    },
+    "244": {
+        "checked": true
+    },
+    "242": {
+        "checked": true
+    },
+    "207": {
+        "checked": true
+    },
+    "204": {
+        "checked": true
+    },
+    "200": {
+        "checked": true
+    },
+    "198": {
+        "checked": true
     },
     "262": {
-        "ilosc": "1 sztuka"
-    },
-    "263": {
-        "checked": true
-    },
-    "6": {
-        "checked": true
-    },
-    "256": {
-        "ilosc": "1 sztuka"
+        "ilosc": "9"
     },
     "260": {
+        "ilosc": "4"
+    },
+    "41": {
+        "ilosc": "125"
+    },
+    "6": {
+        "ilosc": "1"
+    },
+    "58": {
+        "ilosc": "300",
         "checked": true
     },
-    "231": {
+    "298": {
         "checked": true
+    },
+    "42": {
+        "ilosc": "3"
     },
     "73": {
         "checked": true
     },
-    "258": {
+    "48": {
         "checked": true
     },
-    "182": {
+    "49": {
         "checked": true
     },
-    "237": {
+    "265": {
+        "checked": true
+    },
+    "52": {
         "checked": true
     },
     "275": {
         "checked": true
     },
+    "72": {
+        "checked": true
+    },
+    "237": {
+        "checked": true
+    },
+    "37": {
+        "checked": true
+    },
+    "233": {
+        "checked": true
+    },
     "243": {
         "checked": true
     },
-    "38": {
-        "ilosc": "12 sztuk"
+    "236": {
+        "checked": true
+    },
+    "custom_1": {
+        "name": "granola",
+        "ilosc": "1",
+        "checked": false,
+        "custom": true
+    },
+    "custom_2": {
+        "name": "chemia pod psa",
+        "ilosc": "1",
+        "checked": false,
+        "custom": true
     }
 }
